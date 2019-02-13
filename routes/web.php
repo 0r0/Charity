@@ -18,3 +18,18 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/index',function (){
+    return view('index');
+});
+Route::get('/search',function(){
+    return view('job-search');
+});
+Route::get('/detail',function(){
+    return view('job_detailed');
+});
+Route::view('/all-projects','all-projects');
+Route::view('/all-volunteers','all-volunteers');
+Route::view('/admin-base','layouts.admin');
+Route::view('/volunteer-dashboard','volunteer-dashboard');
+Route::view('/charity-dashboard','charity-dashboard');
+

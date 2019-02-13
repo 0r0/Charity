@@ -13,4 +13,21 @@ require('./bootstrap');
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-require('./components/Example');
+// require('./components/Example');
+// require('./bootstrap');
+import React from 'react';
+import { render } from 'react-dom';
+import { Router, Route, BrowserRouter } from 'react-router-dom';
+import CreateItem from './components/CreateItem';
+
+import Example from './components/Example';
+import Master from './components/Master';
+// render(
+//     <Master />, document.getElementById('example'));
+render(<BrowserRouter>
+    <div>
+        <Route path="/" component={Master} >
+            <Route path="/add-item" component={CreateItem} />
+        </Route>
+    </div>
+</BrowserRouter>,document.getElementById('example'));
