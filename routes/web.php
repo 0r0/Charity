@@ -32,4 +32,6 @@ Route::view('/all-volunteers','all-volunteers');
 Route::view('/admin-base','layouts.admin');
 Route::view('/volunteer-dashboard','volunteer-dashboard');
 Route::view('/charity-dashboard','charity-dashboard');
+Route::view('/edit-volunteer-info','edit-volunteer-info');
+Route::view('/edit-charity-info','edit-charity-info');
 
