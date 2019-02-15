@@ -15,6 +15,12 @@ class CreateRequirementsTable extends Migration
     {
         Schema::create('requirements', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('project_id');
+            $table->string('skill');
+            $table->dateTime('time');
+            $table->string('place');
+            $table->integer('bill_kind');
+            $table->longText('description')->nullable();
             $table->timestamps();
         });
     }
