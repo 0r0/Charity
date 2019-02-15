@@ -15,6 +15,8 @@ class CreateVolunteerProjectTable extends Migration
     {
         Schema::create('volunteer_project', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('volunteer_id');
+            $table->integer('project_id');
             $table->timestamps();
         });
     }

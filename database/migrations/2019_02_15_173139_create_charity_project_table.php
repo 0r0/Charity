@@ -15,6 +15,8 @@ class CreateCharityProjectTable extends Migration
     {
         Schema::create('charity_project', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('charity_id');
+            $table->integer('project_id');
             $table->timestamps();
         });
     }
