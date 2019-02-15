@@ -21,7 +21,6 @@ class CreateProjectsTable extends Migration
             $table->string('summery');
             $table->longText('description');
             $table->longText('report');
-            $table->integer('requirement_id');
             $table->timestamps();
         });
     }
