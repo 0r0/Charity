@@ -7,27 +7,40 @@
     <title>Limitless - Responsive Web Application Kit by Eugene Kopyov</title>
 
     <!-- Global stylesheets -->
-    <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,100,500,700,900" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,100,500,700,900" rel="stylesheet"
+          type="text/css">
     <link href="{{asset('css/icons/icomoon/styles.css')}}" rel="stylesheet" type="text/css">
     <link href="{{asset('css/admin/bootstrap.css')}}" rel="stylesheet" type="text/css">
 
     <link href="{{asset('css/admin/core.css')}}" rel="stylesheet" type="text/css">
     <link href="{{asset('css/core/components.css')}}" rel="stylesheet" type="text/css">
     <link href="{{asset('css/colors.css')}}" rel="stylesheet" type="text/css">
+    @stack('css-header')
     <!-- /global stylesheets -->
 
     <!-- Core JS files -->
+    <script type="text/javascript" src="{{asset('js/pace.min.js')}}"></script>
     <script type="text/javascript" src="{{asset('js/jquery.min.js')}}"></script>
     <script type="text/javascript" src="{{asset('js/bootstrap.min.js')}}"></script>
+    <script type="text/javascript" src="{{asset('js/blockui.min.js')}}"></script>
+
     <!-- /core JS files -->
 
     <!-- Theme JS files -->
     <script type="text/javascript" src="{{asset('js/nicescroll.min.js')}}"></script>
 
-    {{--<script type="text/javascript" src="../assets/js/core/app.js"></script>--}}
+    <script type="text/javascript" src="{{asset('js/uniform.min.js')}}"></script>
     <script type="text/javascript" src="{{asset('js/app.js')}}"></script>
+    <script type="text/javascript" src="{{asset('js/form_inputs.js')}}"></script>
     <script type="text/javascript" src="{{asset('js/layout_fixed_custom.js')}}"></script>
+
     <!-- /theme JS files -->
+
+    @stack('js-header')
+
+
+
+
 
 </head>
 
@@ -46,7 +59,8 @@
 
     <div class="navbar-collapse collapse" id="navbar-mobile">
         <ul class="nav navbar-nav">
-            <li><a class="sidebar-control sidebar-main-toggle hidden-xs"><i class="icon-paragraph-justify3"></i></a></li>
+            <li><a class="sidebar-control sidebar-main-toggle hidden-xs"><i class="icon-paragraph-justify3"></i></a>
+            </li>
         </ul>
 
         <ul class="nav navbar-nav navbar-right">
@@ -58,7 +72,96 @@
                     <span class="visible-xs-inline-block position-right">Icon link</span>
                 </a>
             </li>
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                    <i class=" icon-bell2"></i>
+                    <span class="visible-xs-inline-block position-right">Messages</span>
+                    <span class="badge bg-warning-400">2</span>
+                </a>
 
+                <div class="dropdown-menu dropdown-content width-350">
+                    <div class="dropdown-content-heading">
+                        Messages
+                        <ul class="icons-list">
+                            <li><a href="#"><i class="icon-compose"></i></a></li>
+                        </ul>
+                    </div>
+
+                    <ul class="media-list dropdown-content-body">
+                        <li class="media">
+                            <div class="media-left">
+                                <img src="{{asset('images/placeholder.jpg')}}" class="img-circle img-sm" alt="">
+                                <span class="badge bg-danger-400 media-badge">5</span>
+                            </div>
+
+                            <div class="media-body">
+                                <a href="#" class="media-heading">
+                                    <span class="text-semibold">James Alexander</span>
+                                    <span class="media-annotation pull-right">04:58</span>
+                                </a>
+
+                                <span class="text-muted">who knows, maybe that would be the best thing for me...</span>
+                            </div>
+                        </li>
+
+                        <li class="media">
+                            <div class="media-left">
+                                <img src="{{asset('images/placeholder.jpg')}}" class="img-circle img-sm" alt="">
+                                <span class="badge bg-danger-400 media-badge">4</span>
+                            </div>
+
+                            <div class="media-body">
+                                <a href="#" class="media-heading">
+                                    <span class="text-semibold">Margo Baker</span>
+                                    <span class="media-annotation pull-right">12:16</span>
+                                </a>
+
+                                <span class="text-muted">That was something he was unable to do because...</span>
+                            </div>
+                        </li>
+
+                        <li class="media">
+                            <div class="media-left"><img src="{{asset('images/placeholder.jpg')}}" class="img-circle img-sm" alt=""></div>
+                            <div class="media-body">
+                                <a href="#" class="media-heading">
+                                    <span class="text-semibold">Jeremy Victorino</span>
+                                    <span class="media-annotation pull-right">22:48</span>
+                                </a>
+
+                                <span class="text-muted">But that would be extremely strained and suspicious...</span>
+                            </div>
+                        </li>
+
+                        <li class="media">
+                            <div class="media-left"><img src="{{asset('images/placeholder.jpg')}}" class="img-circle img-sm" alt=""></div>
+                            <div class="media-body">
+                                <a href="#" class="media-heading">
+                                    <span class="text-semibold">Beatrix Diaz</span>
+                                    <span class="media-annotation pull-right">Tue</span>
+                                </a>
+
+                                <span class="text-muted">What a strenuous career it is that I've chosen...</span>
+                            </div>
+                        </li>
+
+                        <li class="media">
+                            <div class="media-left"><img src="{{asset('images/placeholder.jpg')}}" class="img-circle img-sm" alt=""></div>
+                            <div class="media-body">
+                                <a href="#" class="media-heading">
+                                    <span class="text-semibold">Richard Vango</span>
+                                    <span class="media-annotation pull-right">Mon</span>
+                                </a>
+
+                                <span class="text-muted">Other travelling salesmen live a life of luxury...</span>
+                            </div>
+                        </li>
+                    </ul>
+
+                    <div class="dropdown-content-footer">
+                        <a href="#" data-popup="tooltip" title="" data-original-title="All messages"><i class="icon-menu display-block"></i></a>
+                    </div>
+                </div>
+            </li>
             <li class="dropdown dropdown-user">
                 <a class="dropdown-toggle" data-toggle="dropdown">
                     <img src="{{asset('images/image.png')}}" alt="">
@@ -69,7 +172,8 @@
                 <ul class="dropdown-menu dropdown-menu-right">
                     <li><a href="#"><i class="icon-user-plus"></i> My profile</a></li>
                     <li><a href="#"><i class="icon-coins"></i> My balance</a></li>
-                    <li><a href="#"><span class="badge badge-warning pull-right">58</span> <i class="icon-comment-discussion"></i> Messages</a></li>
+                    <li><a href="#"><span class="badge badge-warning pull-right">58</span> <i
+                                class="icon-comment-discussion"></i> Messages</a></li>
                     <li class="divider"></li>
                     <li><a href="#"><i class="icon-cog5"></i> Account settings</a></li>
                     <li><a href="#"><i class="icon-switch2"></i> Logout</a></li>
@@ -95,7 +199,8 @@
                 <div class="sidebar-user">
                     <div class="category-content">
                         <div class="media">
-                            <a href="#" class="media-left"><img src="{{asset('images/image.png')}}" class="img-circle img-sm" alt=""></a>
+                            <a href="#" class="media-left"><img src="{{asset('images/image.png')}}"
+                                                                class="img-circle img-sm" alt=""></a>
                             <div class="media-body">
                                 <span class="media-heading text-semibold">Victoria Baker</span>
                                 <div class="text-size-mini text-muted">
@@ -122,39 +227,17 @@
                         <ul class="navigation navigation-main navigation-accordion">
 
                             <!-- Main -->
-                            <li class="navigation-header"><span>Main</span> <i class="icon-menu" title="Main pages"></i></li>
-                            <li><a href="@yield('dashboard-address')"><i class="icon-home4"></i> <span>داشبورد</span></a></li>
-                            {{--<li>--}}
-                                {{--<a href="#"><i class="icon-stack"></i> <span>Starter kit</span></a>--}}
-                                {{--<ul>--}}
-                                    {{--<li><a href="horizontal_nav.html">Horizontal navigation</a></li>--}}
-                                    {{--<li><a href="1_col.html">1 column</a></li>--}}
-                                    {{--<li><a href="2_col.html">2 columns</a></li>--}}
-                                    {{--<li>--}}
-                                        {{--<a href="#">3 columns</a>--}}
-                                        {{--<ul>--}}
-                                            {{--<li><a href="3_col_dual.html">Dual sidebars</a></li>--}}
-                                            {{--<li><a href="3_col_double.html">Double sidebars</a></li>--}}
-                                        {{--</ul>--}}
-                                    {{--</li>--}}
-                                    {{--<li><a href="4_col.html">4 columns</a></li>--}}
-                                    {{--<li>--}}
-                                        {{--<a href="#">Detached layout</a>--}}
-                                        {{--<ul>--}}
-                                            {{--<li><a href="detached_left.html">Left sidebar</a></li>--}}
-                                            {{--<li><a href="detached_right.html">Right sidebar</a></li>--}}
-                                            {{--<li><a href="detached_sticky.html">Sticky sidebar</a></li>--}}
-                                        {{--</ul>--}}
-                                    {{--</li>--}}
-                                    {{--<li><a href="layout_boxed.html">Boxed layout</a></li>--}}
-                                    {{--<li class="navigation-divider"></li>--}}
-                                    {{--<li><a href="layout_navbar_fixed_main.html">Fixed top navbar</a></li>--}}
-                                    {{--<li><a href="layout_navbar_fixed_secondary.html">Fixed secondary navbar</a></li>--}}
-                                    {{--<li><a href="layout_navbar_fixed_both.html">Both navbars fixed</a></li>--}}
-                                    {{--<li class="active"><a href="layout_fixed.html">Fixed layout</a></li>--}}
-                                {{--</ul>--}}
-                            {{--</li>--}}
-                            <li><a href="../changelog.html"><i class="icon-list-unordered"></i> <span>ویرایش اطلاعات</span></a></li>
+                            <li class="navigation-header"><span>Main</span> <i class="icon-menu" title="Main pages"></i>
+                            </li>
+                            <li><a href="@yield('dashboard-address')"><i class="icon-home4"></i>
+                                    <span>داشبورد</span></a></li>
+
+                            <li><a href="@yield('info-url')"><i class="icon-list-unordered"></i>
+                                    <span>ویرایش اطلاعات</span></a></li>
+                            <li><a href="#"><i class=" icon-rocket"></i>
+                                    <span>پروژه ها</span></a></li>
+                            <li><a href="#"><i class="icon-accessibility"></i>
+                                    <span>درخواست ها</span></a></li>
                             <!-- /main -->
 
                         </ul>
@@ -174,11 +257,13 @@
             <div class="page-header page-header-default">
                 <div class="page-header-content">
                     <div class="page-title">
-                        <h4><i class="icon-arrow-right6 position-left"></i> <span class="text-semibold">Starters</span> - Fixed Layout</h4>
+                        <h4><i class="icon-arrow-right6 position-left"></i> <span
+                                class="text-semibold">@yield('header-page')</span></h4>
                     </div>
 
                     <div class="heading-elements">
-                        <a href="#" class="btn btn-labeled btn-labeled-right bg-blue heading-btn">Button <b><i class="icon-menu7"></i></b></a>
+                        <a href="#" class="btn btn-labeled btn-labeled-right bg-blue heading-btn">Button <b><i
+                                    class="icon-menu7"></i></b></a>
                     </div>
                 </div>
 
@@ -214,215 +299,7 @@
 
             <!-- Content area -->
             <div class="content">
-
-                <!-- Simple panel -->
-                <div class="panel panel-flat">
-                    <div class="panel-heading">
-                        <h5 class="panel-title">Simple panel</h5>
-                        <div class="heading-elements">
-                            <ul class="icons-list">
-                                <li><a data-action="collapse"></a></li>
-                                <li><a data-action="close"></a></li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <div class="panel-body">
-                        <h6 class="text-semibold">Start your development with no hassle!</h6>
-                        <p class="content-group">Common problem of templates is that all code is deeply integrated into the core. This limits your freedom in decreasing amount of code, i.e. it becomes pretty difficult to remove unnecessary code from the project. Limitless allows you to remove unnecessary and extra code easily just by removing the path to specific LESS file with component styling. All plugins and their options are also in separate files. Use only components you actually need!</p>
-
-                        <h6 class="text-semibold">What is this?</h6>
-                        <p class="content-group">Starter kit is a set of pages, useful for developers to start development process from scratch. Each layout includes base components only: layout, page kits, color system which is still optional, bootstrap files and bootstrap overrides. No extra CSS/JS files and markup. CSS files are compiled without any plugins or components. Starter kit was moved to a separate folder for better accessibility.</p>
-
-                        <h6 class="text-semibold">How does it work?</h6>
-                        <p>You open one of the starter pages, add necessary plugins, uncomment paths to files in components.less file, compile new CSS. That's it. I'd also recommend to open one of main pages with functionality you need and copy all paths/JS code from there to your new page, it's just faster and easier.</p>
-                    </div>
-                </div>
-                <!-- /simple panel -->
-
-
-                <!-- Table -->
-                <div class="panel panel-flat">
-                    <div class="panel-heading">
-                        <h5 class="panel-title">Basic table</h5>
-                        <div class="heading-elements">
-                            <ul class="icons-list">
-                                <li><a data-action="collapse"></a></li>
-                                <li><a data-action="close"></a></li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <div class="panel-body">
-                        Starter pages include the most basic components that may help you start your development process - basic grid example, panel, table and form layouts with standard components. Nothing extra.
-                    </div>
-
-                    <div class="table-responsive">
-                        <table class="table">
-                            <thead>
-                            <tr>
-                                <th>#</th>
-                                <th>First Name</th>
-                                <th>Last Name</th>
-                                <th>Username</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <tr>
-                                <td>1</td>
-                                <td>Eugene</td>
-                                <td>Kopyov</td>
-                                <td>@Kopyov</td>
-                            </tr>
-                            <tr>
-                                <td>2</td>
-                                <td>Victoria</td>
-                                <td>Baker</td>
-                                <td>@Vicky</td>
-                            </tr>
-                            <tr>
-                                <td>3</td>
-                                <td>James</td>
-                                <td>Alexander</td>
-                                <td>@Alex</td>
-                            </tr>
-                            <tr>
-                                <td>4</td>
-                                <td>Franklin</td>
-                                <td>Morrison</td>
-                                <td>@Frank</td>
-                            </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-                <!-- /table -->
-
-
-                <!-- Grid -->
-                <div class="row">
-                    <div class="col-md-6">
-
-                        <!-- Horizontal form -->
-                        <div class="panel panel-flat">
-                            <div class="panel-heading">
-                                <h5 class="panel-title">Horizontal form</h5>
-                                <div class="heading-elements">
-                                    <ul class="icons-list">
-                                        <li><a data-action="collapse"></a></li>
-                                        <li><a data-action="close"></a></li>
-                                    </ul>
-                                </div>
-                            </div>
-
-                            <div class="panel-body">
-                                <form class="form-horizontal" action="#">
-                                    <div class="form-group">
-                                        <label class="control-label col-lg-2">Text input</label>
-                                        <div class="col-lg-10">
-                                            <input type="text" class="form-control">
-                                        </div>
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label class="control-label col-lg-2">Password</label>
-                                        <div class="col-lg-10">
-                                            <input type="password" class="form-control">
-                                        </div>
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label class="control-label col-lg-2">Select</label>
-                                        <div class="col-lg-10">
-                                            <select name="select" class="form-control">
-                                                <option value="opt1">Basic select</option>
-                                                <option value="opt2">Option 2</option>
-                                                <option value="opt3">Option 3</option>
-                                                <option value="opt4">Option 4</option>
-                                                <option value="opt5">Option 5</option>
-                                                <option value="opt6">Option 6</option>
-                                                <option value="opt7">Option 7</option>
-                                                <option value="opt8">Option 8</option>
-                                            </select>
-                                        </div>
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label class="control-label col-lg-2">Textarea</label>
-                                        <div class="col-lg-10">
-                                            <textarea rows="5" cols="5" class="form-control" placeholder="Default textarea"></textarea>
-                                        </div>
-                                    </div>
-
-                                    <div class="text-right">
-                                        <button type="submit" class="btn btn-primary">Submit form <i class="icon-arrow-right14 position-right"></i></button>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                        <!-- /horizotal form -->
-
-                    </div>
-
-                    <div class="col-md-6">
-
-                        <!-- Vertical form -->
-                        <div class="panel panel-flat">
-                            <div class="panel-heading">
-                                <h5 class="panel-title">Vertical form</h5>
-                                <div class="heading-elements">
-                                    <ul class="icons-list">
-                                        <li><a data-action="collapse"></a></li>
-                                        <li><a data-action="close"></a></li>
-                                    </ul>
-                                </div>
-                            </div>
-
-                            <div class="panel-body">
-                                <form action="#">
-                                    <div class="form-group">
-                                        <label>Text input</label>
-                                        <input type="text" class="form-control">
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label>Select</label>
-                                        <select name="select" class="form-control">
-                                            <option value="opt1">Basic select</option>
-                                            <option value="opt2">Option 2</option>
-                                            <option value="opt3">Option 3</option>
-                                            <option value="opt4">Option 4</option>
-                                            <option value="opt5">Option 5</option>
-                                            <option value="opt6">Option 6</option>
-                                            <option value="opt7">Option 7</option>
-                                            <option value="opt8">Option 8</option>
-                                        </select>
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label>Textarea</label>
-                                        <textarea rows="4" cols="4" class="form-control" placeholder="Default textarea"></textarea>
-                                    </div>
-
-                                    <div class="text-right">
-                                        <button type="submit" class="btn btn-primary">Submit form <i class="icon-arrow-right14 position-right"></i></button>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                        <!-- /vertical form -->
-
-                    </div>
-                </div>
-                <!-- /grid -->
-
-
-                <!-- Footer -->
-                <div class="footer text-muted">
-                    &copy; 2015. <a href="#">Limitless Web App Kit</a> by <a href="http://themeforest.net/user/Kopyov" target="_blank">Eugene Kopyov</a>
-                </div>
-                <!-- /footer -->
-
+                @yield('body-content')
             </div>
             <!-- /content area -->
 
@@ -434,6 +311,6 @@
 
 </div>
 <!-- /page container -->
-
+@stack('js-body')
 </body>
 </html>
