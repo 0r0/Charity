@@ -1,13 +1,12 @@
 @extends('layouts.admin')
 @section('dashboard-address',url('/charity-dashboard'))
 @section('info-url',url('/edit-charity-info'))
-@section('requests-url',url('/volunteers-request'))
-@section('header-page','داشبورد خیریه')
+@section('requests-url',url('/voluntters-request'))
+@section('header-page','لیست درخواست ها')
 @section('body-content')
-
     <div class="panel panel-flat">
         <div class="panel-heading">
-            <h5 class="panel-title">لیست پروژه های فعال<a class="heading-elements-toggle"><i
+            <h5 class="panel-title"> درخواست های داوطلبین<a class="heading-elements-toggle"><i
                         class="icon-more"></i></a></h5>
             <div class="heading-elements">
                 <ul class="icons-list">
@@ -34,8 +33,7 @@
                     <th>متولی</th>
                     <th>زمان</th>
                     <th>وضعیت</th>
-                    <th>لیست داوطلبین</th>
-                    <th>اقدامات</th>
+                    <th>داوطلب</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -44,23 +42,9 @@
                     <td>Eugene</td>
                     <td>Eugene</td>
                     <td>Eugene</td>
-                    <td>Eugene</td>
-                    <td>Eugene</td>
                     <td>Kopyov</td>
-                    {{--<td>@Kopyov</td>--}}
-                    <td><div class="form-group">
-                            <label class="control-label col-lg-2">تغییروضعیت</label>
-                            <div class="col-lg-offset-1 col-lg-4">
-                                <select name="select" class="form-control">
-                                    <option value="opt1">فعال</option>
-                                    <option value="opt2">انصراف</option>
-
-                                </select>
-                            </div>
-                            <div class="col-lg-2">
-                                <button class="btn btn-default">تایید</button>
-                            </div>
-                        </div></td>
+                    <td>@Kopyov</td>
+                    <td><a href="#">حسین ابراهیمی</a> </td>
 
                 </tr>
                 <tr>
@@ -69,13 +53,11 @@
                     <td>Victoria</td>
                     <td>Baker</td>
                     <td>Baker</td>
-                    <td>Baker</td>
                     <td>@Vicky</td>
                     <td>@Vicky</td>
                 </tr>
                 <tr>
                     <td>3</td>
-                    <td>James</td>
                     <td>James</td>
                     <td>James</td>
                     <td>James</td>
@@ -87,7 +69,6 @@
                     <td>4</td>
                     <td>Franklin</td>
                     <td>Franklin</td>
-                    <td>Franklin</td>
                     <td>Morrison</td>
                     <td>Morrison</td>
                     <td>@Frank</td>
@@ -97,5 +78,4 @@
             </table>
         </div>
     </div>
-
-@endsection
+    @endsection

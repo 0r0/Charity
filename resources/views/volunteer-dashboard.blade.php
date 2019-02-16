@@ -44,7 +44,19 @@
                     <td>Eugene</td>
                     <td>Kopyov</td>
                     <td>@Kopyov</td>
-                    <td>@Kopyov</td>
+                    <td><div class="form-group">
+                            <label class="control-label col-lg-2">تغییروضعیت</label>
+                            <div class="col-lg-offset-1 col-lg-4">
+                                <select name="select" class="form-control">
+                                    <option value="opt1">فعال</option>
+                                    <option value="opt2">انصراف</option>
+
+                                </select>
+                            </div>
+                            <div class="col-lg-2">
+                                <button class="btn btn-primary">تایید</button>
+                            </div>
+                        </div></td>
 
                 </tr>
                 <tr>
