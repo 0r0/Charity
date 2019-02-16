@@ -2,10 +2,7 @@
 @section('dashboard-address',url('/volunteer-dashboard'))
 @section('info-url',url('/edit-volunteer-info'))
 @section('header-page','داشبورد داوطلب')
-@push('js-header')
-    <script type="text/javascript" src="{{asset('js/editable.min.js')}}"></script>
-    <script type="text/javascript" src="{{asset('js/form_editable.js')}}"></script>
-    @endpush
+
 @section('body-content')
     <div class="panel panel-flat">
         <div class="panel-heading">
@@ -47,7 +44,8 @@
                     <td>Eugene</td>
                     <td>Kopyov</td>
                     <td>@Kopyov</td>
-                    <td><a href="#" id="switchery-checkbox" data-type="checklist" data-pk="1" data-title="Select fruits" class="editable editable-click editable-empty" data-original-title="" title="">Disabled</a></td>
+                    <td>@Kopyov</td>
+
                 </tr>
                 <tr>
                     <td>2</td>
