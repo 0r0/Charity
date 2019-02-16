@@ -32,8 +32,9 @@
                     <th>position</th>
                     <th>متولی</th>
                     <th>زمان</th>
-                    <th>وضعیت</th>
                     <th>داوطلب</th>
+                    <th>وضعیت</th>
+
                 </tr>
                 </thead>
                 <tbody>
@@ -43,8 +44,21 @@
                     <td>Eugene</td>
                     <td>Eugene</td>
                     <td>Kopyov</td>
-                    <td>@Kopyov</td>
-                    <td><a href="#">حسین ابراهیمی</a> </td>
+                    <td><a href="#" style="color:whitesmoke">حسین ابراهیمی</a> </td>
+                    <td><div class="form-group">
+                            <div class="col-lg-offset-1 col-lg-6">
+                                <select name="select" class="form-control">
+                                    <option value="opt1">قبول</option>
+                                    <option value="opt2">رد</option>
+
+                                </select>
+                            </div>
+                            <div class="col-lg-2">
+                                <button class="btn btn-default">تایید</button>
+                            </div>
+                        </div></td>
+
+
 
                 </tr>
                 <tr>
