@@ -45,6 +45,14 @@ return [
             'driver' => 'token',
             'provider' => 'users',
         ],
+        'charity' => [
+            'driver' => 'session',
+            'provider' =>'charities'
+        ],
+        'volunteer' => [
+            'driver' => 'session',
+            'provider' => 'volunteers'
+        ]
     ],
 
     /*
@@ -69,6 +77,14 @@ return [
             'driver' => 'eloquent',
             'model' => App\User::class,
         ],
+        'charities' => [
+            'driver' => 'elequent',
+            'model' => App\Charity::class
+        ],
+        'volunteers' =>[
+            'driver' => 'elequent',
+            'model' => App\Volunteer::class
+        ]
 
         // 'users' => [
         //     'driver' => 'database',
