@@ -17,6 +17,13 @@ class RedirectIfAuthenticated
      */
     public function handle($request, Closure $next, $guard = null)
     {
+        if($guard == 'charity' && Auth::guard($guard)->check())
+        {
+            return redirect('/charity-dashboard');
+        }
+        if($guard =='volunteer' && Auth::guard($guard)->check()){
+            return redirect('volunteer-dashboard');
+        }
         if (Auth::guard($guard)->check()) {
             return redirect('/home');
         }
