@@ -15,21 +15,23 @@ class CreateCharitiesTable extends Migration
     {
         Schema::create('charities', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('userName');
-            $table->string('firstName');
-            $table->string('lastName');
-            $table->string('email');
+            $table->string('userName')->unique();
+            $table->string('firstName')->nullable();
+            $table->string('lastName')->nullable();
+            $table->string('email')->unique();
             $table->string('password');
-            $table->string('company');
-            $table->string('address');
-            $table->longText('bio');
-            $table->string('imagename');
-            $table->string('skill');
-            $table->string('intrest');
-            $table->string('resume');
+            $table->string('company')->nullable();
+            $table->string('address')->nullable();
+            $table->longText('bio')->nullable();
+            $table->string('imagename')->nullable();
+            $table->string('skill')->nullable();
+            $table->string('intrest')->nullable();
+            $table->string('resume')->nullable();
             $table->unsignedBigInteger('mobileNumber')->nullable();
             $table->unsignedBigInteger('phoneNumber')->nullable();
+            $table->boolean('is_complete')->default(false);
             $table->string('site')->nullable();
+            $table->rememberToken();
             $table->timestamps();
         });
     }
