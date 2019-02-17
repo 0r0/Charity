@@ -11,7 +11,7 @@ class Volunteer extends Authenticatable
     use Notifiable;
     protected  $guard='Volunteer';
     protected $fillable=[
-        'userName','password','remember_token'
+        'userName','email','password','remember_token'
     ];
     protected $hidden=[
       'password','remember_token'
