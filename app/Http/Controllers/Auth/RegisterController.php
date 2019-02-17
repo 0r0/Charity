@@ -49,19 +49,19 @@ class RegisterController extends Controller
     public function  showVolunteerRegisterForm()
     {
 
-        return view('auth.register',['url'=>'volunteer-dashboard']);
+        return view('auth.register',['url'=>'volunteer']);
     }
 
     public function  showCharityRegisterForm()
     {
-        return view('auth.register',['url'=>'charity-dashboard']);
+        return view('auth.register',['url'=>'charity']);
         
     }
     protected function  createCharity(Request $request)
     {
         $this->validator($request->all())->validate();
         $charity= Charity::create([
-            'userName' => $request['userName'],
+            'userName' => $request['name'],
             'email' =>$request['email'],
             'password'=> Hash::make($request['password'])
         ]);
@@ -72,7 +72,7 @@ class RegisterController extends Controller
     {
         $this->validator($request->all())->validate();
         $volunteer=Volunteer::create([
-           'userName' =>$request['userName'],
+           'userName' =>$request['name'],
            'email'=>$request['email'],
            'password'=>Hash::make($request['password']),
         ]);
