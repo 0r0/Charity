@@ -42,7 +42,7 @@ class LoginController extends Controller
 
     public function showCharityLoginForm()
     {
-        return view('auth.login', ['url' => 'charity-dashboard']);
+        return view('auth.login', ['url' => 'charity']);
     }
 
     public function charityLogin(Request $request)
@@ -52,14 +52,14 @@ class LoginController extends Controller
             'password' =>'required|min:6'
         ]);
         if($this->guard('charity')->attempt(['email'=>$request->email,'password'=>$request->password],$request->get('remember'))){
-            return redirect()->intended('/charity-dashboard');
+            return redirect()->intended('/charity');
         }
         return back()->withInput($request->only('email','remember'));
     }
 
     public function showVolunteerLoginForm()
     {
-        return view('auth.login',['url'=>'volunteer-dashboard']);
+        return view('auth.login',['url'=>'volunteer']);
     }
 
     public function volunteerLogin(Request $request)
@@ -67,7 +67,7 @@ class LoginController extends Controller
         $this->validate($request,['email' => 'required|email','password' =>'required|min:6']);
         if($this->guard('volunteer')->attempt(['email'=>$request->email,'password'=>$request->password],$request->get('remember'))){
 
-            return redirect()->intended('/volunteer-dashboard');
+            return redirect()->intended('/volunteer');
     }
         return back()->withInput($request->only('email','remember'));
 
