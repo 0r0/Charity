@@ -30,10 +30,22 @@ Route::get('/detail',function(){
 Route::view('/all-projects','all-projects');
 Route::view('/all-volunteers','all-volunteers');
 Route::view('/admin-base','layouts.admin');
+
+
+
+
+Route::get('/login/charity', 'Auth\LoginController@showCharityLoginForm');
+Route::get('/login/volunteer', 'Auth\LoginController@showVolunteerLoginForm');
+Route::get('/register/charity', 'Auth\RegisterController@showCharityRegisterForm');
+Route::get('/register/volunteer', 'Auth\RegisterController@showVolunteerRegisterForm');
+
+Route::post('/login/charity', 'Auth\LoginController@charityLogin');
+Route::post('/login/volunteer', 'Auth\LoginController@volunteerLogin');
+Route::post('/register/charity', 'Auth\RegisterController@createCharity');
+Route::post('/register/volunteer', 'Auth\RegisterController@createVolunteer');
+
 Route::view('/volunteer-dashboard','volunteer-dashboard');
 Route::view('/charity-dashboard','charity-dashboard');
 Route::view('/edit-volunteer-info','edit-volunteer-info');
 Route::view('/edit-charity-info','edit-charity-info');
 Route::view('/volunteers-request','volunteers-request');
-
-
