@@ -78,11 +78,11 @@ return [
             'model' => App\User::class,
         ],
         'charities' => [
-            'driver' => 'elequent',
+            'driver' => 'eloquent',
             'model' => App\Charity::class
         ],
         'volunteers' =>[
-            'driver' => 'elequent',
+            'driver' => 'eloquent',
             'model' => App\Volunteer::class
         ]
 
