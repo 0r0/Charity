@@ -17,4 +17,9 @@ class Volunteer extends Authenticatable
         'password', 'remember_token'
     ];
 
+    public function projects()
+    {
+        return $this->belongsToMany(Project::class);
+
+}
 }
