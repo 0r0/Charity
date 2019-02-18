@@ -2,14 +2,13 @@
 
 namespace App;
 
-//use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 class Charity extends  Authenticatable
 {
     use Notifiable;
 
-    protected $guard = 'Charity';
+    protected $guard = 'charity';
 
     protected $fillable = [
         'userName', 'email', 'password',
