@@ -12,4 +12,14 @@ class Project extends Model
         return $this->belongsToMany(Charity::class);
 
     }
+
+    public function volunteers()
+    {
+        return $this->belongsToMany(Volunteer::class);
+    }
+
+    public function reqiurements()
+    {
+        return $this->hasMany(Requirement::class);
+    }
 }
