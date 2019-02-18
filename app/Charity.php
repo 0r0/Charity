@@ -13,6 +13,9 @@ class Charity extends  Authenticatable
     protected $fillable = [
         'userName', 'email', 'password',
     ];
+    protected $hidden = [
+        'password', 'remember_token',
+    ];
     //many to many rel between project and charity model
     public function projects()
     {
