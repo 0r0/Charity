@@ -21,8 +21,8 @@ class RedirectIfAuthenticated
         {
             return redirect('/charity-dashboard');
         }
-        if($guard =='volunteer' && Auth::guard($guard)->check()){
-            return redirect('volunteer-dashboard');
+        if($guard == 'volunteer' && Auth::guard($guard)->check()){
+            return redirect('/volunteer-dashboard');
         }
         if (Auth::guard($guard)->check()) {
             return redirect('/home');
