@@ -65,7 +65,7 @@ class RegisterController extends Controller
             'email' =>$request['email'],
             'password'=> Hash::make($request['password'])
         ]);
-        return redirect()->intended('login/charity');
+        return redirect()->intended('/charity-dashboard');
 
     }
     protected function createVolunteer(Request $request)
@@ -76,7 +76,7 @@ class RegisterController extends Controller
            'email'=>$request['email'],
            'password'=>Hash::make($request['password']),
         ]);
-        return  redirect()->intended('login/volunteer');
+        return  redirect()->intended('/volunteer-dashboard');
     }
 
     /**
