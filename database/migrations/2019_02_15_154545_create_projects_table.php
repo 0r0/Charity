@@ -21,6 +21,7 @@ class CreateProjectsTable extends Migration
             $table->longText('summery');
             $table->longText('description');
             $table->longText('report');
+            $table->string('money');
             $table->timestamps();
         });
     }
