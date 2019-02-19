@@ -18,7 +18,7 @@ class CreateProjectsTable extends Migration
             $table->string('title');
             $table->string('picture');
             $table->string('supporter');
-            $table->string('summery');
+            $table->longText('summery');
             $table->longText('description');
             $table->longText('report');
             $table->timestamps();

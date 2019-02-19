@@ -26,9 +26,9 @@ class CreateCharitiesTable extends Migration
             $table->string('imagename')->nullable();
             $table->string('skill')->nullable();
             $table->string('intrest')->nullable();
-            $table->string('resume')->nullable();
-            $table->unsignedBigInteger('mobileNumber')->nullable();
-            $table->unsignedBigInteger('phoneNumber')->nullable();
+            $table->longText('resume')->nullable();
+            $table->string('mobileNumber')->nullable();
+            $table->string('phoneNumber')->nullable();
             $table->boolean('is_complete')->default(false);
             $table->string('site')->nullable();
             $table->rememberToken();
