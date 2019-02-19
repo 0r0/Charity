@@ -705,6 +705,67 @@
                         </div>
                     </div>
                     <div class="col-md-9">
+                        @foreach($projects->chunk(3) as $project)
+                            <div class="row">
+                                @foreach($project as $sub_project)
+                                    <div class="col-md-4">
+                                        <div class="panel panel-flat blog-horizontal blog-horizontal-2">
+                                            <div class="panel-body">
+                                                <div class="thumb">
+                                                    <a href="#course_preview" data-toggle="modal">
+                                                        <img src="{{asset('images/placeholder.jpg')}}"
+                                                             class="img-responsive img-rounded" alt="">
+                                                        <span class="zoom-image"><i class="icon-play3"></i></span>
+                                                    </a>
+                                                </div>
+
+                                                <div class="blog-preview">
+                                                    <div
+                                                        class="content-group-sm media blog-title stack-media-on-mobile text-left">
+                                                        <div class="media-body">
+                                                            <h5 class="text-semibold no-margin"><a href="#"
+                                                                                                   class="text-default">{{$sub_project->title}}</a></h5>
+
+                                                            <ul class="list-inline list-inline-separate no-margin text-muted">
+                                                                <li>توسط <a href="#">{{$sub_project->supporter}}</a></li>
+                                                                <li>Nov 1st, 2016</li>
+                                                            </ul>
+                                                        </div>
+
+                                                        <h5 class="text-success media-right no-margin-bottom text-semibold">
+                                                            {{$sub_project->money}}</h5>
+                                                    </div>
+
+
+                                                    <p>{{$sub_project->summery}}<a href="#">[...]</a></p>
+                                                </div>
+                                            </div>
+
+                                            <div class="panel-footer panel-footer-condensed"><a class="heading-elements-toggle"><i
+                                                        class="icon-more"></i></a>
+                                                <div class="heading-elements">
+                                                    <ul class="list-inline list-inline-separate heading-text">
+                                                        {{--<li><i class="icon-users position-left"></i> 382</li>--}}
+                                                        <li><i class="icon-alarm position-left"></i> 60 hours</li>
+                                                        <li>
+                                                            <i class="icon-star-full2 text-size-base text-warning-300"></i>
+                                                            <i class="icon-star-full2 text-size-base text-warning-300"></i>
+                                                            <i class="icon-star-full2 text-size-base text-warning-300"></i>
+                                                            <i class="icon-star-full2 text-size-base text-warning-300"></i>
+                                                            <i class="icon-star-full2 text-size-base text-warning-300"></i>
+                                                            <span class="text-muted position-right">(49)</span>
+                                                        </li>
+                                                    </ul>
+
+                                                    <a href="#" class="heading-text pull-right">Subscribe <i
+                                                            class="icon-arrow-left13 position-right"></i></a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    @endforeach
+                            </div>
+                            @endforeach
                         <div class="row">
                             <div class="col-md-4">
                                 <div class="panel panel-flat blog-horizontal blog-horizontal-2">
