@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateVolunteerProjectTable extends Migration
+class CreateProjectVolunteerTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateVolunteerProjectTable extends Migration
      */
     public function up()
     {
-        Schema::create('volunteer_project', function (Blueprint $table) {
+        Schema::create('project_volunteer', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('volunteer_id');
             $table->integer('project_id');
@@ -28,6 +28,6 @@ class CreateVolunteerProjectTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('volunteer_project');
+        Schema::dropIfExists('project_volunteer');
     }
 }
