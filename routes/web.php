@@ -27,8 +27,12 @@ Route::get('/search',function(){
 Route::get('/detail',function(){
     return view('job_detailed');
 });
-Route::view('/all-projects','all-projects');
 Route::view('/all-volunteers','all-volunteers');
+//Route::view('/all-volunteers','all-volunteers');
+Route::get('/all-projects',function(){
+    $projects=App\Project::all();
+    return view('all-projects',compact('projects'));
+});
 Route::view('/admin-base','layouts.admin');
 
 
