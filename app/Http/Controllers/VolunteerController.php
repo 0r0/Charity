@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Volunteer;
 use Illuminate\Http\Request;
 
 class VolunteerController extends Controller
@@ -10,10 +11,18 @@ class VolunteerController extends Controller
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
+     *
      */
-    public function index()
+    public function __construct()
     {
-        //
+        $this->middleware('auth:volunteer');
+    }
+    public function index($id)
+    {
+        $volunteer=Volunteer::find($id);
+        $volunteerProjects=$volunteer->projects()->get();
+
+        return view('volunteer-dashboard',compact('volunteerProjects'));
     }
 
     /**
