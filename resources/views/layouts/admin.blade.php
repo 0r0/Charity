@@ -165,7 +165,7 @@
             <li class="dropdown dropdown-user">
                 <a class="dropdown-toggle" data-toggle="dropdown">
                     <img src="{{asset('images/image.png')}}" alt="">
-                    <span>Victoria</span>
+                    <span>@yield('user-login')</span>
                     <i class="caret"></i>
                 </a>
 
@@ -202,7 +202,7 @@
                             <a href="#" class="media-left"><img src="{{asset('images/image.png')}}"
                                                                 class="img-circle img-sm" alt=""></a>
                             <div class="media-body">
-                                <span class="media-heading text-semibold">Victoria Baker</span>
+                                <span class="media-heading text-semibold">@yield('login-username')</span>
                                 <div class="text-size-mini text-muted">
                                     <i class="icon-pin text-size-small"></i> &nbsp;Santa Ana, CA
                                 </div>

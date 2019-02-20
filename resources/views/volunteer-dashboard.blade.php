@@ -2,7 +2,10 @@
 @section('dashboard-address',url('/volunteer-dashboard'))
 @section('info-url',url('/edit-volunteer-info'))
 @section('header-page','داشبورد داوطلب')
-
+@section('user-login')
+    {{Auth::guard('volunteer')->user()->firstName}} {{Auth::guard('volunteer')->user()->lastName}}
+    @endsection
+@section('login-username',Auth::guard('volunteer')->user()->userName)
 @section('body-content')
     <div class="panel panel-flat">
         <div class="panel-heading">
