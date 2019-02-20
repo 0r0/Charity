@@ -17,6 +17,8 @@ class CreateProjectVolunteerTable extends Migration
             $table->increments('id');
             $table->integer('volunteer_id');
             $table->integer('project_id');
+            $table->string('situation');
+            $table->string('skill');
             $table->timestamps();
         });
     }
