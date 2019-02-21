@@ -2,6 +2,7 @@
 
 use App\Volunteer;
 use Illuminate\Database\Seeder;
+use Faker\Factory;
 
 class VolunteerTableSeeder extends Seeder
 {
@@ -14,9 +15,9 @@ class VolunteerTableSeeder extends Seeder
     {
         factory(App\Volunteer::class,50)->create();
         $projects=App\Project::all();
-//        Volunteer::all()
         Volunteer::all()->each(function ($v) use ($projects){
-            $v->projects()->attach($projects->random(rand(1,2))->pluck('id')->toArray());
+            $faker=Factory::create('FA_IR');
+            $v->projects()->attach($projects->random(rand(1,2))->pluck('id')->toArray(),['situation' => random_int(-1,1),'skill'=>$faker->jobTitle]);
         });
 
     }
