@@ -4,7 +4,7 @@
 @section('header-page','داشبورد داوطلب')
 @section('user-login')
     {{Auth::guard('volunteer')->user()->firstName}} {{Auth::guard('volunteer')->user()->lastName}}
-    @endsection
+@endsection
 @section('login-username',Auth::guard('volunteer')->user()->userName)
 @section('body-content')
     <div class="panel panel-flat">
@@ -42,57 +42,38 @@
                 <tbody>
                 @foreach($volunteerProjects as $project)
 
-                <tr>
-                    <td>{{$loop->iteration}}</td>
-                    <td>{{$project->title}}</td>
-                    <td>{{$project->time}}</td>
-                    <td>{{$project->pivot->situation}}</td>
-                    <td>Eugene</td>
-                    <td>Kopyov</td>
-                    <td>@Kopyov</td>
-                    <td><div class="form-group">
-                            <label class="control-label col-lg-2">تغییروضعیت</label>
-                            <div class="col-lg-offset-1 col-lg-4">
-                                <select name="select" class="form-control">
-                                    <option value="opt1">فعال</option>
-                                    <option value="opt2">انصراف</option>
+                    <tr>
+                        <td>{{$loop->iteration}}</td>
+                        <td>{{$project->title}}</td>
+                        <td>{{$project->pivot->skill}}</td>
+                        <td>{{$project->supporter}}</td>
+                        <td>{{$project->pivot->date}}</td>
+                        @if($project->pivot->situation==0)
+                            <td>منتظر نظر خیریه</td>
+                        @endif
+                        @if($project->pivot->situation==1)
+                            <td>تایید شده</td>
+                        @endif
+                        @if($project->pivot->situation== -1)
+                            <td>رد شده</td>
+                        @endif
+                        <td>
+                            <div class="form-group">
+                                <label class="control-label col-lg-2">تغییروضعیت</label>
+                                <div class="col-lg-offset-1 col-lg-4">
+                                    <select name="select" class="form-control">
+                                        <option value="opt1">فعال</option>
+                                        <option value="opt2">انصراف</option>
 
-                                </select>
+                                    </select>
+                                </div>
+                                <div class="col-lg-2">
+                                    <button class="btn btn-primary">تایید</button>
+                                </div>
                             </div>
-                            <div class="col-lg-2">
-                                <button class="btn btn-primary">تایید</button>
-                            </div>
-                        </div></td>
-
-                </tr>
+                        </td>
+                    </tr>
                 @endforeach
-                <tr>
-                    <td>2</td>
-                    <td>Victoria</td>
-                    <td>Victoria</td>
-                    <td>Baker</td>
-                    <td>Baker</td>
-                    <td>@Vicky</td>
-                    <td>@Vicky</td>
-                </tr>
-                <tr>
-                    <td>3</td>
-                    <td>James</td>
-                    <td>James</td>
-                    <td>James</td>
-                    <td>Alexander</td>
-                    <td>Alexander</td>
-                    <td>@Alex</td>
-                </tr>
-                <tr>
-                    <td>4</td>
-                    <td>Franklin</td>
-                    <td>Franklin</td>
-                    <td>Morrison</td>
-                    <td>Morrison</td>
-                    <td>@Frank</td>
-                    <td>@Frank</td>
-                </tr>
                 </tbody>
             </table>
         </div>
