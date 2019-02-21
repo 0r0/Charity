@@ -40,10 +40,13 @@
                 </tr>
                 </thead>
                 <tbody>
+                @foreach($volunteerProjects as $project)
+
                 <tr>
-                    <td>1</td>
-                    <td>Eugene</td>
-                    <td>Eugene</td>
+                    <td>{{$loop->iteration}}</td>
+                    <td>{{$project->title}}</td>
+                    <td>{{$project->time}}</td>
+                    <td>{{$project->pivot->situation}}</td>
                     <td>Eugene</td>
                     <td>Kopyov</td>
                     <td>@Kopyov</td>
@@ -62,6 +65,7 @@
                         </div></td>
 
                 </tr>
+                @endforeach
                 <tr>
                     <td>2</td>
                     <td>Victoria</td>
