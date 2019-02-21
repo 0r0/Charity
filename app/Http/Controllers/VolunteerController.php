@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Volunteer;
+use Auth;
 use Illuminate\Http\Request;
 
 class VolunteerController extends Controller
@@ -17,8 +18,8 @@ class VolunteerController extends Controller
     {
         $this->middleware('auth:volunteer');
     }
-    public function index($id)
-    {
+    public function index()
+    {   $id= Auth::guard('volunteer')->user()->id;
         $volunteer=Volunteer::find($id);
         $volunteerProjects=$volunteer->projects()->get();
 
