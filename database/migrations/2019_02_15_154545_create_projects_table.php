@@ -22,6 +22,7 @@ class CreateProjectsTable extends Migration
             $table->longText('description');
             $table->longText('report');//report that made after finish project
             $table->string('money');//budget that need to run project
+            $table->date('runDate');//when project is executed
             $table->timestamps();
         });
     }

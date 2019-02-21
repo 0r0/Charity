@@ -17,7 +17,7 @@ class CreateRequirementsTable extends Migration
             $table->increments('id');
             $table->integer('project_id');
             $table->string('skill');
-            $table->date('date');
+            $table->date('date');//when that skill requirement is needed
             $table->string('place');
             $table->integer('bill_kind');
             $table->longText('description')->nullable();
