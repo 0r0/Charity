@@ -48,8 +48,8 @@ Route::post('/login/volunteer', 'Auth\LoginController@volunteerLogin');
 Route::post('/register/charity', 'Auth\RegisterController@createCharity');
 Route::post('/register/volunteer', 'Auth\RegisterController@createVolunteer');
 
-Route::view('/volunteer-dashboard','volunteer-dashboard')->middleware('auth:volunteer');
-Route::view('/charity-dashboard','charity-dashboard')->middleware('auth:charity');
+Route::get('/volunteer-dashboard','VolunteerController@index');
+Route::get('/charity-dashboard','CharityController@index');
 Route::view('/edit-volunteer-info','edit-volunteer-info');
 Route::view('/edit-charity-info','edit-charity-info');
 Route::view('/volunteers-request','volunteers-request');
