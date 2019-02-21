@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Charity;
 use Illuminate\Http\Request;
+use Auth;
 
 class CharityController extends Controller
 {
@@ -12,9 +13,16 @@ class CharityController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function __construct()
+    {
+        $this->middleware('auth:charity');
+    }
     public function index()
     {
-        //
+        $id=Auth::guard('charity')->user()->id;
+        $charity=Charity::find($id);
+        $projects=$charity->projects()->get();
+        return view('charity-dashboard',compact('projects'));
     }
 
     /**
