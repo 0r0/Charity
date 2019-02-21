@@ -8,7 +8,7 @@ $factory->define(Requirement::class, function() use($faker) {
     return [
         'project_id'=>random_int(1,30),
         'skill'=>$faker->jobTitle,
-        'time'=>$faker->dateTime,
+        'date'=>$faker->date(),
         'place'=>$faker->city,
         'bill_kind'=>random_int(0,1),
         'description'=>$faker->text(),
