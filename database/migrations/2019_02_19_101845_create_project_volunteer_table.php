@@ -17,8 +17,9 @@ class CreateProjectVolunteerTable extends Migration
             $table->increments('id');
             $table->integer('volunteer_id');
             $table->integer('project_id');
-            $table->string('situation');
-            $table->string('skill');
+            $table->string('situation')->default('0');//situation that charity or supporter selected for u
+            $table->string('skill');//equal to project requirement skill
+            $table->date('date');//equal to project requirement date
             $table->timestamps();
         });
     }
