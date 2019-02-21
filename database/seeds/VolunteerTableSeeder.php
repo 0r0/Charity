@@ -17,7 +17,7 @@ class VolunteerTableSeeder extends Seeder
         $projects=App\Project::all();
         Volunteer::all()->each(function ($v) use ($projects){
             $faker=Factory::create('FA_IR');
-            $v->projects()->attach($projects->random(rand(1,2))->pluck('id')->toArray(),['situation' => random_int(-1,1),'skill'=>$faker->jobTitle]);
+            $v->projects()->attach($projects->random(rand(1,2))->pluck('id')->toArray(),['situation' => random_int(-1,1),'skill'=>$faker->jobTitle,'date'=>$faker->date('Y-m-d','now')]);
         });
 
     }
