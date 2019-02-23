@@ -48,6 +48,8 @@ Route::post('/login/volunteer', 'Auth\LoginController@volunteerLogin');
 Route::post('/register/charity', 'Auth\RegisterController@createCharity');
 Route::post('/register/volunteer', 'Auth\RegisterController@createVolunteer');
 
+Route::post('/projects/update/{id}','ProjectController@update')->name('project-update');
+
 Route::get('/volunteer-dashboard','VolunteerController@index');
 Route::get('/charity-dashboard','CharityController@index');
 Route::view('/edit-volunteer-info','edit-volunteer-info');
