@@ -18,10 +18,8 @@
         </div>
 
         <div class="panel-body">
-            Table with custom background color supports all default table layouts and options. In this example our table
-            displays all possible borders, striped rows and changes background color on row hover. All border, row and
-            text colors are adjusted automatically.
-        </div>
+
+
 
         <div class="table-responsive">
             <table class="table table-bordered table-striped table-hover bg-info-700">
@@ -90,6 +88,7 @@
                 </tr>
                 </tbody>
             </table>
+        </div>
         </div>
     </div>
     @endsection
