@@ -11,6 +11,19 @@
     <script type="text/javascript" src="{{asset('js/validation/validate.min.js')}}"></script>
 @endpush
 @section('body-content')
+    <div class="panel panel-flat">
+        <div class="panel-heading">
+            <h5 class="panel-title"> لیست پروژه های فعال<a class="heading-elements-toggle"><i
+                        class="icon-more"></i></a></h5>
+            <div class="heading-elements">
+            </div>
+        </div>
+
+        <div class="panel-body">
+            Table with custom background color supports all default table layouts and options. In this example our table
+            displays all possible borders, striped rows and changes background color on row hover. All border, row and
+            text colors are adjusted automatically.
+        </div>
     @if(count($projects)>=3)
         @foreach($projects->chunk(3) as $project)
             <div class="row">
@@ -148,7 +161,7 @@
         </div>
     @endif
 
-
+    </div>
 
 
     @foreach($projects as $project)
