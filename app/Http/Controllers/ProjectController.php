@@ -44,9 +44,13 @@ class ProjectController extends Controller
      * @param  \App\Project $project
      * @return \Illuminate\Http\Response
      */
-    public function show(Project $project)
+    public function show($id)
     {
         //
+        $project=Project::find($id);
+        $project_requirement=$project->reqiurements()->get();
+
+        return view('project-more-info',compact('project_requirement','project'));
     }
 
     /**
