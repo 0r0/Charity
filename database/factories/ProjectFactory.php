@@ -11,6 +11,7 @@ $factory->define(App\Project::class, function ()use ($faker){
         'summery' => $faker->text($maxNbChars = 200),
         'description' => $faker->text(100),
         'report' => $faker->text(300),
-        'money' =>$faker->numberBetween($min = 100000, $max = 9000000).'تومان '
+        'money' =>$faker->numberBetween($min = 100000, $max = 9000000).'تومان ',
+        'runDate' =>$faker->date()
     ];
 });
