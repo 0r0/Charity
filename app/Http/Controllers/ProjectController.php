@@ -30,7 +30,7 @@ class ProjectController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -41,7 +41,7 @@ class ProjectController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Project  $project
+     * @param  \App\Project $project
      * @return \Illuminate\Http\Response
      */
     public function show(Project $project)
@@ -52,7 +52,7 @@ class ProjectController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Project  $project
+     * @param  \App\Project $project
      * @return \Illuminate\Http\Response
      */
     public function edit(Project $project)
@@ -63,19 +63,43 @@ class ProjectController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Project  $project
+     * @param  \Illuminate\Http\Request $request
+     * @param  \App\Project $project
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Project $project)
+    public function update(Request $request, $id)
     {
-        //
+
+        $project = Project::find($id);
+        //get fields from request
+        $title = $request->title;
+        $summery = $request->summery;
+        $description = $request->description;
+        $money = $request->money;
+        $report = $request->report;
+        $supporter = $request->supporter;
+        $runDate = $request->runDate;
+        $picture = $request->picture;
+        //update fields
+        $project->title = $title;
+        $project->summery = $summery;
+        $project->description = $description;
+        $project->money = $money;
+        $project->report = $report;//
+        $project->supporter = $supporter;
+        $project->runDate = $runDate;
+//        $project->picture = $picture; // work on it in future
+        $project->save();
+
+        $prj=$project->money;
+        return response()->json($summery);
+
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Project  $project
+     * @param  \App\Project $project
      * @return \Illuminate\Http\Response
      */
     public function destroy(Project $project)

@@ -186,85 +186,86 @@
                     </div>
 
                     {{--<form action="#">--}}
-                        <div class="modal-body">
-                            <div class="form-group">
-                                <div class="row">
-                                    <div class="col-sm-6">
-                                        <label>عنوان پروژه</label>
-                                        <input type="text" placeholder="عنوان پروژه" class="form-control"
-                                               value="{{$project->title}}" name="title{{$project->id}}">
-                                        <input type="hidden" id="custId" name="custId" value="3487">
-                                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <label>عنوان پروژه</label>
+                                    <input type="text" placeholder="عنوان پروژه" class="form-control"
+                                           value="{{$project->title}}" name="title{{$project->id}}">
+                                    <input type="hidden" id="custId" name="custId" value="3487">
+                                </div>
 
-                                    <div class="col-sm-6">
-                                        <label>بانی </label>
-                                        <input type="text" placeholder="بانی" class="form-control"
-                                               value="{{$project->supporter}}" name="supporter{{$project->id}}">
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <div class="row">
-                                    <div class="col-sm-12">
-                                        <label>خلاصه</label>
-                                        <textarea id="summery{{$project->id}}" placeholder="خلاصه را وارد کنید"
-                                                  rows="2" cols="80" class="alpaca-control form-control"
-                                                  name="summery{{$project->id}}"
-                                                  autocomplete="off">{{$project->summery}}</textarea>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-sm-12">
-                                        <label>توضیحات</label>
-                                        <textarea id="description{{$project->id}}" placeholder="توضیحات را وارد کنید"
-                                                  rows="3" cols="80" class="alpaca-control form-control"
-                                                  name="description{{$project->id}}"
-                                                  autocomplete="off">{{$project->description}}</textarea>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <div class="row">
-                                    <div class="col-sm-12">
-                                        <label>گزارش کلی</label>
-                                        <textarea id="report{{$project->id}}" placeholder="گزارش کلی را وارد کنید"
-                                                  rows="2" cols="80" class="alpaca-control form-control"
-                                                  name="report{{$project->id}}"
-                                                  autocomplete="off">{{$project->report}}</textarea>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-sm-6">
-                                        <label>زمان شروع</label>
-                                        <input type="text" name="runDate{{$project->id}}" placeholder="زمان شروع"
-                                               class="form-control" value="{{$project->runDate}}">
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <label>بودجه</label>
-                                        <div class="input-group">
-                                            <input type="text" placeholder=" بودجه پروژه " class="form-control"
-                                                   value="{{$project->money}}" name="money{{$project->id}}">
-                                            <span class="input-group-addon">ریال</span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-lg-12">
-                                        <label>آپلود عکس</label>
-                                        <input type="file" class="form-control" accept="image/*"
-                                               name="picture{{$project->id}}">
-                                    </div>
-
+                                <div class="col-sm-6">
+                                    <label>بانی </label>
+                                    <input type="text" placeholder="بانی" class="form-control"
+                                           value="{{$project->supporter}}" name="supporter{{$project->id}}">
                                 </div>
                             </div>
                         </div>
 
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-link" data-dismiss="modal">بستن</button>
-                            <button type="submit" class="btn btn-primary edit-submit{{$project->id}}" name="edit-submit{{$project->id}}">تایید
-                            </button>
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <label>خلاصه</label>
+                                    <textarea id="summery{{$project->id}}" placeholder="خلاصه را وارد کنید"
+                                              rows="2" cols="80" class="alpaca-control form-control"
+                                              name="summery{{$project->id}}"
+                                              autocomplete="off">{{$project->summery}}</textarea>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <label>توضیحات</label>
+                                    <textarea id="description{{$project->id}}" placeholder="توضیحات را وارد کنید"
+                                              rows="3" cols="80" class="alpaca-control form-control"
+                                              name="description{{$project->id}}"
+                                              autocomplete="off">{{$project->description}}</textarea>
+                                </div>
+                            </div>
                         </div>
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <label>گزارش کلی</label>
+                                    <textarea id="report{{$project->id}}" placeholder="گزارش کلی را وارد کنید"
+                                              rows="2" cols="80" class="alpaca-control form-control"
+                                              name="report{{$project->id}}"
+                                              autocomplete="off">{{$project->report}}</textarea>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <label>زمان شروع</label>
+                                    <input type="text" name="runDate{{$project->id}}" placeholder="زمان شروع"
+                                           class="form-control" value="{{$project->runDate}}">
+                                </div>
+                                <div class="col-sm-6">
+                                    <label>بودجه</label>
+                                    <div class="input-group">
+                                        <input type="text" placeholder=" بودجه پروژه " class="form-control"
+                                               value="{{$project->money}}" name="money{{$project->id}}">
+                                        <span class="input-group-addon">ریال</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <label>آپلود عکس</label>
+                                    <input type="file" class="form-control" accept="image/*"
+                                           name="picture{{$project->id}}">
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-link" data-dismiss="modal">بستن</button>
+                        <button type="submit" class="btn btn-primary edit-submit{{$project->id}}"
+                                name="edit-submit{{$project->id}}">تایید
+                        </button>
+                    </div>
                     {{--</form>--}}
                 </div>
             </div>
@@ -288,31 +289,42 @@
             @foreach($projects as $project)
             $('.edit-submit{{$project->id}}').on('click', function () {
 
-                var urlPath = "{{route('project-update',['id'=>$project->id])}}";
-                var title=$('[name="title{{$project->id}}"]').val();
-                var  summery=$('[name="summery{{$project->id}}"]').val();
-                var description=$('[name="description{{$project->id}}"]').val();
-                var money=$('[name="money{{$project->id}}"]').val();
-                var runDate=$('[name="runDate{{$project->id}}"]').val();
-                var picture=$('[name="picture{{$project->id}}"]').val();
-                var supporter=$('[name="supporter{{$project->id}}"]').val();
-                console.log('supporter{{$project->id}}',supporter);
+                var urlPath = '{{route('project-update',['id'=>$project->id])}}';
+                var title = $('[name="title{{$project->id}}"]').val();
+                var summery = $('[name="summery{{$project->id}}"]').val();
+                var description = $('[name="description{{$project->id}}"]').val();
+                var money = $('[name="money{{$project->id}}"]').val();
+                var runDate = $('[name="runDate{{$project->id}}"]').val();
+                var picture = $('[name="picture{{$project->id}}"]').val();
+                var supporter = $('[name="supporter{{$project->id}}"]').val();
+                var report=$('[name="report{{$project->id}}"]').val();
+                console.log('supporter{{$project->id}}', supporter);
                 $.ajax({
                         url: urlPath,
                         method: 'POST',
                         data: {
                             'title': title,
                             'summery': summery,
-                            'decription': description,
+                            'description': description,
                             'money': money,
-                            'supporter':supporter,
-                            'runDate':runDate,
-                            'picture':picture
-                        }
+                            'supporter': supporter,
+                            'runDate': runDate,
+                            'picture': picture,
+                            'report':report
+                        },
+                        success: function (data) {
+                            console.log('successful '+data);
+
+                        },
+                        error: function (xhr, ajaxOptions, thrownError) {
+                            console.log('error');
+
+                            console.log(thrownError);
+                        },
                     }
                 );
                 $('#edit-project{{$project->id}}').modal('hide');// close model after click on submit button
-
+                location.reload(true);
             });
             @endforeach
 
