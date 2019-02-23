@@ -19,149 +19,152 @@
             </div>
         </div>
 
+
         <div class="panel-body">
-            Table with custom background color supports all default table layouts and options. In this example our table
-            displays all possible borders, striped rows and changes background color on row hover. All border, row and
-            text colors are adjusted automatically.
-        </div>
-    @if(count($projects)>=3)
-        @foreach($projects->chunk(3) as $project)
-            <div class="row">
-                @foreach($project as $sub_project)
-                    <div class="col-md-4">
-                        <div class="panel panel-flat blog-horizontal blog-horizontal-2">
-                            <div class="panel-body">
-                                <div class="thumb">
-                                    <a href="#course_preview{{$sub_project->id}}" data-toggle="modal">
-                                        <img src="{{asset('images/placeholder.jpg')}}"
-                                             class="img-responsive img-rounded" alt="">
-                                        <span class="zoom-image"><i class="icon-play3"></i></span>
-                                    </a>
-                                </div>
-
-                                <div class="blog-preview">
-                                    <div class="content-group-sm media blog-title stack-media-on-mobile text-left">
-                                        <div class="media-body">
-                                            <h5 class="text-semibold no-margin"><a href="#"
-                                                                                   class="text-default">{{$sub_project->title}}</a>
-                                            </h5>
-
-                                            <ul class="list-inline list-inline-separate no-margin text-muted">
-                                                {{--<li>توسط <a href="#">کاریابی صمد</a></li>--}}
-                                                <li>Nov 1st, 2016</li>
-                                            </ul>
+            @if(count($projects)>=3)
+                @foreach($projects->chunk(3) as $project)
+                    <div class="row">
+                        @foreach($project as $sub_project)
+                            <div class="col-md-4">
+                                <div class="panel panel-flat blog-horizontal blog-horizontal-2">
+                                    <div class="panel-body">
+                                        <div class="thumb">
+                                            <a href="#course_preview{{$sub_project->id}}" data-toggle="modal">
+                                                <img src="{{asset('images/placeholder.jpg')}}"
+                                                     class="img-responsive img-rounded" alt="">
+                                                <span class="zoom-image"><i class="icon-play3"></i></span>
+                                            </a>
                                         </div>
 
-                                        <h5 class="text-success media-right no-margin-bottom text-semibold">
-                                            {{$sub_project->money}} </h5>
-                                    </div>
-                                    <p>{{substr($sub_project->summery,0,40)}}<a href="#description{{$sub_project->id}}"
-                                                                                data-toggle="collapse">[بیشتر]</a></p>
-                                    <div id="description{{$sub_project->id}}" class="collapse">
-                                        {{substr($sub_project->summery,40)}}
-                                    </div>
-                                </div>
-                            </div>
+                                        <div class="blog-preview">
+                                            <div
+                                                class="content-group-sm media blog-title stack-media-on-mobile text-left">
+                                                <div class="media-body">
+                                                    <h5 class="text-semibold no-margin"><a href="#"
+                                                                                           class="text-default">{{$sub_project->title}}</a>
+                                                    </h5>
 
-                            <div class="panel-footer panel-footer-condensed"><a class="heading-elements-toggle"><i
-                                        class="icon-more"></i></a><a class="heading-elements-toggle"><i
-                                        class="icon-more"></i></a>
-                                <div class="heading-elements">
-                                    <ul class="list-inline list-inline-separate heading-text">
-                                        <li><i class="icon-alarm position-left"></i>{{$sub_project->runDate}}</li>
-                                        <li>
-                                            <i class="icon-star-full2 text-size-base text-warning-300"></i>
-                                            <i class="icon-star-full2 text-size-base text-warning-300"></i>
-                                            <i class="icon-star-full2 text-size-base text-warning-300"></i>
-                                            <i class="icon-star-full2 text-size-base text-warning-300"></i>
-                                            <i class="icon-star-full2 text-size-base text-warning-300"></i>
-                                            <span class="text-muted position-right">(49)</span>
-                                        </li>
-                                    </ul>
-                                    <a href="#" class="heading-text pull-right" data-toggle="modal">جزئیات بیشتر <i
-                                            class="icon-arrow-left13 position-right"></i></a>
-                                    <a href="#edit-project{{$sub_project->id}}" class="heading-text pull-right"
-                                       data-toggle="modal">ویرایش اطلاعات <i
-                                            class=" icon-pencil7 position-right"></i></a>
+                                                    <ul class="list-inline list-inline-separate no-margin text-muted">
+                                                        {{--<li>توسط <a href="#">کاریابی صمد</a></li>--}}
+                                                        <li>Nov 1st, 2016</li>
+                                                    </ul>
+                                                </div>
+
+                                                <h5 class="text-success media-right no-margin-bottom text-semibold">
+                                                    {{$sub_project->money}} </h5>
+                                            </div>
+                                            <p>{{substr($sub_project->summery,0,40)}}<a
+                                                    href="#description{{$sub_project->id}}"
+                                                    data-toggle="collapse">[بیشتر]</a></p>
+                                            <div id="description{{$sub_project->id}}" class="collapse">
+                                                {{substr($sub_project->summery,40)}}
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="panel-footer panel-footer-condensed"><a class="heading-elements-toggle"><i
+                                                class="icon-more"></i></a><a class="heading-elements-toggle"><i
+                                                class="icon-more"></i></a>
+                                        <div class="heading-elements">
+                                            <ul class="list-inline list-inline-separate heading-text">
+                                                <li><i class="icon-alarm position-left"></i>{{$sub_project->runDate}}
+                                                </li>
+                                                <li>
+                                                    <i class="icon-star-full2 text-size-base text-warning-300"></i>
+                                                    <i class="icon-star-full2 text-size-base text-warning-300"></i>
+                                                    <i class="icon-star-full2 text-size-base text-warning-300"></i>
+                                                    <i class="icon-star-full2 text-size-base text-warning-300"></i>
+                                                    <i class="icon-star-full2 text-size-base text-warning-300"></i>
+                                                    <span class="text-muted position-right">(49)</span>
+                                                </li>
+                                            </ul>
+                                            <a href="{{route('project-more-info',['id'=>$sub_project->id])}}" class="heading-text pull-right" data-toggle="modal">جزئیات بیشتر
+                                                <i
+                                                    class="icon-arrow-left13 position-right"></i></a>
+                                            <a href="#edit-project{{$sub_project->id}}" class="heading-text pull-right"
+                                               data-toggle="modal">ویرایش اطلاعات <i
+                                                    class=" icon-pencil7 position-right"></i></a>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
+                        @endforeach
                     </div>
                 @endforeach
-            </div>
-        @endforeach
-    @else
-        <div class="row">
-            @foreach($projects as $project)
-                <div class="col-md-4">
-                    <div class="panel panel-flat blog-horizontal blog-horizontal-2">
-                        <div class="panel-body">
-                            <div class="thumb">
-                                <a href="#course_preview{{$project->id}}" data-toggle="modal">
-                                    <img src="{{asset('images/placeholder.jpg')}}"
-                                         class="img-responsive img-rounded" alt="">
-                                    <span class="zoom-image"><i class="icon-play3"></i></span>
-                                </a>
-                            </div>
-
-                            <div class="blog-preview">
-                                <div class="content-group-sm media blog-title stack-media-on-mobile text-left">
-                                    <div class="media-body">
-                                        <h5 class="text-semibold no-margin"><a href="#"
-                                                                               class="text-default">{{$project->title}}</a>
-                                        </h5>
-
-                                        <ul class="list-inline list-inline-separate no-margin text-muted">
-                                            @if($project->is_archive)
-                                                <li>آرشیو</li>
-                                            @else
-                                                <li>فعال</li>
-                                            @endif
-                                            <li>تاریخ ایجاد:{{$project->created_at}}</li>
-                                        </ul>
+            @else
+                <div class="row">
+                    @foreach($projects as $project)
+                        <div class="col-md-4">
+                            <div class="panel panel-flat blog-horizontal blog-horizontal-2">
+                                <div class="panel-body">
+                                    <div class="thumb">
+                                        <a href="#course_preview{{$project->id}}" data-toggle="modal">
+                                            <img src="{{asset('images/placeholder.jpg')}}"
+                                                 class="img-responsive img-rounded" alt="">
+                                            <span class="zoom-image"><i class="icon-play3"></i></span>
+                                        </a>
                                     </div>
 
-                                    <h5 class="text-success media-right no-margin-bottom text-semibold">
-                                        {{$project->money}}</h5>
+                                    <div class="blog-preview">
+                                        <div class="content-group-sm media blog-title stack-media-on-mobile text-left">
+                                            <div class="media-body">
+                                                <h5 class="text-semibold no-margin"><a href="#"
+                                                                                       class="text-default">{{$project->title}}</a>
+                                                </h5>
+
+                                                <ul class="list-inline list-inline-separate no-margin text-muted">
+                                                    @if($project->is_archive)
+                                                        <li>آرشیو</li>
+                                                    @else
+                                                        <li>فعال</li>
+                                                    @endif
+                                                    <li>تاریخ ایجاد:{{$project->created_at}}</li>
+                                                </ul>
+                                            </div>
+
+                                            <h5 class="text-success media-right no-margin-bottom text-semibold">
+                                                {{$project->money}}</h5>
+                                        </div>
+                                        <p>{{substr($project->summery,0,40)}} <a href="#description{{$project->id}}"
+                                                                                 data-toggle="collapse">[بیشتر]</a></p>
+                                        <div id="description{{$project->id}}" class="collapse">
+                                            {{substr($project->summery,40)}}
+                                        </div>
+                                    </div>
                                 </div>
-                                <p>{{substr($project->summery,0,40)}} <a href="#description{{$project->id}}"
-                                                                         data-toggle="collapse">[بیشتر]</a></p>
-                                <div id="description{{$project->id}}" class="collapse">
-                                    {{substr($project->summery,40)}}
+
+                                <div class="panel-footer panel-footer-condensed"><a class="heading-elements-toggle"><i
+                                            class="icon-more"></i></a><a class="heading-elements-toggle"><i
+                                            class="icon-more"></i></a>
+                                    <div class="heading-elements">
+                                        <ul class="list-inline list-inline-separate heading-text">
+                                            <li><i class="icon-alarm position-left"></i>تاریخ شروع:{{$project->runDate}}
+                                            </li>
+                                            <li>
+                                                <i class="icon-star-full2 text-size-base text-warning-300"></i>
+                                                <i class="icon-star-full2 text-size-base text-warning-300"></i>
+                                                <i class="icon-star-full2 text-size-base text-warning-300"></i>
+                                                <i class="icon-star-full2 text-size-base text-warning-300"></i>
+                                                <i class="icon-star-full2 text-size-base text-warning-300"></i>
+                                                {{--<span class="text-muted position-right">(49)</span>--}}
+                                            </li>
+                                        </ul>
+                                        <a href="{{route('project-more-info',['id'=>$project->id])}}" class="heading-text pull-right" data-toggle="modal">جزئیات بیشتر <i
+                                                class="icon-arrow-left13 position-right"></i></a>
+                                        <a href="#edit-project{{$project->id}}" class="heading-text pull-right"
+                                           data-toggle="modal">ویرایش اطلاعات <i
+                                                class=" icon-pencil7 position-right"></i></a>
+
+                                    </div>
                                 </div>
                             </div>
                         </div>
-
-                        <div class="panel-footer panel-footer-condensed"><a class="heading-elements-toggle"><i
-                                    class="icon-more"></i></a><a class="heading-elements-toggle"><i
-                                    class="icon-more"></i></a>
-                            <div class="heading-elements">
-                                <ul class="list-inline list-inline-separate heading-text">
-                                    <li><i class="icon-alarm position-left"></i>تاریخ شروع:{{$project->runDate}}</li>
-                                    <li>
-                                        <i class="icon-star-full2 text-size-base text-warning-300"></i>
-                                        <i class="icon-star-full2 text-size-base text-warning-300"></i>
-                                        <i class="icon-star-full2 text-size-base text-warning-300"></i>
-                                        <i class="icon-star-full2 text-size-base text-warning-300"></i>
-                                        <i class="icon-star-full2 text-size-base text-warning-300"></i>
-                                        {{--<span class="text-muted position-right">(49)</span>--}}
-                                    </li>
-                                </ul>
-                                <a href="#" class="heading-text pull-right" data-toggle="modal">جزئیات بیشتر <i
-                                        class="icon-arrow-left13 position-right"></i></a>
-                                <a href="#edit-project{{$project->id}}" class="heading-text pull-right"
-                                   data-toggle="modal">ویرایش اطلاعات <i
-                                        class=" icon-pencil7 position-right"></i></a>
-
-                            </div>
-                        </div>
-                    </div>
+                    @endforeach
                 </div>
-            @endforeach
+            @endif
         </div>
-    @endif
-
     </div>
+
 
 
     @foreach($projects as $project)
@@ -310,7 +313,7 @@
                 var runDate = $('[name="runDate{{$project->id}}"]').val();
                 var picture = $('[name="picture{{$project->id}}"]').val();
                 var supporter = $('[name="supporter{{$project->id}}"]').val();
-                var report=$('[name="report{{$project->id}}"]').val();
+                var report = $('[name="report{{$project->id}}"]').val();
                 console.log('supporter{{$project->id}}', supporter);
                 $.ajax({
                         url: urlPath,
@@ -323,10 +326,10 @@
                             'supporter': supporter,
                             'runDate': runDate,
                             'picture': picture,
-                            'report':report
+                            'report': report
                         },
                         success: function (data) {
-                            console.log('successful '+data);
+                            console.log('successful ' + data);
 
                         },
                         error: function (xhr, ajaxOptions, thrownError) {
