@@ -28,7 +28,7 @@ Route::get('/detail',function(){
     return view('job_detailed');
 });
 Route::view('/all-volunteers','all-volunteers');
-//Route::view('/all-volunteers','all-volunteers');
+
 Route::get('/all-projects',function(){
     $projects=App\Project::all();
     return view('all-projects',compact('projects'));
@@ -50,8 +50,13 @@ Route::post('/register/volunteer', 'Auth\RegisterController@createVolunteer');
 
 Route::post('/projects/update/{id}','ProjectController@update')->name('project-update');
 Route::get('/projects/more-info/{id}','ProjectController@show')->name('project-more-info');
+
 Route::get('/volunteer-dashboard','VolunteerController@index');
 Route::get('/charity-dashboard','CharityController@index');
-Route::view('/edit-volunteer-info','edit-volunteer-info');
-Route::view('/edit-charity-info','edit-charity-info');
+
+Route::get('/edit-volunteer-info','VolunteerController@edit');
+Route::get('/edit-volunteer-info/{id}','VolunteerController@update')->name('volunteer-update');
+Route::get('/edit-charity-info','CharityController@edit');
+Route::post('/edit-charity-info/{id}','CharityController@update')->name('charity-update');
+
 Route::view('/volunteers-request','volunteers-request');
