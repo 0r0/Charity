@@ -120,9 +120,11 @@ $(function () {
             }
             ,
             password: {
+                required:false,
                 minlength: 5
             },
             repeat_password: {
+                required:false,
                 equalTo: "#password"
             },
             email: {
