@@ -86,7 +86,7 @@ class VolunteerController extends Controller
         $volunteer = Volunteer::find($id);
         $volunteer->userName = $request->userName;
         $volunteer->firstName = $request->FirstName;
-        $volunteer->lastName = $request->lastName;
+        $volunteer->lastName = $request->LastName;
         $volunteer->company = $request->company;
         $volunteer->address = $request->address;
         if (isset($request->password) && isset($request->confirmPassword)) {
@@ -99,6 +99,7 @@ class VolunteerController extends Controller
         $volunteer->site=$request->site;
 //        $volunteer->intrest=$request->interest;
         $volunteer->skill=$request->profession;
+        $volunteer->save();
     }
 
     /**
