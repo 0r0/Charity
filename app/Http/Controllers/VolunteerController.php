@@ -64,9 +64,11 @@ class VolunteerController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit()
     {
-        //
+        $id=Auth::guard('volunteer')->user()->id;
+        $volunteer=Volunteer::find($id);
+        return view('edit-volunteer-info',compact('volunteer'));
     }
 
     /**
