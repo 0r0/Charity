@@ -63,9 +63,12 @@ class CharityController extends Controller
      * @param  \App\Charity  $charity
      * @return \Illuminate\Http\Response
      */
-    public function edit(Charity $charity)
+    public function edit()
     {
-        //
+        $id=Auth::guard('charity')->user()->id;
+        $charity=Charity::find($id);
+        return view('edit-charity-info',compact('charity'));
+
     }
 
     /**
@@ -75,9 +78,39 @@ class CharityController extends Controller
      * @param  \App\Charity  $charity
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Charity $charity)
+    public function update(Request $request,$id)
     {
-        //
+        $charity=Charity::find($id);
+        $firstName=$request->FirstName;
+        $lastName=$request->LastName;
+        $company=$request->company;
+        $email=$request->email;
+        $address=$request->address;
+        $profilePicture=$request->profile_picture;
+        $bio=$request->bio;
+        $skill=$request->skill;
+        $interests=$request->interests;
+        $resume=$request->resume_file;
+        $mobile=$request->mobile;
+        $phoneNumber=$request->phone_number;
+        $site=$request->site;
+
+//        $charity->userName=$userName
+        $charity->firstName=$firstName;
+        $charity->lastName=$lastName;
+        $charity->email=$email;
+        $charity->company=$company;
+        $charity->mobileNumber=$mobile;
+        $charity->phoneNumber=$phoneNumber;
+        $charity->site=$site;
+//        $charity->interests=$interests //in db intrest must changeto interests ;)
+//        $charity->resume=$resume;
+        $charity->skill=$skill;
+        $charity->bio=$bio;
+        $charity->address=$address;
+//        $charity->imagename=$profilePicture;
+        $charity->save();
+
     }
 
     /**
