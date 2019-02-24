@@ -151,7 +151,7 @@
                         <label class="control-label col-lg-2">علاقه مندی ها </label>
                         <div class="col-lg-10">
                             <div class="multi-select-full">
-                                <select class="multiselect" multiple="multiple" style="display: none;">
+                                <select class="multiselect" multiple="multiple" style="display: none;"  name="interst">
                                     <option value="cheese">Cheese</option>
                                     <option value="tomatoes">Tomatoes</option>
                                     <option value="mozarella">Mozzarella</option>
@@ -217,7 +217,7 @@
                     <div class="form-group has-feedback">
                         <label class="control-label col-lg-2">ادرس سایت یا شبکه اجتماعی</label>
                         <div class="col-lg-10">
-                        <input type="text" class="form-control" placeholder="ادرس سایت یا شبکه اجتماعی را وارد کنید" value="{{$volunteer->site}}">
+                        <input type="text" name="site" class="form-control" placeholder="ادرس سایت یا شبکه اجتماعی را وارد کنید" value="{{$volunteer->site}}">
                         <div class="form-control-feedback">
                             <i class="icon-sphere"></i>
                         </div>
