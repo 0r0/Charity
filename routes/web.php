@@ -55,7 +55,7 @@ Route::get('/volunteer-dashboard','VolunteerController@index');
 Route::get('/charity-dashboard','CharityController@index');
 
 Route::get('/edit-volunteer-info','VolunteerController@edit');
-Route::get('/edit-volunteer-info/{id}','VolunteerController@update')->name('volunteer-update');
+Route::post('/edit-volunteer-info/{id}','VolunteerController@update')->name('volunteer-update');
 Route::get('/edit-charity-info','CharityController@edit');
 Route::post('/edit-charity-info/{id}','CharityController@update')->name('charity-update');
 

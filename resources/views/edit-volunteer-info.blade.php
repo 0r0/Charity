@@ -39,7 +39,8 @@
 
         <div class="panel-body">
 
-            <form class="form-horizontal form-validate-jquery" action="{{route('volunteer-update',['id'=>$volunteer->id])}}" novalidate="novalidate">
+            <form class="form-horizontal form-validate-jquery" method="post" action="{{route('volunteer-update',['id'=>$volunteer->id])}}" novalidate="novalidate">
+                @csrf
                 <fieldset class="content-group">
                     <legend class="text-bold">اطلاعات هویتی</legend>
 

@@ -100,6 +100,7 @@ class VolunteerController extends Controller
 //        $volunteer->intrest=$request->interest;
         $volunteer->skill=$request->profession;
         $volunteer->save();
+        return back();
     }
 
     /**
