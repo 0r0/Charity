@@ -18,12 +18,14 @@ class VolunteerController extends Controller
     {
         $this->middleware('auth:volunteer');
     }
-    public function index()
-    {   $id= Auth::guard('volunteer')->user()->id;
-        $volunteer=Volunteer::find($id);
-        $volunteerProjects=$volunteer->projects()->get();
 
-        return view('volunteer-dashboard',compact('volunteerProjects'));
+    public function index()
+    {
+        $id = Auth::guard('volunteer')->user()->id;
+        $volunteer = Volunteer::find($id);
+        $volunteerProjects = $volunteer->projects()->get();
+
+        return view('volunteer-dashboard', compact('volunteerProjects'));
     }
 
     /**
@@ -39,7 +41,7 @@ class VolunteerController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -50,7 +52,7 @@ class VolunteerController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -61,32 +63,48 @@ class VolunteerController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function edit()
     {
-        $id=Auth::guard('volunteer')->user()->id;
-        $volunteer=Volunteer::find($id);
-        return view('edit-volunteer-info',compact('volunteer'));
+        $id = Auth::guard('volunteer')->user()->id;
+        $volunteer = Volunteer::find($id);
+        return view('edit-volunteer-info', compact('volunteer'));
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \Illuminate\Http\Request $request
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+        $id = Auth::guard('volunteer')->user()->id;
+        $volunteer = Volunteer::find($id);
+        $volunteer->userName = $request->userName;
+        $volunteer->firstName = $request->FirstName;
+        $volunteer->lastName = $request->lastName;
+        $volunteer->company = $request->company;
+        $volunteer->address = $request->address;
+        if (isset($request->password) && isset($request->confirmPassword)) {
+            $volunteer->password = $request->password;
+            $volunteer->confirmPassword = $request->confirmPassword;
+        }
+        $volunteer->mobileNumber=$request->mobile;
+        $volunteer->phoneNumber=$request->phone_number;
+//        $volunteer->resume=$request->resume_file;
+        $volunteer->site=$request->site;
+//        $volunteer->intrest=$request->interest;
+        $volunteer->skill=$request->profession;
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
