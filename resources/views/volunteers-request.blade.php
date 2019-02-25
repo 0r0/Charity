@@ -1,7 +1,12 @@
 @extends('layouts.admin')
 @section('dashboard-address',url('/charity-dashboard'))
 @section('info-url',url('/edit-charity-info'))
-@section('requests-url',url('/voluntters-request'))
+@section('requests-url')
+    @if(Auth::guard('charity')->check())
+    <li><a href="{{url('/volunteers-request')}}"><i class="icon-accessibility"></i>
+            <span>درخواست ها</span></a></li>
+    @endif
+@endsection
 @section('header-page','لیست درخواست ها')
 @section('body-content')
     <div class="panel panel-flat">

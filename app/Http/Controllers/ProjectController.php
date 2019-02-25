@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Charity;
 use App\Project;
+use Auth;
 use Illuminate\Http\Request;
 
 class ProjectController extends Controller
@@ -46,11 +48,22 @@ class ProjectController extends Controller
      */
     public function show($id)
     {
-        //
-        $project=Project::find($id);
-        $project_requirement=$project->reqiurements()->get();
+        $charityId = Auth::guard('charity')->user()->id;
+        $charity =Charity::find($charityId);
+        $projects=$charity->projects()->get();
+        $prj=$projects->where('id',$id);
+        if($prj->first()){
+            $project=Project::find($id);
 
-        return view('project-more-info',compact('project_requirement','project'));
+            $project_requirement = $project->requirements()->get();
+            return view('project-more-info', compact('project_requirement', 'project'));
+        }
+        else{
+            return redirect('/charity-dashboard');
+        }
+
+
+
     }
 
     /**
@@ -95,7 +108,7 @@ class ProjectController extends Controller
 //        $project->picture = $picture; // work on it in future
         $project->save();
 
-        $prj=$project->money;
+        $prj = $project->money;
         return response()->json($summery);
 
     }
