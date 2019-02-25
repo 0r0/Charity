@@ -122,7 +122,7 @@
                             <label class="control-label col-lg-2">آپلود عکس <span class="text-danger">*</span></label>
                             <div class="col-lg-10">
                                 <input type="file" name="profile_picture" class="form-control" required="required"
-                                       aria-required="true" value="{{$charity->imagename}}">
+                                       aria-required="true" value="">
                             </div>
                         </div>
                         <div class="form-group">
