@@ -95,7 +95,19 @@ class VolunteerController extends Controller
         }
         $volunteer->mobileNumber=$request->mobile;
         $volunteer->phoneNumber=$request->phone_number;
-//        $volunteer->resume=$request->resume_file;
+        if($request->has('resume_file'))
+        {
+            $resume=$request->file('resume_file');
+            $resumeName=$resume->getClientOriginalName();
+            $resume->move(public_path().'/resumes/',$resumeName);
+            $volunteer->resume=$resumeName;
+        }
+        if($request->has('profile_picture')){
+            $picture=$request->file('profile_picture');
+            $pictureName=$picture->getClientOriginalName();
+            $picture->move(public_path().'/images/profile',$pictureName);
+            $volunteer->imagename=$pictureName;
+        }
         $volunteer->site=$request->site;
 //        $volunteer->intrest=$request->interest;
         $volunteer->skill=$request->profession;
