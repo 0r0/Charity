@@ -235,8 +235,8 @@
                                     <span>ویرایش اطلاعات</span></a></li>
                             <li><a href="#"><i class=" icon-rocket"></i>
                                     <span>پروژه ها</span></a></li>
-                            <li><a href="@yield('requests-url')"><i class="icon-accessibility"></i>
-                                    <span>درخواست ها</span></a></li>
+                            @yield('requests-url')
+
                             <!-- /main -->
 
                         </ul>

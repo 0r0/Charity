@@ -18,7 +18,7 @@ class Project extends Model
         return $this->belongsToMany(Volunteer::class)->withPivot('situation','skill','date');
     }
 
-    public function reqiurements()
+    public function requirements()
     {
         return $this->hasMany(Requirement::class);
     }

@@ -6,6 +6,8 @@
     {{Auth::guard('volunteer')->user()->firstName}} {{Auth::guard('volunteer')->user()->lastName}}
 @endsection
 @section('login-username',Auth::guard('volunteer')->user()->userName)
+
+
 {{--show profie image--}}
 @if(file_exists(public_path('images/profile/'.$volunteer->imagename)))
 @section('profile-image')
@@ -28,6 +30,8 @@
 @endif
 {{----}}
 
+
+
 @push('css-header')
     <link href="{{asset('css/components.css')}}" rel="stylesheet" type="text/css">
 @endpush
@@ -44,9 +48,9 @@
 
 @endpush
 @section('body-content')
-    {{--<div class="content">--}}
 
-    <!-- Form validation -->
+
+    <!-- Form  -->
     <div class="panel panel-flat">
         <div class="panel-heading">
             <h5 class="panel-title">اطلاعات کاربری<a class="heading-elements-toggle"><i class="icon-more"></i></a></h5>
@@ -62,7 +66,8 @@
         <div class="panel-body">
 
             <form class="form-horizontal form-validate-jquery" method="post"
-                  action="{{route('volunteer-update',['id'=>$volunteer->id])}}" novalidate="novalidate" enctype="multipart/form-data">
+                  action="{{route('volunteer-update',['id'=>$volunteer->id])}}" novalidate="novalidate"
+                  enctype="multipart/form-data">
                 @csrf
                 <fieldset class="content-group">
                     <legend class="text-bold">اطلاعات هویتی</legend>
@@ -156,10 +161,10 @@
                     </div>
                     <!-- /basic textarea -->
                     <div class="form-group">
-                        <label class="control-label col-lg-2">آپلود عکس <span class="text-danger">*</span></label>
+                        <label class="control-label col-lg-2">آپلود عکس </label>
                         <div class="col-lg-10">
-                            <input type="file" name="profile_picture" class="form-control" required="required"
-                                   aria-required="true" value="{{$volunteer->imagename}}">
+                            <input type="file" name="profile_picture" class="form-control"
+                                   value="{{$volunteer->imagename}}">
                         </div>
                     </div>
                     <div class="form-group">
