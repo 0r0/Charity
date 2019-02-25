@@ -164,7 +164,7 @@
             </li>
             <li class="dropdown dropdown-user">
                 <a class="dropdown-toggle" data-toggle="dropdown">
-                    <img src="{{asset('images/image.png')}}" alt="">
+                    @yield('profile-image')
                     <span>@yield('user-login')</span>
                     <i class="caret"></i>
                 </a>
@@ -199,8 +199,7 @@
                 <div class="sidebar-user">
                     <div class="category-content">
                         <div class="media">
-                            <a href="#" class="media-left"><img src="{{asset('images/image.png')}}"
-                                                                class="img-circle img-sm" alt=""></a>
+                            <a href="#" class="media-left">@yield('profile-image2')</a>
                             <div class="media-body">
                                 <span class="media-heading text-semibold">@yield('login-username')</span>
                                 <div class="text-size-mini text-muted">
