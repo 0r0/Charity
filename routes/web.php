@@ -59,4 +59,5 @@ Route::post('/edit-volunteer-info/{id}','VolunteerController@update')->name('vol
 Route::get('/edit-charity-info','CharityController@edit');
 Route::post('/edit-charity-info/{id}','CharityController@update')->name('charity-update');
 
-Route::view('/volunteers-request','volunteers-request');
+Route::get('/volunteers-request','CharityController@show');
+Route::post('/volunteers-request/{$id}','CharityController@accept')->name('accept-volunteer');
