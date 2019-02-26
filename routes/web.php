@@ -60,4 +60,4 @@ Route::get('/edit-charity-info','CharityController@edit');
 Route::post('/edit-charity-info/{id}','CharityController@update')->name('charity-update');
 
 Route::get('/volunteers-request','CharityController@show');
-Route::post('/volunteers-request/{$id}','CharityController@accept')->name('accept-volunteer');
+Route::post('/volunteers-request/{id}','CharityController@accept')->name('accept-volunteer');

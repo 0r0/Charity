@@ -61,13 +61,13 @@
                                 <td>
                                     <div class="form-group">
                                         <div class="col-lg-offset-1 col-lg-8">
-                                            <select name="select" class="form-control">
+                                            <select name="situation{{$volunteer->id}}" class="form-control">
                                                 <option value="1">قبول</option>
                                                 <option value="0">رد</option>
                                             </select>
                                         </div>
                                         <div class="col-lg-3">
-                                            <button class="btn btn-default" name="accept{{$volunteer->id}}">تایید
+                                            <button class="btn btn-default accept{{$volunteer->id}}" name="accept{{$volunteer->id}}">تایید
                                             </button>
                                         </div>
                                     </div>
@@ -86,25 +86,27 @@
     <script>
         $(document).ready(function () {
             $.ajaxSetup({
-                header: {
+                headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 }
-
             });
             @foreach($volunteersArray as $volunteer_subArray)
             @foreach($volunteer_subArray as $volunteer)
 
             $('.accept{{$volunteer->id}}').on('click', function () {
-                var situation = $('[name="accept{{$volunteer->id}}"]').val();
+                console.log('accept{{$volunteer->id}}');
+                var situation = $('[name="situation{{$volunteer->id}}"]').val();
+                console.log(situation);
                 $.ajax({
-                    url: '{{Route("accept-volunteer",['id'=>$volunteer->id])}}',
-                    data: {'situation': situation},
+                    url: '{{Route('accept-volunteer',['id'=>$volunteer->id])}}',
                     method: 'POST',
+                    // data: {'situation': situation},
+
                     success: function (data) {
                         console.log(data);
                     },
-                    error: function (thrownError) {
-                        console.log(thrownError);
+                    error: function (data) {
+                        console.log(data);
                     }
                 });
             });
