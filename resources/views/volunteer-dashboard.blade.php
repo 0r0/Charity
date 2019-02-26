@@ -48,13 +48,13 @@
                         <td>{{$project->pivot->skill}}</td>
                         <td>{{$project->supporter}}</td>
                         <td>{{$project->pivot->date}}</td>
-                        @if($project->pivot->situation==0)
+                        @if($project->pivot->situation==-1)
                             <td>منتظر نظر خیریه</td>
                         @endif
                         @if($project->pivot->situation==1)
                             <td>تایید شده</td>
                         @endif
-                        @if($project->pivot->situation== -1)
+                        @if($project->pivot->situation== 0)
                             <td>رد شده</td>
                         @endif
                         <td>
