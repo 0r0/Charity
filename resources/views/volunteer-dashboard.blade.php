@@ -1,6 +1,30 @@
 @extends('layouts.admin')
 @section('dashboard-address',url('/volunteer-dashboard'))
 @section('info-url',url('/edit-volunteer-info'))
+{{--show profie image--}}
+{{--@if(file_exists(public_path('images/profile/tt.jpg'.$volunteer->imagename)))--}}
+@if(file_exists(public_path('images/profile/tt.jpg')))
+@section('profile-image')
+    {{--    <img src="{{asset('images/profile/tt.jpg'.$volunteer->imagename)}}"--}}
+    <img src="{{asset('images/profile/tt.jpg')}}"
+         class="img-circle img-sm" alt="">
+@endsection
+@section('profile-image2')
+    {{--    <img src="{{asset('images/profile/'.$volunteer->imagename)}}"--}}
+    <img src="{{asset('images/profile/tt.jpg')}}"
+         class="img-circle img-sm" alt="">
+@endsection
+@else
+@section('profile-image')
+    <img src="{{asset('images/image.png')}}"
+         class="img-circle img-sm" alt="">
+@endsection
+@section('profile-image2')
+    <img src="{{asset('images/image.png')}}"
+         class="img-circle img-sm" alt="">
+@endsection
+@endif
+{{----}}
 @section('header-page','داشبورد داوطلب')
 @section('user-login')
     {{Auth::guard('volunteer')->user()->firstName}} {{Auth::guard('volunteer')->user()->lastName}}
