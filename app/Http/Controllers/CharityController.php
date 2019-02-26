@@ -53,9 +53,22 @@ class CharityController extends Controller
      * @param  \App\Charity $charity
      * @return \Illuminate\Http\Response
      */
-    public function show(Charity $charity)
+    public function show()
     {
-        //
+        $id = Auth::guard('charity')->user()->id;
+        $charity = Charity::find($id);
+        $projects = $charity->projects()->get();
+        $volunteersArray = [];
+        if ($projects->first()) {
+            foreach ($projects as $project) {
+                $volunteers = $project->volunteers()->get();
+                array_push($volunteersArray, $volunteers);
+
+            }
+        }
+        return view('volunteers-request',compact('volunteersArray'),compact('projects'));
+
+
     }
 
     /**
@@ -107,8 +120,8 @@ class CharityController extends Controller
         $mobile = $request->mobile;
         $phoneNumber = $request->phone_number;
         $site = $request->site;
-        $userName=$request->userName;
-        $charity->userName=$userName;
+        $userName = $request->userName;
+        $charity->userName = $userName;
         $charity->firstName = $firstName;
         $charity->lastName = $lastName;
         $charity->email = $email;
@@ -135,5 +148,11 @@ class CharityController extends Controller
     public function destroy(Charity $charity)
     {
         //
+    }
+
+
+    public function accept(Request $requesr,$id)
+    {
+        return response()->json('hello');
     }
 }
