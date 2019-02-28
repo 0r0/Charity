@@ -261,8 +261,11 @@
                     </div>
 
                     <div class="heading-elements">
-                        <a href="#" class="btn btn-labeled btn-labeled-right bg-blue heading-btn">Button <b><i
-                                    class="icon-menu7"></i></b></a>
+                        @if(Request::is('charity-dashboard'))
+                            <a href="{{route('create-project')}}" class="btn btn-labeled btn-labeled-right bg-blue heading-btn">ایجاد پروژه <b><i
+                                        class="icon-menu7"></i></b></a>
+                            @endif
+
                     </div>
                 </div>
 
