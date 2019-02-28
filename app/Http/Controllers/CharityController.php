@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Charity;
+use App\Volunteer;
 use Illuminate\Http\Request;
 use Auth;
 
@@ -66,7 +67,7 @@ class CharityController extends Controller
 
             }
         }
-        return view('volunteers-request',compact('volunteersArray'),compact('projects'));
+        return view('volunteers-request', compact('volunteersArray'), compact('projects'));
 
 
     }
@@ -151,8 +152,13 @@ class CharityController extends Controller
     }
 
 
-    public function accept(Request $requesr,$id)
+    public function accept(Request $request, $id)
+
     {
-        return response()->json('hello');
+        $volunteer = Volunteer::find($id);
+//        $project=$volunteer->projects()->find($request->project_id);
+         $volunteer->projects()->updateExistingPivot($request->project_id,['situation'=>$request->situation]);
+
+        return response()->json($volunteer->projects()->find($request->project_id));
     }
 }
