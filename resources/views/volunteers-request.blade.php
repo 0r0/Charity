@@ -138,12 +138,9 @@
                     data: {'situation': situation, 'project_id': project_id},
 
                     success: function (data) {
-                        console.log(data);
+
                         location.reload(true);
                     },
-                    error: function (data) {
-                        console.log(data);
-                    }
                 });
 
             });
