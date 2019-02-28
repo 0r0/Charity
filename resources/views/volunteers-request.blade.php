@@ -57,25 +57,23 @@
                 <table class="table table-bordered table-striped table-hover bg-info-700">
                     <thead>
                     <tr>
-                        <th>#</th>
+
                         <th>پروژه</th>
                         <th>position</th>
                         <th>متولی</th>
                         <th>زمان</th>
                         <th>نام کاربری</th>
                         <th>نام و نام خانوادگی</th>
+                        <th>وضعیت فعلی</th>
                         <th>وضعیت</th>
 
                     </tr>
                     </thead>
                     <tbody>
-                    @php
-                        $i=1
-                    @endphp
+
                     @foreach($volunteersArray as $volunteer_subArray)
                         @foreach($volunteer_subArray as $volunteer)
                             <tr>
-                                <td>{{$i++}}</td>
                                 <td>{{$projects->find($volunteer->pivot->project_id)->title}}</td>
                                 <td>{{$volunteer->pivot->skill}}</td>
                                 <td>{{$projects->find($volunteer->pivot->project_id)->supporter}}</td>
@@ -86,6 +84,13 @@
                                 </td>
                                 <td>{{$volunteer->userName}}</td>
                                 <td>{{$volunteer->firstName}} {{$volunteer->lastName}}</td>
+                                @if($volunteer->pivot->situation==1)
+                                    <td>تایید شده</td>
+                                @elseif($volunteer->pivot->situation==0)
+                                    <td>رد شده</td>
+                                @else
+                                    <td>در حال انتظار</td>
+                                @endif
                                 <td>
                                     <div class="form-group">
                                         <div class="col-lg-offset-1 col-lg-8">
@@ -95,7 +100,8 @@
                                             </select>
                                         </div>
                                         <div class="col-lg-3">
-                                            <button class="btn btn-default accept{{$volunteer->id}}" name="accept{{$volunteer->id}}">تایید
+                                            <button class="btn btn-default accept{{$volunteer->id}}"
+                                                    name="accept{{$volunteer->id}}">تایید
                                             </button>
                                         </div>
                                     </div>
@@ -124,19 +130,22 @@
             $('.accept{{$volunteer->id}}').on('click', function () {
                 console.log('accept{{$volunteer->id}}');
                 var situation = $('[name="situation{{$volunteer->id}}"]').val();
+                var project_id = {{$volunteer->pivot->project_id}}
                 console.log(situation);
                 $.ajax({
                     url: '{{Route('accept-volunteer',['id'=>$volunteer->id])}}',
                     method: 'POST',
-                    // data: {'situation': situation},
+                    data: {'situation': situation, 'project_id': project_id},
 
                     success: function (data) {
                         console.log(data);
+                        location.reload(true);
                     },
                     error: function (data) {
                         console.log(data);
                     }
                 });
+
             });
             @endforeach
             @endforeach
