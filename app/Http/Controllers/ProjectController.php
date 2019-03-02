@@ -37,7 +37,25 @@ class ProjectController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $id = Auth::guard('charity')->user()->id;
+        $charity = Charity::find($id);
+        $project = new Project();
+        $project->title = $request->title;
+        $project->runDate = $request->runDate;
+        $project->supporter = $request->supporter;
+        $project->money = $request->budget;
+        $project->description = $request->description;
+        $project->report = $request->report;
+        if ($request->has('profile_picture'))
+        {
+            $image=$request->file('profile_picture');
+            $imageName=$image->getClientOriginalName();
+            $project->picture=$imageName;
+            $image->move(public_path().'/projects');
+
+        }
+//        $project->picture
+        $charity->projects()->attach($project);
     }
 
     /**
@@ -49,19 +67,17 @@ class ProjectController extends Controller
     public function show($id)
     {
         $charityId = Auth::guard('charity')->user()->id;
-        $charity =Charity::find($charityId);
-        $projects=$charity->projects()->get();
-        $prj=$projects->where('id',$id);
-        if($prj->first()){
-            $project=Project::find($id);
+        $charity = Charity::find($charityId);
+        $projects = $charity->projects()->get();
+        $prj = $projects->where('id', $id);
+        if ($prj->first()) {
+            $project = Project::find($id);
 
             $project_requirement = $project->requirements()->get();
             return view('project-more-info', compact('project_requirement', 'project'));
-        }
-        else{
+        } else {
             return redirect('/charity-dashboard');
         }
-
 
 
     }
