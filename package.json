@@ -30,6 +30,7 @@
     "dependencies": {
         "jquery.nicescroll": "^3.7.6",
         "owl.carousel": "^2.3.4",
+        "persian-datepicker": "^1.1.5",
         "react-router": "^4.3.1",
         "react-router-dom": "^4.3.1"
     }
