@@ -80,47 +80,188 @@
         <div class="panel-body">
 
 
-
-        <div class="table-responsive">
-            <table class="table">
-                <thead>
-                <tr class="bg-blue">
-                    <th>#</th>
-                    <th>مهارت</th>
-                    <th>زمان</th>
-                    <th>مکان</th>
-                    <th>نوع هزینه</th>
-                    <th></th>
-                </tr>
-                </thead>
-                <tbody>
-                @foreach($project_requirement as $requirement)
-                    <tr>
-                        <td>{{$loop->iteration}}</td>
-                        <td>{{$requirement->skill}}</td>
-                        <td>{{$requirement->date}}</td>
-                        <td>{{$requirement->place}}</td>
-                        @if($requirement->bill_kind)
-                            <td>پولی</td>
-                        @else
-                            <td>مجانی</td>
-                        @endif
-                        <td><a href="#" class="btn btn-labeled btn-labeled-right bg-blue heading-btn">ویرایش <b><i class="icon-menu7"></i></b></a></td>
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                    <tr class="bg-blue">
+                        <th>#</th>
+                        <th>مهارت</th>
+                        <th>زمان</th>
+                        <th>مکان</th>
+                        <th>نوع هزینه</th>
+                        <th></th>
                     </tr>
-                    <tr>
-                        <td>توضیحات</td>
-                    <td colspan="5">
-                        {{$requirement->description}}
-                    </td>
-                    </tr>
+                    </thead>
+                    <tbody>
+                    @foreach($project_requirement as $requirement)
+                        <tr>
+                            <td>{{$loop->iteration}}</td>
+                            <td>{{$requirement->skill}}</td>
+                            @php
+                                $persianDate= Morilog\Jalali\CalendarUtils::strftime('Y-m-d', strtotime($requirement->date));
 
-                @endforeach
+                            @endphp
+                            <td>{{$persianDate}}</td>
+                            <td>{{$requirement->place}}</td>
+                            @if($requirement->bill_kind)
+                                <td>پولی</td>
+                            @else
+                                <td>مجانی</td>
+                            @endif
+                            <td><a href="#edit{{$requirement->id}}"
+                                   class="btn btn-labeled btn-labeled-right bg-blue heading-btn" data-toggle="modal">ویرایش
+                                    <b><i class="icon-menu7"></i></b></a></td>
+                        </tr>
+                        <tr>
+                            <td>توضیحات</td>
+                            <td colspan="5">
+                                {{$requirement->description}}
+                            </td>
+                        </tr>
 
-                </tbody>
-            </table>
-        </div>
+                    @endforeach
+
+                    </tbody>
+                </table>
+            </div>
 
         </div>
 
     </div>
+    @foreach($project_requirement as $requirement)
+
+        <!--edit requirement project model -->
+        <div id="edit{{$requirement->id}}" class="modal fade" style="display: none;">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">×</button>
+                        <h5 class="modal-title"> ویرایش اطلاعات نیازمندی پروژه</h5>
+                    </div>
+
+
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <label>مهارت</label>
+                                    <input type="text" placeholder=" نوع مهارت را وارد کنید" class="form-control"
+                                           value="{{$requirement->skill}}" name="skill{{$requirement->id}}">
+
+                                </div>
+
+                                <div class="col-sm-6">
+                                    <label>زمان نیازمندی </label>
+                                    @php
+                                        $persianDate= Morilog\Jalali\CalendarUtils::strftime('Y-m-d', strtotime($requirement->date));
+
+                                    @endphp
+                                    <input type="text" placeholder="زمان " class="form-control"
+                                           value="{{$persianDate}}" name="date{{$requirement->date}}">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <label>توضیحات</label>
+                                    <textarea id="description{{$requirement->id}}" placeholder="توضیحات را وارد کنید"
+                                              rows="2" cols="80" class="alpaca-control form-control"
+                                              name="description{{$requirement->id}}"
+                                              autocomplete="off">{{$requirement->description}}</textarea>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <label>مکان </label>
+                                    <input type="text" placeholder="لطفا مکان را وارد کنید " class="form-control"
+                                           value="{{$requirement->place}}" name="place{{$requirement->place}}">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label>نوع</label>
+                                    <select name="kind{{$requirement->id}}" class="form-control">
+                                        <option value="0">مجانی</option>
+                                        <option value="1">پولی</option>
+                                    </select>
+                                </div>
+                                <div class="col-sm-6">
+                                    <label>بودجه</label>
+                                    <div class="input-group">
+                                        <input type="text" placeholder=" بودجه پروژه " class="form-control"
+                                               value="" name="money{{$requirement->id}}">
+                                        <span class="input-group-addon">ریال</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-link" data-dismiss="modal">بستن</button>
+                        <button type="submit" class="btn btn-primary edit-submit{{$project->id}}"
+                                name="edit-submit{{$requirement->id}}">تایید
+                        </button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <!--/edit requirement  project model -->
+
+    @endforeach
+    @push('js-body')
+        <script>
+            $(document).ready(function () {
+
+                $.ajaxSetup({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    }
+                });
+                @foreach($project_requirement as $requirement)
+                $('.edit-submit{{$requirement->id}}').on('click', function () {
+
+                    var urlPath = '{{route('edit-requirement',['id'=>$requirement->id])}}';
+                    var skill = $('[name="skill{{$requirement->id}}"]').val();
+                    var description = $('[name="description{{$requirement->id}}"]').val();
+                    var money = $('[name="money{{$requirement->id}}"]').val();
+                    var runDate = $('[name=""date{{$requirement->date}}"]').val();
+                    var place = $('[name="place{{$requirement->place}}"]').val();
+                    var kind = $('[name="kind{{$requirement->id}}"]').val();
+                    $.ajax({
+                            url: urlPath,
+                            method: 'POST',
+                            data: {
+                                'skill': skill,
+                                'description': description,
+                                'money': money,
+                                'place': place,
+                                'runDate': runDate,
+                                'kind': kind
+                            },
+                            success: function (data) {
+                                console.log('successful ' + data);
+
+                            },
+                            error: function (xhr, ajaxOptions, thrownError) {
+                                console.log('error');
+
+                                console.log(thrownError);
+                            },
+                        }
+                    );
+                    $('#edit-project{{$project->id}}').modal('hide');// close model after click on submit button
+                    location.reload(true);
+                });
+                @endforeach
+
+            })
+        </script>
+    @endpush
+
 @endsection
