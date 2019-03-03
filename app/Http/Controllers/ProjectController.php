@@ -10,15 +10,7 @@ use Illuminate\Http\Request;
 
 class ProjectController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
-    }
+
 
     /**
      * Show the form for creating a new resource.
@@ -167,5 +159,29 @@ class ProjectController extends Controller
         $requirement->description = $request->description;
         $requirement->save();
         return response()->json((string)$requirement);
+    }
+
+
+
+
+    /**
+     * store project Requirement in storage
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function storeRequirement(Request $request,$id)
+    {
+
+        $project=Project::find($id);
+        $requirement=new Requirement();
+        $requirement->skill=$request->skill;
+        $requirement->date=$request->date;
+        $requirement->place=$request->place;
+        $requirement->bill_kind=$request->kind;
+        $requirement->descripton=$request->description;
+//        $requirement->save();
+        $project->requirements()->save($requirement);
+
+
     }
 }
