@@ -47,12 +47,11 @@ class ProjectController extends Controller
         $project->money = $request->budget;
         $project->description = $request->description;
         $project->report = $request->report;
-        if ($request->has('profile_picture'))
-        {
-            $image=$request->file('profile_picture');
-            $imageName=$image->getClientOriginalName();
-            $project->picture=$imageName;
-            $image->move(public_path().'/projects');
+        if ($request->has('profile_picture')) {
+            $image = $request->file('profile_picture');
+            $imageName = $image->getClientOriginalName();
+            $project->picture = $imageName;
+            $image->move(public_path() . '/projects');
 
         }
 //        $project->picture
@@ -67,7 +66,7 @@ class ProjectController extends Controller
      */
     public function show($id)
     {
-            $charityId = Auth::guard('charity')->user()->id;
+        $charityId = Auth::guard('charity')->user()->id;
         $charity = Charity::find($charityId);
         $projects = $charity->projects()->get();
         $prj = $projects->where('id', $id);
@@ -136,29 +135,37 @@ class ProjectController extends Controller
      * @param  \App\Project $project
      * @return \Illuminate\Http\Response
      */
-    public function editRequirement(Request $request,$id)
+    public function editRequirement(Request $request, $id)
     {
-        $requirement=Requirement::find($id);
-        $requirement->skill=$request->skill;
+        $requirement = Requirement::find($id);
+        $requirement->skill = $request->skill;
+
 
 //save date in db
-        $persianDate=$request->runDate;
-        $persianDate=implode('-',$persianDate);
-        $checkDate=\Morilog\Jalali\CalendarUtils::checkDate($persianDate[0], $persianDate[1], $persianDate[2], true);
-        if($checkDate){
-            $garegorian_date_array=\Morilog\Jalali\CalendarUtils::toGregorian($persianDate[0], $persianDate[1], $persianDate[2]);
-            $garegorian_date_string=explode('-',$garegorian_date_array);
-            $requirement->date=$garegorian_date_string;
-        }
-        else{
-            return back()->withErrors(['errorMessage','لطفا تاریخ را در فرمت درست وارد کنید']);
+        $persianDate = $request->runDate;
+
+        $persianDate = explode('-', $persianDate);
+//        return response()->json( gettype($persianDate));
+
+        $checkDate = \Morilog\Jalali\CalendarUtils::checkDate($persianDate[0], $persianDate[1], $persianDate[2], true);
+
+
+
+        if ($checkDate) {
+            $garegorian_date_array = \Morilog\Jalali\CalendarUtils::toGregorian($persianDate[0], $persianDate[1], $persianDate[2]);
+            $garegorian_date_string = implode('-', $garegorian_date_array);
+            $requirement->date = $garegorian_date_string;
+//            return response()->json($garegorian_date_string);
+        } else {
+            return back()->withErrors(['errorMessage', 'لطفا تاریخ را در فرمت درست وارد کنید']);
         }
 
 //        end  save date in db
 
-        $requirement->place=$request->place;
-        $requirement->bill_kind=$request->kind;
-        $requirement->description=$request->description;
+        $requirement->place = $request->place;
+        $requirement->bill_kind = $request->kind;
+        $requirement->description = $request->description;
         $requirement->save();
+        return response()->json((string)$requirement);
     }
 }

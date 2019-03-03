@@ -157,7 +157,7 @@
 
                                     @endphp
                                     <input type="text" placeholder="زمان " class="form-control"
-                                           value="{{$persianDate}}" name="date{{$requirement->date}}">
+                                           value="{{$persianDate}}" name="date{{$requirement->id}}">
                                 </div>
                             </div>
                         </div>
@@ -176,7 +176,7 @@
                                 <div class="col-sm-12">
                                     <label>مکان </label>
                                     <input type="text" placeholder="لطفا مکان را وارد کنید " class="form-control"
-                                           value="{{$requirement->place}}" name="place{{$requirement->place}}">
+                                           value="{{$requirement->place}}" name="place{{$requirement->id}}">
                                 </div>
                             </div>
                         </div>
@@ -185,8 +185,14 @@
                                 <div class="col-md-6">
                                     <label>نوع</label>
                                     <select name="kind{{$requirement->id}}" class="form-control">
-                                        <option value="0">مجانی</option>
-                                        <option value="1">پولی</option>
+                                        @if($requirement->bill_kind)
+                                            <option value="0" >مجانی</option>
+                                            <option value="1" selected="selected">پولی</option>
+                                            @else
+                                            <option value="0" selected="selected">مجانی</option>
+                                            <option value="1">پولی</option>
+                                            @endif
+
                                     </select>
                                 </div>
                                 <div class="col-sm-6">
@@ -203,7 +209,7 @@
 
                     <div class="modal-footer">
                         <button type="button" class="btn btn-link" data-dismiss="modal">بستن</button>
-                        <button type="submit" class="btn btn-primary edit-submit{{$project->id}}"
+                        <button type="submit" class="btn btn-primary edit-submit{{$requirement->id}}"
                                 name="edit-submit{{$requirement->id}}">تایید
                         </button>
                     </div>
@@ -228,10 +234,11 @@
 
                     var urlPath = '{{route('edit-requirement',['id'=>$requirement->id])}}';
                     var skill = $('[name="skill{{$requirement->id}}"]').val();
+                    console.log(skill);
                     var description = $('[name="description{{$requirement->id}}"]').val();
                     var money = $('[name="money{{$requirement->id}}"]').val();
-                    var runDate = $('[name=""date{{$requirement->date}}"]').val();
-                    var place = $('[name="place{{$requirement->place}}"]').val();
+                    var runDate = $('[name="date{{$requirement->id}}"]').val();
+                    var place = $('[name="place{{$requirement->id}}"]').val();
                     var kind = $('[name="kind{{$requirement->id}}"]').val();
                     $.ajax({
                             url: urlPath,
@@ -246,6 +253,7 @@
                             },
                             success: function (data) {
                                 console.log('successful ' + data);
+                                location.reload(true);
 
                             },
                             error: function (xhr, ajaxOptions, thrownError) {
@@ -255,8 +263,8 @@
                             },
                         }
                     );
-                    $('#edit-project{{$project->id}}').modal('hide');// close model after click on submit button
-                    location.reload(true);
+                    $('#edit{{$requirement->id}}').modal('hide');// close model after click on submit button
+
                 });
                 @endforeach
 
