@@ -363,7 +363,7 @@
                     var kind = $('[name="kind"]').val();
                     $.ajax(
                         {
-                            url:"{{route('',['id'=>$project->id])}}",
+                            url:"{{route('create-requirement',['id'=>$project->id])}}",
                             method:'POST',
                             data:{
                                 date:date,
@@ -374,14 +374,16 @@
                                 kind:kind
                             },
                             success:function (data) {
-                                console.log(data);
+                                location.reload(true);
+                                $('#create-requirement').modal('hide');
                             },
-                            error:function () {
+                            error:function (err) {
+                                console.log(err);
 
                             }
                         }
                     );
-                    $('#create-requirement').modal('hide');
+                    // $('#create-requirement').modal('hide');
                 });
 
             })
