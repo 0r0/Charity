@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Limitless - Responsive Web Application Kit by Eugene Kopyov</title>
-    <meta name="csrf-token" content="{{ csrf_token() }}" />
+    <meta name="csrf-token" content="{{ csrf_token() }}"/>
     <!-- Global stylesheets -->
     <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,100,500,700,900" rel="stylesheet"
           type="text/css">
@@ -15,8 +15,8 @@
     <link href="{{asset('css/admin/core.css')}}" rel="stylesheet" type="text/css">
     <link href="{{asset('css/core/components.css')}}" rel="stylesheet" type="text/css">
     <link href="{{asset('css/colors.css')}}" rel="stylesheet" type="text/css">
-    @stack('css-header')
-    <!-- /global stylesheets -->
+@stack('css-header')
+<!-- /global stylesheets -->
 
     <!-- Core JS files -->
     <script type="text/javascript" src="{{asset('js/pace.min.js')}}"></script>
@@ -37,9 +37,6 @@
     <!-- /theme JS files -->
 
     @stack('js-header')
-
-
-
 
 
 </head>
@@ -121,7 +118,8 @@
                         </li>
 
                         <li class="media">
-                            <div class="media-left"><img src="{{asset('images/placeholder.jpg')}}" class="img-circle img-sm" alt=""></div>
+                            <div class="media-left"><img src="{{asset('images/placeholder.jpg')}}"
+                                                         class="img-circle img-sm" alt=""></div>
                             <div class="media-body">
                                 <a href="#" class="media-heading">
                                     <span class="text-semibold">Jeremy Victorino</span>
@@ -133,7 +131,8 @@
                         </li>
 
                         <li class="media">
-                            <div class="media-left"><img src="{{asset('images/placeholder.jpg')}}" class="img-circle img-sm" alt=""></div>
+                            <div class="media-left"><img src="{{asset('images/placeholder.jpg')}}"
+                                                         class="img-circle img-sm" alt=""></div>
                             <div class="media-body">
                                 <a href="#" class="media-heading">
                                     <span class="text-semibold">Beatrix Diaz</span>
@@ -145,7 +144,8 @@
                         </li>
 
                         <li class="media">
-                            <div class="media-left"><img src="{{asset('images/placeholder.jpg')}}" class="img-circle img-sm" alt=""></div>
+                            <div class="media-left"><img src="{{asset('images/placeholder.jpg')}}"
+                                                         class="img-circle img-sm" alt=""></div>
                             <div class="media-body">
                                 <a href="#" class="media-heading">
                                     <span class="text-semibold">Richard Vango</span>
@@ -158,7 +158,8 @@
                     </ul>
 
                     <div class="dropdown-content-footer">
-                        <a href="#" data-popup="tooltip" title="" data-original-title="All messages"><i class="icon-menu display-block"></i></a>
+                        <a href="#" data-popup="tooltip" title="" data-original-title="All messages"><i
+                                class="icon-menu display-block"></i></a>
                     </div>
                 </div>
             </li>
@@ -235,9 +236,9 @@
                                     <span>ویرایش اطلاعات</span></a></li>
                             <li><a href="#"><i class=" icon-rocket"></i>
                                     <span>پروژه ها</span></a></li>
-                            @yield('requests-url')
+                        @yield('requests-url')
 
-                            <!-- /main -->
+                        <!-- /main -->
 
                         </ul>
                     </div>
@@ -262,9 +263,14 @@
 
                     <div class="heading-elements">
                         @if(Request::is('charity-dashboard'))
-                            <a href="{{route('create-project')}}" class="btn btn-labeled btn-labeled-right bg-blue heading-btn">ایجاد پروژه <b><i
+                            <a href="{{route('create-project')}}"
+                               class="btn btn-labeled btn-labeled-right bg-blue heading-btn">ایجاد پروژه <b><i
                                         class="icon-menu7"></i></b></a>
-                            @endif
+                        @endif
+                        {{--@if(Request::is('project-more-info'))--}}
+                           {{----}}
+                        {{--@endif--}}
+                        @yield('add-button-requirement')
 
                     </div>
                 </div>

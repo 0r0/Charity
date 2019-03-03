@@ -63,12 +63,18 @@
         {{Auth::guard('volunteer')->user()->userName}}
     @endif
 @endsection
+@section('add-button-requirement')
+    <a href="#create-requirement"
+       class="btn btn-labeled btn-labeled-right bg-blue heading-btn add-requirement" data-toggle="modal">اضاقه کردن نیازمندی <b><i
+                class="icon-menu7"></i></b></a>
+    @endsection
 @section('body-content')
     <div class="panel panel-flat">
         <div class="panel-heading">
             <h5 class="panel-title">Table header styling<a class="heading-elements-toggle"><i class="icon-more"></i></a>
             </h5>
             <div class="heading-elements">
+                {{--<a href="http://127.0.0.1:8000/create-project" class="btn btn-labeled btn-labeled-right bg-blue heading-btn">ایجاد لیست نیازمندی <b><i class="icon-menu7"></i></b></a>--}}
                 <ul class="icons-list">
                     <li><a data-action="collapse"></a></li>
                     <li><a data-action="reload"></a></li>
@@ -128,6 +134,87 @@
         </div>
 
     </div>
+
+    <!--create requirement project model -->
+    <div id="create-requirement" class="modal fade" style="display: none;">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">×</button>
+                    <h5 class="modal-title"> ویرایش اطلاعات نیازمندی پروژه</h5>
+                </div>
+
+
+                <div class="modal-body">
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <label>مهارت</label>
+                                <input type="text" placeholder=" نوع مهارت را وارد کنید" class="form-control"
+                                       value="" name="skill">
+
+                            </div>
+
+                            <div class="col-sm-6">
+                                <label>زمان نیازمندی </label>
+
+                                <input type="text" placeholder="زمان " class="form-control"
+                                       value="" name="date">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <label>توضیحات</label>
+                                <textarea id="description" placeholder="توضیحات را وارد کنید"
+                                          rows="2" cols="80" class="alpaca-control form-control"
+                                          name="description"
+                                          autocomplete="off"></textarea>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <label>مکان </label>
+                                <input type="text" placeholder="لطفا مکان را وارد کنید " class="form-control"
+                                       value="" name="place">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label>نوع</label>
+                                <select name="kind" class="form-control">
+                                        <option value="0" selected="selected">مجانی</option>
+                                        <option value="1">پولی</option>
+                                </select>
+                            </div>
+                            <div class="col-sm-6">
+                                <label>بودجه</label>
+                                <div class="input-group">
+                                    <input type="text" placeholder=" بودجه پروژه " class="form-control"
+                                           value="" name="money">
+                                    <span class="input-group-addon">ریال</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-link" data-dismiss="modal">بستن</button>
+                    <button type="submit" class="btn btn-primary requirement-submit"
+                            name="requirement-submit">تایید
+                    </button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <!--/create requirement  project model -->
+
     @foreach($project_requirement as $requirement)
 
         <!--edit requirement project model -->
@@ -234,7 +321,6 @@
 
                     var urlPath = '{{route('edit-requirement',['id'=>$requirement->id])}}';
                     var skill = $('[name="skill{{$requirement->id}}"]').val();
-                    console.log(skill);
                     var description = $('[name="description{{$requirement->id}}"]').val();
                     var money = $('[name="money{{$requirement->id}}"]').val();
                     var runDate = $('[name="date{{$requirement->id}}"]').val();
@@ -252,13 +338,11 @@
                                 'kind': kind
                             },
                             success: function (data) {
-                                console.log('successful ' + data);
                                 location.reload(true);
 
                             },
-                            error: function (xhr, ajaxOptions, thrownError) {
+                            error: function (xhr, ajaxOptions, thrownError) { //remove in production mode
                                 console.log('error');
-
                                 console.log(thrownError);
                             },
                         }
@@ -267,6 +351,38 @@
 
                 });
                 @endforeach
+
+
+                    //send ajax request when user click on add requirement submit button
+                $('.requirement-submit').on('click',function(){
+                    var date=$('[name="date"]').val();
+                    var skill = $('[name="skill"]').val();
+                    var description = $('[name="description"]').val();
+                    var money = $('[name="money"]').val();
+                    var place = $('[name="place"]').val();
+                    var kind = $('[name="kind"]').val();
+                    $.ajax(
+                        {
+                            url:"{{route('',['id'=>$project->id])}}",
+                            method:'POST',
+                            data:{
+                                date:date,
+                                skill:skill,
+                                description:description,
+                                money:money,
+                                place:place,
+                                kind:kind
+                            },
+                            success:function (data) {
+                                console.log(data);
+                            },
+                            error:function () {
+
+                            }
+                        }
+                    );
+                    $('#create-requirement').modal('hide');
+                });
 
             })
         </script>
