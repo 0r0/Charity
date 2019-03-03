@@ -65,3 +65,4 @@ Route::post('/volunteers-request/{id}','CharityController@accept')->name('accept
 Route::get('/create-project','ProjectController@create')->name('create-project');
 Route::post('/create-project','ProjectController@store')->name('add-project');
 Route::post('/project/edit-requirement/{id}','ProjectController@editRequirement')->name('edit-requirement');
+Route::post('projects/create-requirement/{id}','ProjectController@storeRequirement')->name('create-requirement');
