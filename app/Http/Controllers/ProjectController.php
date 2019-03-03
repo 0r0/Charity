@@ -175,12 +175,34 @@ class ProjectController extends Controller
         $project=Project::find($id);
         $requirement=new Requirement();
         $requirement->skill=$request->skill;
-        $requirement->date=$request->date;
+
+
+        //save date in db
+        $persianDate = $request->date;
+
+        $persianDate = explode('-', $persianDate);
+
+
+        $checkDate = \Morilog\Jalali\CalendarUtils::checkDate($persianDate[0], $persianDate[1], $persianDate[2], true);
+
+
+
+        if ($checkDate) {
+            $garegorian_date_array = \Morilog\Jalali\CalendarUtils::toGregorian($persianDate[0], $persianDate[1], $persianDate[2]);
+            $garegorian_date_string = implode('-', $garegorian_date_array);
+
+
+            $requirement->date = $garegorian_date_string;
+
+        } else {
+            return back()->withErrors(['errorMessage', 'لطفا تاریخ را در فرمت درست وارد کنید']);
+        }
+        //end save  date
         $requirement->place=$request->place;
         $requirement->bill_kind=$request->kind;
-        $requirement->descripton=$request->description;
-//        $requirement->save();
+        $requirement->description=$request->description;
         $project->requirements()->save($requirement);
+
 
 
     }
