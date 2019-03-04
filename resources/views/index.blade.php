@@ -108,7 +108,7 @@
                                 <button class="play-close"></button>
                                 <div class="play-triangle">
                                     <div class="play-video">
-                                        <iframe width="600" height="400" src="https://www.youtube.com/embed/dQw4w9WgXcQ" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                                        <iframe width="600" height="400" src="" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
                                     </div>
                                 </div>
                             </div>
@@ -132,8 +132,62 @@
                             <div class="swiper-container">
                                 <div class="swiper-wrapper">
                                     <div class="swiper-slide"><img  src="https://www.w3schools.com/bootstrap/la.jpg" alt="">Slide 1</div>
-                                    <div class="swiper-slide">Slide 2</div>
-                                    <div class="swiper-slide">Slide 3</div>
+                                    <div class="swiper-slide"><div class="panel-body"><div class="panel panel-flat blog-horizontal blog-horizontal-2">
+                                            <div class="panel-body">
+                                                <div class="thumb">
+                                                    <a href="#course_preview1" data-toggle="modal">
+                                                        <img src="http://127.0.0.1:8000/images/placeholder.jpg" class="img-responsive img-rounded" alt="">
+                                                        <span class="zoom-image"><i class="icon-play3"></i></span>
+                                                    </a>
+                                                </div>
+
+                                                <div class="blog-preview">
+                                                    <div class="content-group-sm media blog-title stack-media-on-mobile text-left">
+                                                        <div class="media-body">
+                                                            <h5 class="text-semibold no-margin"><a href="#" class="text-default">عرفان سیف</a></h5>
+
+                                                            <ul class="list-inline list-inline-separate no-margin text-muted">
+                                                                <li>توسط <a href="#">بنیاد تجهیزات اداری نظام</a></li>
+                                                                <li>Nov 1st, 2016</li>
+                                                            </ul>
+                                                        </div>
+
+                                                        <h5 class="text-success media-right no-margin-bottom text-semibold">
+                                                            8264143تومان </h5>
+                                                    </div>
+                                                    <p>Atque occaecati qui laboriosam voluptas <a href="#description1" data-toggle="collapse">[بیشتر]</a></p>
+                                                    <div id="description1" class="collapse">
+                                                        inventore. Porro quo nemo iusto et vel fuga magni. Sapiente animi error eius numquam et quos. Soluta saepe sed ut quia praesentium voluptates.
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="panel-footer panel-footer-condensed"><a class="heading-elements-toggle"><i class="icon-more"></i></a><a class="heading-elements-toggle"><i class="icon-more"></i></a>
+                                                <div class="heading-elements">
+                                                    <ul class="list-inline list-inline-separate heading-text">
+                                                        <li><i class="icon-alarm position-left"></i>تاریخ شروع:13/12/1397 </li>
+                                                        <li>
+                                                            <i class="icon-star-full2 text-size-base text-warning-300"></i>
+                                                            <i class="icon-star-full2 text-size-base text-warning-300"></i>
+                                                            <i class="icon-star-full2 text-size-base text-warning-300"></i>
+                                                            <i class="icon-star-full2 text-size-base text-warning-300"></i>
+                                                            <i class="icon-star-full2 text-size-base text-warning-300"></i>
+                                                            <span class="text-muted position-right">(49)</span>
+                                                        </li>
+                                                    </ul>
+
+                                                    <a href="#" class="heading-text pull-right" data-toggle="modal">جزئیات بیشتر <i class="icon-arrow-left13 position-right"></i></a>
+                                                </div>
+                                            </div>
+                                        </div></div></div>
+                                    <div class="swiper-slide"><div class="card">
+                                            <img class="card-img-top img-fluid" src="https://placehold.it/800x600/42ebf4/fff" alt="Card image cap">
+                                            <div class="card-body">
+                                                <h4 class="card-title">Card 4</h4>
+                                                <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                                                <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                                            </div>
+                                        </div></div>
                                     <div class="swiper-slide">Slide 4</div>
                                     <div class="swiper-slide">Slide 5</div>
                                     <div class="swiper-slide">Slide 6</div>
@@ -154,7 +208,7 @@
 
                     <br>
                     <div class="text-center">
-                        <button type="button" class="btn btn-primary btn-xlg" style="font-size: large">همه پروژه ها</button>
+                        <a href="{{url('/all-projects')}}" type="button" class="btn btn-primary btn-xlg" style="font-size: large">همه پروژه ها</a>
                     </div>
                     <br>
 
