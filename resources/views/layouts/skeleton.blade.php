@@ -77,108 +77,23 @@
                         <div class="row">
                             @foreach($sub_charities as $charity)
                             <div class="col-md-3">
-                                {{--<span class="menu-heading underlined">Column 1 title</span>--}}
+
                                 <ul class="menu-list">
                                     <li><a href="#">{{$charity->company}}</a></li>
-                                    {{--<li><a href="#">Link 2, column 1</a></li>--}}
-                                    {{--<li><a href="#">Link 3, column 1</a></li>--}}
-                                    {{--<li><a href="#">Link 4, column 1</a></li>--}}
+
                                 </ul>
                             </div>
                             @endforeach
                         </div>
                         @endforeach
-                            {{--<div class="col-md-3">--}}
-                                {{--<span class="menu-heading underlined">Column 2 title</span>--}}
-                                {{--<ul class="menu-list">--}}
-                                    {{--<li><a href="#">Link 1, column 2</a></li>--}}
-                                    {{--<li><a href="#">Link 2, column 2</a></li>--}}
-                                    {{--<li><a href="#">Link 3, column 2</a></li>--}}
-                                    {{--<li><a href="#">Link 4, column 2</a></li>--}}
-                                {{--</ul>--}}
-                            {{--</div>--}}
-                            {{--<div class="col-md-3">--}}
-                                {{--<span class="menu-heading underlined">Column 3 title</span>--}}
-                                {{--<ul class="menu-list">--}}
-                                    {{--<li><a href="#">Link 1, column 3</a></li>--}}
-                                    {{--<li><a href="#">Link 2, column 3</a></li>--}}
-                                    {{--<li><a href="#">Link 3, column 3</a></li>--}}
-                                    {{--<li><a href="#">Link 4, column 3</a></li>--}}
-                                {{--</ul>--}}
-                            {{--</div>--}}
-                            {{--<div class="col-md-3">--}}
-                                {{--<span class="menu-heading underlined">Column 4 title</span>--}}
-                                {{--<ul class="menu-list">--}}
-                                    {{--<li><a href="#">Link 1, column 4</a></li>--}}
-                                    {{--<li><a href="#">Link 2, column 4</a></li>--}}
-                                    {{--<li><a href="#">Link 3, column 4</a></li>--}}
-                                    {{--<li><a href="#">Link 4, column 4</a></li>--}}
-                                {{--</ul>--}}
-                            {{--</div>--}}
-                        {{--</div>--}}
-                        {{--<div class="row">--}}
-                            {{--<div class="col-md-3">--}}
-                                {{--<span class="menu-heading underlined">Column 1 title</span>--}}
-                                {{--<ul class="menu-list">--}}
-                                    {{--<li><a href="#">Link 1, column 1</a></li>--}}
-                                    {{--<li><a href="#">Link 2, column 1</a></li>--}}
-                                    {{--<li><a href="#">Link 3, column 1</a></li>--}}
-                                    {{--<li><a href="#">Link 4, column 1</a></li>--}}
-                                {{--</ul>--}}
-                            {{--</div>--}}
-                            {{--<div class="col-md-3">--}}
-                                {{--<span class="menu-heading underlined">Column 2 title</span>--}}
-                                {{--<ul class="menu-list">--}}
-                                    {{--<li><a href="#">Link 1, column 2</a></li>--}}
-                                    {{--<li><a href="#">Link 2, column 2</a></li>--}}
-                                    {{--<li><a href="#">Link 3, column 2</a></li>--}}
-                                    {{--<li><a href="#">Link 4, column 2</a></li>--}}
-                                {{--</ul>--}}
-                            {{--</div>--}}
-                            {{--<div class="col-md-3">--}}
-                                {{--<span class="menu-heading underlined">Column 3 title</span>--}}
-                                {{--<ul class="menu-list">--}}
-                                    {{--<li><a href="#">Link 1, column 3</a></li>--}}
-                                    {{--<li><a href="#">Link 2, column 3</a></li>--}}
-                                    {{--<li><a href="#">Link 3, column 3</a></li>--}}
-                                    {{--<li><a href="#">Link 4, column 3</a></li>--}}
-                                {{--</ul>--}}
-                            {{--</div>--}}
-                            {{--<div class="col-md-3">--}}
-                                {{--<span class="menu-heading underlined">Column 4 title</span>--}}
-                                {{--<ul class="menu-list">--}}
-                                    {{--<li><a href="#">Link 1, column 4</a></li>--}}
-                                    {{--<li><a href="#">Link 2, column 4</a></li>--}}
-                                    {{--<li><a href="#">Link 3, column 4</a></li>--}}
-                                    {{--<li><a href="#">Link 4, column 4</a></li>--}}
-                                {{--</ul>--}}
-                            {{--</div>--}}
-                        {{--</div>--}}
+
                     </div>
                 </div>
             </li>
 
             <li>
                 <a href="{{url('/all-volunteers')}}" class="menu-title">داوطلبین </a>
-                {{--<ul class="dropdown-menu dropdown-menu-right">--}}
-                    {{--<li><a href="#">Second level</a></li>--}}
-                    {{--<li class="dropdown-submenu">--}}
-                        {{--<a href="#">Second level with child</a>--}}
-                        {{--<ul class="dropdown-menu">--}}
-                            {{--<li><a href="#">Third level</a></li>--}}
-                            {{--<li class="dropdown-submenu">--}}
-                                {{--<a href="#">Third level with child</a>--}}
-                                {{--<ul class="dropdown-menu">--}}
-                                    {{--<li><a href="#">Fourth level</a></li>--}}
-                                    {{--<li><a href="#">Fourth level</a></li>--}}
-                                    {{--<li><a href="#">Fourth level</a></li>--}}
-                                {{--</ul>--}}
-                            {{--</li>--}}
-                            {{--<li><a href="#">Third level</a></li>--}}
-                        {{--</ul>--}}
-                    {{--</li>--}}
-                    {{--<li><a href="#">Second level</a></li>--}}
-                {{--</ul>--}}
+
             </li>
         </ul>
 
