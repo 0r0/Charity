@@ -73,44 +73,87 @@
 
                 <div class="dropdown-menu dropdown-content">
                     <div class="dropdown-content-body">
+                        @foreach($charitiesList->chunk(4) as $sub_charities)
                         <div class="row">
+                            @foreach($sub_charities as $charity)
                             <div class="col-md-3">
-                                <span class="menu-heading underlined">Column 1 title</span>
+                                {{--<span class="menu-heading underlined">Column 1 title</span>--}}
                                 <ul class="menu-list">
-                                    <li><a href="#">Link 1, column 1</a></li>
-                                    <li><a href="#">Link 2, column 1</a></li>
-                                    <li><a href="#">Link 3, column 1</a></li>
-                                    <li><a href="#">Link 4, column 1</a></li>
+                                    <li><a href="#">{{$charity->company}}</a></li>
+                                    {{--<li><a href="#">Link 2, column 1</a></li>--}}
+                                    {{--<li><a href="#">Link 3, column 1</a></li>--}}
+                                    {{--<li><a href="#">Link 4, column 1</a></li>--}}
                                 </ul>
                             </div>
-                            <div class="col-md-3">
-                                <span class="menu-heading underlined">Column 2 title</span>
-                                <ul class="menu-list">
-                                    <li><a href="#">Link 1, column 2</a></li>
-                                    <li><a href="#">Link 2, column 2</a></li>
-                                    <li><a href="#">Link 3, column 2</a></li>
-                                    <li><a href="#">Link 4, column 2</a></li>
-                                </ul>
-                            </div>
-                            <div class="col-md-3">
-                                <span class="menu-heading underlined">Column 3 title</span>
-                                <ul class="menu-list">
-                                    <li><a href="#">Link 1, column 3</a></li>
-                                    <li><a href="#">Link 2, column 3</a></li>
-                                    <li><a href="#">Link 3, column 3</a></li>
-                                    <li><a href="#">Link 4, column 3</a></li>
-                                </ul>
-                            </div>
-                            <div class="col-md-3">
-                                <span class="menu-heading underlined">Column 4 title</span>
-                                <ul class="menu-list">
-                                    <li><a href="#">Link 1, column 4</a></li>
-                                    <li><a href="#">Link 2, column 4</a></li>
-                                    <li><a href="#">Link 3, column 4</a></li>
-                                    <li><a href="#">Link 4, column 4</a></li>
-                                </ul>
-                            </div>
+                            @endforeach
                         </div>
+                        @endforeach
+                            {{--<div class="col-md-3">--}}
+                                {{--<span class="menu-heading underlined">Column 2 title</span>--}}
+                                {{--<ul class="menu-list">--}}
+                                    {{--<li><a href="#">Link 1, column 2</a></li>--}}
+                                    {{--<li><a href="#">Link 2, column 2</a></li>--}}
+                                    {{--<li><a href="#">Link 3, column 2</a></li>--}}
+                                    {{--<li><a href="#">Link 4, column 2</a></li>--}}
+                                {{--</ul>--}}
+                            {{--</div>--}}
+                            {{--<div class="col-md-3">--}}
+                                {{--<span class="menu-heading underlined">Column 3 title</span>--}}
+                                {{--<ul class="menu-list">--}}
+                                    {{--<li><a href="#">Link 1, column 3</a></li>--}}
+                                    {{--<li><a href="#">Link 2, column 3</a></li>--}}
+                                    {{--<li><a href="#">Link 3, column 3</a></li>--}}
+                                    {{--<li><a href="#">Link 4, column 3</a></li>--}}
+                                {{--</ul>--}}
+                            {{--</div>--}}
+                            {{--<div class="col-md-3">--}}
+                                {{--<span class="menu-heading underlined">Column 4 title</span>--}}
+                                {{--<ul class="menu-list">--}}
+                                    {{--<li><a href="#">Link 1, column 4</a></li>--}}
+                                    {{--<li><a href="#">Link 2, column 4</a></li>--}}
+                                    {{--<li><a href="#">Link 3, column 4</a></li>--}}
+                                    {{--<li><a href="#">Link 4, column 4</a></li>--}}
+                                {{--</ul>--}}
+                            {{--</div>--}}
+                        {{--</div>--}}
+                        {{--<div class="row">--}}
+                            {{--<div class="col-md-3">--}}
+                                {{--<span class="menu-heading underlined">Column 1 title</span>--}}
+                                {{--<ul class="menu-list">--}}
+                                    {{--<li><a href="#">Link 1, column 1</a></li>--}}
+                                    {{--<li><a href="#">Link 2, column 1</a></li>--}}
+                                    {{--<li><a href="#">Link 3, column 1</a></li>--}}
+                                    {{--<li><a href="#">Link 4, column 1</a></li>--}}
+                                {{--</ul>--}}
+                            {{--</div>--}}
+                            {{--<div class="col-md-3">--}}
+                                {{--<span class="menu-heading underlined">Column 2 title</span>--}}
+                                {{--<ul class="menu-list">--}}
+                                    {{--<li><a href="#">Link 1, column 2</a></li>--}}
+                                    {{--<li><a href="#">Link 2, column 2</a></li>--}}
+                                    {{--<li><a href="#">Link 3, column 2</a></li>--}}
+                                    {{--<li><a href="#">Link 4, column 2</a></li>--}}
+                                {{--</ul>--}}
+                            {{--</div>--}}
+                            {{--<div class="col-md-3">--}}
+                                {{--<span class="menu-heading underlined">Column 3 title</span>--}}
+                                {{--<ul class="menu-list">--}}
+                                    {{--<li><a href="#">Link 1, column 3</a></li>--}}
+                                    {{--<li><a href="#">Link 2, column 3</a></li>--}}
+                                    {{--<li><a href="#">Link 3, column 3</a></li>--}}
+                                    {{--<li><a href="#">Link 4, column 3</a></li>--}}
+                                {{--</ul>--}}
+                            {{--</div>--}}
+                            {{--<div class="col-md-3">--}}
+                                {{--<span class="menu-heading underlined">Column 4 title</span>--}}
+                                {{--<ul class="menu-list">--}}
+                                    {{--<li><a href="#">Link 1, column 4</a></li>--}}
+                                    {{--<li><a href="#">Link 2, column 4</a></li>--}}
+                                    {{--<li><a href="#">Link 3, column 4</a></li>--}}
+                                    {{--<li><a href="#">Link 4, column 4</a></li>--}}
+                                {{--</ul>--}}
+                            {{--</div>--}}
+                        {{--</div>--}}
                     </div>
                 </div>
             </li>

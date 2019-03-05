@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Charity;
+use View;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Schema;
 class AppServiceProvider extends ServiceProvider
@@ -13,8 +15,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        $charitiesList=Charity::all();
         Schema::defaultStringLength(191);
+        View::share('charitiesList',$charitiesList);
     }
 
     /**
