@@ -33,7 +33,7 @@ class VolunteerController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function all()
     {
         //
     }
@@ -125,4 +125,9 @@ class VolunteerController extends Controller
     {
         //
     }
+
+//    public function showAll()
+//    {
+//
+//    }
 }

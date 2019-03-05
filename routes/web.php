@@ -26,7 +26,7 @@ Route::get('/search',function(){
 Route::get('/detail',function(){
     return view('job_detailed');
 });
-Route::view('/all-volunteers','all-volunteers');
+Route::get('/all-volunteers','FirstPageController@allVolunteer');
 
 Route::get('/all-projects',function(){
     $projects=App\Project::all();

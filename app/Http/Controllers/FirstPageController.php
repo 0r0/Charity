@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Charity;
 use App\Project;
+use App\Volunteer;
 use Illuminate\Http\Request;
 
 class FirstPageController extends Controller
@@ -17,5 +18,11 @@ class FirstPageController extends Controller
 
         $charities=Charity::all();
         return view('index',compact('latestProjects','elitProjects','charities'));
+    }
+
+    public function allVolunteer()
+    {
+        $allVolunteers=Volunteer::all();
+        return view('all-volunteers',compact('allVolunteers'));
     }
 }
