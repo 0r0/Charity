@@ -167,3 +167,9 @@ footer { background-color:#0c1a1e; min-height:350px; font-family: 'Open Sans', s
 .bottom_ul li a { color:#FFF;  font-size:12px;}
 
 
+.thumb img:not(.media-preview) {
+    display: inline-block;
+    width: 250px;
+    max-width: 100%;
+    height: auto;
+}
