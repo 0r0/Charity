@@ -134,16 +134,14 @@
                     <div class="bd">
                         <div class="swiper-container">
                             <div class="swiper-wrapper">
-                                <div class="swiper-slide"><img src="https://www.w3schools.com/bootstrap/la.jpg" alt="">Slide
-                                    1
-                                </div>
-                                {{--<div class="swiper-slide">--}}
-                                    <div class=" swiper-slide" >
+
+                                @foreach($latestProjects as $project)
+                                    <div class="swiper-slide">
                                         <div class="panel panel-flat blog-horizontal blog-horizontal-2">
                                             <div class="panel-body">
                                                 <div class="thumb">
                                                     <a href="#course_preview1" data-toggle="modal">
-                                                        <img  src="http://127.0.0.1:8000/images/placeholder.jpg"
+                                                        <img src="http://127.0.0.1:8000/images/placeholder.jpg"
                                                              class="img-responsive img-rounded ss
 " alt="">
                                                         <span class="zoom-image"><i class="icon-play3"></i></span>
@@ -155,26 +153,19 @@
                                                         class="content-group-sm media blog-title stack-media-on-mobile text-left">
                                                         <div class="media-body">
                                                             <h5 class="text-semibold no-margin"><a href="#"
-                                                                                                   class="text-default">عرفان
-                                                                    سیف</a></h5>
+                                                                                                   class="text-default">{{$project->title}}</a>
+                                                            </h5>
 
                                                             <ul class="list-inline list-inline-separate no-margin text-muted">
-                                                                <li>توسط <a href="#">بنیاد تجهیزات اداری نظام</a></li>
+                                                                <li>توسط <a href="#">{{$project->supporter}}</a></li>
                                                                 {{--<li>Nov 1st, 2016</li>--}}
                                                             </ul>
                                                         </div>
 
                                                         <h5 class="text-success media-right no-margin-bottom text-semibold">
-                                                            8264143تومان </h5>
+                                                            {{$project->money}} </h5>
                                                     </div>
-                                                    {{--<h6>Atque occaecati qui laboriosam voluptas <a href="#description1"--}}
-                                                                                                  {{--data-toggle="collapse">[بیشتر]</a>--}}
-                                                    {{--</h6>--}}
-                                                    {{--<div id="description1" class="collapse">--}}
-                                                        {{--inventore. Porro quo nemo iusto et vel fuga magni. Sapiente--}}
-                                                        {{--animi error eius numquam et quos. Soluta saepe sed ut quia--}}
-                                                        {{--praesentium voluptates.--}}
-                                                    {{--</div>--}}
+
                                                 </div>
                                             </div>
 
@@ -184,7 +175,7 @@
                                                 <div class="heading-elements">
                                                     <ul class="list-inline list-inline-separate heading-text">
                                                         <li><i class="icon-alarm position-left"></i>تاریخ
-                                                            شروع:13/12/1397
+                                                            شروع:{{$project->runDate}}
                                                         </li>
                                                         <li>
                                                             <i class="icon-star-full2 text-size-base text-warning-300"></i>
@@ -202,38 +193,12 @@
                                             </div>
                                         </div>
                                     </div>
-                                {{--</div>--}}
-                                <div class="swiper-slide"><div class="thumbnail no-padding">
-                                        <div class="thumb">
-                                            <img src="assets/images/placeholder.jpg" alt="">
-                                            <div class="caption-overflow">
-										<span>
-											<a href="assets/images/placeholder.jpg" class="btn bg-success-400 btn-icon btn-xs" data-popup="lightbox"><i class="icon-plus2"></i></a>
-											<a href="user_pages_profile.html" class="btn bg-success-400 btn-icon btn-xs"><i class="icon-link"></i></a>
-										</span>
-                                            </div>
-                                        </div>
+                                @endforeach
 
-                                        <div class="caption text-center">
-                                            <h6 class="text-semibold no-margin">Nathan Jacobson <small class="display-block">Lead UX designer</small></h6>
-                                            <ul class="icons-list mt-15">
-                                                <li><a href="#" data-popup="tooltip" title="" data-container="body" data-original-title="Google Drive"><i class="icon-google-drive"></i></a></li>
-                                                <li><a href="#" data-popup="tooltip" title="" data-container="body" data-original-title="Twitter"><i class="icon-twitter"></i></a></li>
-                                                <li><a href="#" data-popup="tooltip" title="" data-container="body" data-original-title="Github"><i class="icon-github"></i></a></li>
-                                            </ul>
-                                        </div>
-                                    </div></div>
-                                <div class="swiper-slide">Slide 4</div>
-                                <div class="swiper-slide">Slide 5</div>
-                                <div class="swiper-slide">Slide 6</div>
-                                <div class="swiper-slide">Slide 7</div>
-                                <div class="swiper-slide">Slide 8</div>
-                                <div class="swiper-slide">Slide 9</div>
-                                <div class="swiper-slide">Slide 10</div>
                             </div>
                             <!-- Add Pagination -->
-                            {{--<div class="swiper-pagination"></div>--}}
-                            <!-- Add Arrows -->
+                        {{--<div class="swiper-pagination"></div>--}}
+                        <!-- Add Arrows -->
                             <div class="swiper-button-next"></div>
                             <div class="swiper-button-prev"></div>
                         </div>
@@ -264,86 +229,103 @@
 
             <!-- Wrapper for slides -->
             <div class="carousel-inner">
+                @foreach($elitProjects as $project)
+                    @if($loop->first)
+                    <div class="item active">
+                        <img src="http://placehold.it/760x400/cccccc/ffffff">
+                        <div class="carousel-caption">
+                            <h4><a href="#">Lorem ipsum dolor sit amet consetetur sadipscing</a></h4>
+                            <p>{{$project->description}} <a class="label label-primary"
+                                                               href="http://sevenx.de/demo/bootstrap-carousel/"
+                                                               target="_blank">Free Bootstrap Carousel Collection</a>
+                            </p>
+                        </div>
+                    </div><!-- End Item -->
+                    @else
+                        <div class="item">
+                            <img src="http://placehold.it/760x400/cccccc/ffffff">
+                            <div class="carousel-caption">
+                                <h4><a href="#">Lorem ipsum dolor sit amet consetetur sadipscing</a></h4>
+                                <p>{{$project->description}} <a class="label label-primary"
+                                                                   href="http://sevenx.de/demo/bootstrap-carousel/"
+                                                                   target="_blank">Free Bootstrap Carousel Collection</a>
+                                </p>
+                            </div>
+                        </div><!-- End Item -->
+                    @endif
+                        @endforeach
+                {{--<div class="item">--}}
+                    {{--<img src="http://placehold.it/760x400/999999/cccccc">--}}
+                    {{--<div class="carousel-caption">--}}
+                        {{--<h4><a href="#">consetetur sadipscing elitr, sed diam nonumy eirmod</a></h4>--}}
+                        {{--<p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor--}}
+                            {{--invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. Lorem ipsum dolor sit--}}
+                            {{--amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et--}}
+                            {{--dolore magna aliquyam erat. <a class="label label-primary"--}}
+                                                           {{--href="http://sevenx.de/demo/bootstrap-carousel/"--}}
+                                                           {{--target="_blank">Free Bootstrap Carousel Collection</a></p>--}}
+                    {{--</div>--}}
+                {{--</div><!-- End Item -->--}}
 
-                <div class="item active">
-                    <img src="http://placehold.it/760x400/cccccc/ffffff">
-                    <div class="carousel-caption">
-                        <h4><a href="#">Lorem ipsum dolor sit amet consetetur sadipscing</a></h4>
-                        <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor
-                            invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. Lorem ipsum dolor sit
-                            amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et
-                            dolore magna aliquyam erat. <a class="label label-primary"
-                                                           href="http://sevenx.de/demo/bootstrap-carousel/"
-                                                           target="_blank">Free Bootstrap Carousel Collection</a></p>
-                    </div>
-                </div><!-- End Item -->
+                {{--<div class="item">--}}
+                    {{--<img src="http://placehold.it/760x400/dddddd/333333">--}}
+                    {{--<div class="carousel-caption">--}}
+                        {{--<h4><a href="#">tempor invidunt ut labore et dolore</a></h4>--}}
+                        {{--<p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor--}}
+                            {{--invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. Lorem ipsum dolor sit--}}
+                            {{--amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et--}}
+                            {{--dolore magna aliquyam erat. <a class="label label-primary"--}}
+                                                           {{--href="http://sevenx.de/demo/bootstrap-carousel/"--}}
+                                                           {{--target="_blank">Free Bootstrap Carousel Collection</a></p>--}}
+                    {{--</div>--}}
+                {{--</div><!-- End Item -->--}}
 
-                <div class="item">
-                    <img src="http://placehold.it/760x400/999999/cccccc">
-                    <div class="carousel-caption">
-                        <h4><a href="#">consetetur sadipscing elitr, sed diam nonumy eirmod</a></h4>
-                        <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor
-                            invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. Lorem ipsum dolor sit
-                            amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et
-                            dolore magna aliquyam erat. <a class="label label-primary"
-                                                           href="http://sevenx.de/demo/bootstrap-carousel/"
-                                                           target="_blank">Free Bootstrap Carousel Collection</a></p>
-                    </div>
-                </div><!-- End Item -->
+                {{--<div class="item">--}}
+                    {{--<img src="http://placehold.it/760x400/999999/cccccc">--}}
+                    {{--<div class="carousel-caption">--}}
+                        {{--<h4><a href="#">magna aliquyam erat, sed diam voluptua</a></h4>--}}
+                        {{--<p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor--}}
+                            {{--invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. Lorem ipsum dolor sit--}}
+                            {{--amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et--}}
+                            {{--dolore magna aliquyam erat. <a class="label label-primary"--}}
+                                                           {{--href="http://sevenx.de/demo/bootstrap-carousel/"--}}
+                                                           {{--target="_blank">Free Bootstrap Carousel Collection</a></p>--}}
+                    {{--</div>--}}
+                {{--</div><!-- End Item -->--}}
 
-                <div class="item">
-                    <img src="http://placehold.it/760x400/dddddd/333333">
-                    <div class="carousel-caption">
-                        <h4><a href="#">tempor invidunt ut labore et dolore</a></h4>
-                        <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor
-                            invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. Lorem ipsum dolor sit
-                            amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et
-                            dolore magna aliquyam erat. <a class="label label-primary"
-                                                           href="http://sevenx.de/demo/bootstrap-carousel/"
-                                                           target="_blank">Free Bootstrap Carousel Collection</a></p>
-                    </div>
-                </div><!-- End Item -->
-
-                <div class="item">
-                    <img src="http://placehold.it/760x400/999999/cccccc">
-                    <div class="carousel-caption">
-                        <h4><a href="#">magna aliquyam erat, sed diam voluptua</a></h4>
-                        <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor
-                            invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. Lorem ipsum dolor sit
-                            amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et
-                            dolore magna aliquyam erat. <a class="label label-primary"
-                                                           href="http://sevenx.de/demo/bootstrap-carousel/"
-                                                           target="_blank">Free Bootstrap Carousel Collection</a></p>
-                    </div>
-                </div><!-- End Item -->
-
-                <div class="item">
-                    <img src="http://placehold.it/760x400/dddddd/333333">
-                    <div class="carousel-caption">
-                        <h4><a href="#">tempor invidunt ut labore et dolore magna aliquyam erat</a></h4>
-                        <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor
-                            invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. Lorem ipsum dolor sit
-                            amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et
-                            dolore magna aliquyam erat. <a class="label label-primary"
-                                                           href="http://sevenx.de/demo/bootstrap-carousel/"
-                                                           target="_blank">Free Bootstrap Carousel Collection</a></p>
-                    </div>
-                </div><!-- End Item -->
+                {{--<div class="item">--}}
+                    {{--<img src="http://placehold.it/760x400/dddddd/333333">--}}
+                    {{--<div class="carousel-caption">--}}
+                        {{--<h4><a href="#">tempor invidunt ut labore et dolore magna aliquyam erat</a></h4>--}}
+                        {{--<p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor--}}
+                            {{--invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. Lorem ipsum dolor sit--}}
+                            {{--amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et--}}
+                            {{--dolore magna aliquyam erat. <a class="label label-primary"--}}
+                                                           {{--href="http://sevenx.de/demo/bootstrap-carousel/"--}}
+                                                           {{--target="_blank">Free Bootstrap Carousel Collection</a></p>--}}
+                    {{--</div>--}}
+                {{--</div><!-- End Item -->--}}
 
             </div><!-- End Carousel Inner -->
 
 
             <ul class="list-group col-sm-4">
-                <li data-target="#myCarousel" data-slide-to="0" class="list-group-item active"><h4>Lorem ipsum dolor sit
-                        amet consetetur sadipscing</h4></li>
-                <li data-target="#myCarousel" data-slide-to="1" class="list-group-item"><h4>consetetur sadipscing elitr,
-                        sed diam nonumy eirmod</h4></li>
-                <li data-target="#myCarousel" data-slide-to="2" class="list-group-item"><h4>tempor invidunt ut labore et
-                        dolore</h4></li>
-                <li data-target="#myCarousel" data-slide-to="3" class="list-group-item"><h4>magna aliquyam erat, sed
-                        diam voluptua</h4></li>
-                <li data-target="#myCarousel" data-slide-to="4" class="list-group-item"><h4>tempor invidunt ut labore et
-                        dolore magna aliquyam erat</h4></li>
+                @foreach($elitProjects as $project)
+                    @if($loop->first)
+                <li data-target="#myCarousel" data-slide-to="{{$loop->index}}" class="list-group-item active"><h4>{{substr($project->summery,0,30)}}....</h4></li>
+                    @else
+                        <li data-target="#myCarousel" data-slide-to="{{$loop->index}}" class="list-group-item"><h4>{{substr($project->summery,0,30)}}.....</h4></li>
+
+                    @endif
+                @endforeach
+                {{--<li data-target="#myCarousel" data-slide-to="1" class="list-group-item"><h4>consetetur sadipscing elitr,--}}
+                        {{--sed diam nonumy eirmod</h4></li>--}}
+                {{--<li data-target="#myCarousel" data-slide-to="2" class="list-group-item"><h4>tempor invidunt ut labore et--}}
+                        {{--dolore</h4></li>--}}
+                {{--<li data-target="#myCarousel" data-slide-to="3" class="list-group-item"><h4>magna aliquyam erat, sed--}}
+                        {{--diam voluptua</h4></li>--}}
+                {{--<li data-target="#myCarousel" data-slide-to="4" class="list-group-item"><h4>tempor invidunt ut labore et--}}
+                        {{--dolore magna aliquyam erat</h4></li>--}}
             </ul>
 
             <!-- Controls -->
