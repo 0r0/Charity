@@ -138,9 +138,9 @@
                                 <div class="caption text-center">
                                     <h6 class="text-semibold no-margin">{{$volunteer->firstName}} {{$volunteer->lastName}}<small class="display-block">{{$volunteer->skill}}</small></h6>
                                     <ul class="icons-list mt-15">
-                                        <li><a href="#" data-popup="tooltip" title="" data-original-title="جزئیات"><i class="icon-info3"></i></a></li>
+                                        <li><a href="#volunteer_info{{$volunteer->id}}" data-popup="tooltip" data-toggle="modal" title="" data-original-title="جزئیات"><i class="icon-info3"></i></a></li>
                                         <li><a href="#" data-popup="tooltip" title="" data-original-title="ایمیل"><i class="icon-mail-read"></i></a></li>
-                                        <li><a href="#" data-popup="tooltip" title="" data-original-title="آدرس"><i class="icon-home2"></i></a></li>
+                                        <li><a href="http://{{$volunteer->site}}" data-popup="tooltip" title="" data-original-title="آدرس"><i class="icon-home2"></i></a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -180,4 +180,123 @@
     </div>
         </div>
     </div>
+@foreach($allVolunteers as $volunteer)
+            <!--volunteer info  model -->
+            <div id="volunteer_info{{$volunteer->id}}" class="modal fade" style="display: none;">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">×</button>
+                            <h5 class="modal-title"> اطلاعات کاربر {{$volunteer->firstName}} {{$volunteer->lastName}}</h5>
+                        </div>
+
+
+                        <div class="modal-body">
+                            hello it is a test
+                            <div class="table-responsive">
+                                <table class="table table-bordered">
+                                    <thead>
+                                    <tr>
+                                        <th style="width: 100px;">نام</th>
+                                        <th >نام خانوادگی</th>
+                                        <th style="width: 150px;">مهارت ها</th>
+                                        <th style="width: 100px;">علاقه مندی ها</th>
+                                        <th style="width: 250px;">اطلاعات تماس</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr>
+                                        <td>{{$volunteer->firstName}}</td>
+                                        <td>{{$volunteer->lastName}}t</td>
+                                        <td>{{$volunteer->skill}}</td>
+                                        <td>{{$volunteer->intrest}}</td>
+                                        @if(Auth::guest())
+                                        <td>برای دیدن اطلاعات تماس باید حتما لاگین کنید</td>
+                                            @else
+                                            <td>{{$volunteer->interest}}</td>
+                                            @endif
+
+                                    </tr>
+
+                                    </tbody>
+                                </table>
+                            </div>
+                            {{--<div class="form-group">--}}
+                                {{--<div class="row">--}}
+                                    {{--<div class="col-sm-6">--}}
+                                        {{--<label>مهارت</label>--}}
+                                        {{--<input type="text" placeholder=" نوع مهارت را وارد کنید" class="form-control"--}}
+                                               {{--value="{{$requirement->skill}}" name="skill{{$requirement->id}}">--}}
+
+                                    {{--</div>--}}
+
+                                    {{--<div class="col-sm-6">--}}
+                                        {{--<label>زمان نیازمندی </label>--}}
+                                        {{--@php--}}
+                                            {{--$persianDate= Morilog\Jalali\CalendarUtils::strftime('Y-m-d', strtotime($requirement->date));--}}
+
+                                        {{--@endphp--}}
+                                        {{--<input type="text" placeholder="زمان " class="form-control"--}}
+                                               {{--value="{{$persianDate}}" name="date{{$requirement->id}}">--}}
+                                    {{--</div>--}}
+                                {{--</div>--}}
+                            {{--</div>--}}
+
+                            {{--<div class="form-group">--}}
+                                {{--<div class="row">--}}
+                                    {{--<div class="col-sm-12">--}}
+                                        {{--<label>توضیحات</label>--}}
+                                        {{--<textarea id="description{{$requirement->id}}" placeholder="توضیحات را وارد کنید"--}}
+                                                  {{--rows="2" cols="80" class="alpaca-control form-control"--}}
+                                                  {{--name="description{{$requirement->id}}"--}}
+                                                  {{--autocomplete="off">{{$requirement->description}}</textarea>--}}
+                                    {{--</div>--}}
+                                {{--</div>--}}
+                                {{--<div class="row">--}}
+                                    {{--<div class="col-sm-12">--}}
+                                        {{--<label>مکان </label>--}}
+                                        {{--<input type="text" placeholder="لطفا مکان را وارد کنید " class="form-control"--}}
+                                               {{--value="{{$requirement->place}}" name="place{{$requirement->id}}">--}}
+                                    {{--</div>--}}
+                                {{--</div>--}}
+                            {{--</div>--}}
+                            {{--<div class="form-group">--}}
+                                {{--<div class="row">--}}
+                                    {{--<div class="col-md-6">--}}
+                                        {{--<label>نوع</label>--}}
+                                        {{--<select name="kind{{$requirement->id}}" class="form-control">--}}
+                                            {{--@if($requirement->bill_kind)--}}
+                                                {{--<option value="0" >مجانی</option>--}}
+                                                {{--<option value="1" selected="selected">پولی</option>--}}
+                                            {{--@else--}}
+                                                {{--<option value="0" selected="selected">مجانی</option>--}}
+                                                {{--<option value="1">پولی</option>--}}
+                                            {{--@endif--}}
+
+                                        {{--</select>--}}
+                                    {{--</div>--}}
+                                    {{--<div class="col-sm-6">--}}
+                                        {{--<label>بودجه</label>--}}
+                                        {{--<div class="input-group">--}}
+                                            {{--<input type="text" placeholder=" بودجه پروژه " class="form-control"--}}
+                                                   {{--value="" name="money{{$requirement->id}}">--}}
+                                            {{--<span class="input-group-addon">ریال</span>--}}
+                                        {{--</div>--}}
+                                    {{--</div>--}}
+                                {{--</div>--}}
+                            {{--</div>--}}
+                        </div>
+
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-link" data-dismiss="modal">بستن</button>
+                            <button type="submit" class="btn btn-primary"
+                                    name="">تایید
+                            </button>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <!--/volunteer info  model model -->
+    @endforeach
     @endsection
