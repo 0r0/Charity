@@ -79,7 +79,7 @@
                             <div class="col-md-3">
 
                                 <ul class="menu-list">
-                                    <li><a href="#">{{$charity->company}}</a></li>
+                                    <li><a href="{{route('charity-more-info',['id'=>$charity->id])}}">{{$charity->company}}</a></li>
 
                                 </ul>
                             </div>
