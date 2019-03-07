@@ -33,4 +33,11 @@ class FirstPageController extends Controller
         return view('all-project-more-info', compact('project', 'requirements'));
 
     }
+
+    public function charityMoreInfo($id)
+    {
+        $charity=Charity::find($id);
+        $projects=$charity->projects()->get();
+        return view('charity-more-info',compact('charity','projects'));
+    }
 }
