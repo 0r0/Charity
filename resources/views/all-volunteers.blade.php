@@ -3,191 +3,226 @@
     <div class="page-container">
 
         <div class="page-content">
-    <div class="content-wrapper">
+            <div class="content-wrapper">
 
-        <!-- Page header -->
-        <div class="page-header">
-            <div class="page-header-content">
-                <div class="page-title">
-                    <h4><i class="icon-arrow-right6 position-left"></i> <span class="text-semibold">Search</span> - جستجو داوطلبین</h4>
+                <!-- Page header -->
+                <div class="page-header">
+                    <div class="page-header-content">
+                        <div class="page-title">
+                            <h4><i class="icon-arrow-right6 position-left"></i> <span
+                                    class="text-semibold">Search</span> - جستجو داوطلبین</h4>
 
-                    <ul class="breadcrumb position-right">
-                        <li><a href="index.html">Home</a></li>
-                        <li><a href="search_users.html">Search</a></li>
-                        <li class="active">User results</li>
-                    </ul>
-                    <a class="heading-elements-toggle"><i class="icon-more"></i></a></div>
+                            <ul class="breadcrumb position-right">
+                                <li><a href="index.html">Home</a></li>
+                                <li><a href="search_users.html">Search</a></li>
+                                <li class="active">User results</li>
+                            </ul>
+                            <a class="heading-elements-toggle"><i class="icon-more"></i></a></div>
 
-                <div class="heading-elements">
-                    <div class="heading-btn-group">
-                        <a href="#" class="btn btn-link btn-float has-text"><i class="icon-bars-alt text-primary"></i><span>Statistics</span></a>
-                        <a href="#" class="btn btn-link btn-float has-text"><i class="icon-calculator text-primary"></i> <span>Invoices</span></a>
-                        <a href="#" class="btn btn-link btn-float has-text"><i class="icon-calendar5 text-primary"></i> <span>Schedule</span></a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- /page header -->
-
-
-        <!-- Content area -->
-        <div class="content">
-
-            <!-- Search field -->
-            <div class="panel panel-flat">
-                <div class="panel-heading">
-                    <h5 class="panel-title">Website search results<a class="heading-elements-toggle"><i class="icon-more"></i></a></h5>
-                    <div class="heading-elements">
-                        <ul class="icons-list">
-                            <li><a data-action="collapse"></a></li>
-                            <li><a data-action="close"></a></li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="panel-body">
-                    <form action="#" class="main-search">
-                        <div class="input-group content-group">
-                            <div class="has-feedback has-feedback-left">
-                                <input type="text" class="form-control input-xlg" placeholder="نام داوطب را وارد کنید">
-                                <div class="form-control-feedback">
-                                    <i class="icon-search4 text-muted text-size-base"></i>
-                                </div>
-                            </div>
-
-                            <div class="input-group-btn">
-                                <button type="submit" class="btn btn-primary btn-xlg">Search</button>
+                        <div class="heading-elements">
+                            <div class="heading-btn-group">
+                                <a href="#" class="btn btn-link btn-float has-text"><i
+                                        class="icon-bars-alt text-primary"></i><span>Statistics</span></a>
+                                <a href="#" class="btn btn-link btn-float has-text"><i
+                                        class="icon-calculator text-primary"></i> <span>Invoices</span></a>
+                                <a href="#" class="btn btn-link btn-float has-text"><i
+                                        class="icon-calendar5 text-primary"></i> <span>Schedule</span></a>
                             </div>
                         </div>
+                    </div>
+                </div>
+                <!-- /page header -->
 
-                        <div class="row search-option-buttons">
-                            <div class="col-sm-6">
-                                <ul class="list-inline list-inline-condensed no-margin-bottom">
-                                    <li class="dropdown">
-                                        <a href="#" class="btn btn-link dropdown-toggle" data-toggle="dropdown">
-                                            <i class="icon-stack2 position-left"></i> All categories <span class="caret"></span>
-                                        </a>
 
-                                        <ul class="dropdown-menu">
-                                            <li><a href="#"><i class="icon-question7"></i> Getting started</a></li>
-                                            <li><a href="#"><i class="icon-accessibility"></i> Registration</a></li>
-                                            <li><a href="#"><i class="icon-reading"></i> General info</a></li>
-                                            <li><a href="#"><i class="icon-gear"></i> Your settings</a></li>
-                                            <li><a href="#"><i class="icon-graduation"></i> Copyrights</a></li>
-                                            <li class="divider"></li>
-                                            <li><a href="#"><i class="icon-mail-read"></i> Contacting authors</a></li>
-                                        </ul>
-                                    </li>
-                                    <li><a href="#" class="btn btn-link"><i class="icon-reload-alt position-left"></i> Refine your search</a></li>
-                                </ul>
-                            </div>
+                <!-- Content area -->
+                <div class="content">
 
-                            <div class="col-sm-6 text-right">
-                                <ul class="list-inline no-margin-bottom">
-                                    <li><a href="#" class="btn btn-link"><i class="icon-make-group position-left"></i> Browse website</a></li>
-                                    <li><a href="#" class="btn btn-link"><i class="icon-menu7 position-left"></i> Advanced search</a></li>
+                    <!-- Search field -->
+                    <div class="panel panel-flat">
+                        <div class="panel-heading">
+                            <h5 class="panel-title">Website search results<a class="heading-elements-toggle"><i
+                                        class="icon-more"></i></a></h5>
+                            <div class="heading-elements">
+                                <ul class="icons-list">
+                                    <li><a data-action="collapse"></a></li>
+                                    <li><a data-action="close"></a></li>
                                 </ul>
                             </div>
                         </div>
-                    </form>
-                </div>
-            </div>
-            <!-- /search field -->
 
+                        <div class="panel-body">
+                            <form action="#" class="main-search">
+                                <div class="input-group content-group">
+                                    <div class="has-feedback has-feedback-left">
+                                        <input type="text" class="form-control input-xlg"
+                                               placeholder="نام داوطب را وارد کنید">
+                                        <div class="form-control-feedback">
+                                            <i class="icon-search4 text-muted text-size-base"></i>
+                                        </div>
+                                    </div>
 
-            <!-- Tabs -->
-            <ul class="nav nav-lg nav-tabs nav-tabs-bottom search-results-tabs">
-                <li><a href="search_basic.html"><i class="icon-display4 position-left"></i> Website</a></li>
-                <li class="active"><a href="search_users.html"><i class="icon-people position-left"></i> Users</a></li>
-                <li><a href="search_images.html"><i class="icon-image2 position-left"></i> Images</a></li>
-                <li><a href="search_videos.html"><i class="icon-file-play position-left"></i> Videos</a></li>
-                <li class="dropdown pull-right">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-cog3"></i> <span class="visible-xs-inline-block position-right">Options</span> <span class="caret"></span></a>
-                    <ul class="dropdown-menu dropdown-menu-right">
-                        <li><a href="#">Action</a></li>
-                        <li><a href="#">Another action</a></li>
-                        <li><a href="#">Something else</a></li>
-                        <li class="divider"></li>
-                        <li><a href="#">One more line</a></li>
-                    </ul>
-                </li>
-            </ul>
-            <!-- /tabs -->
-
-
-            <!-- Search results -->
-            <div class="content-group">
-                <p class="text-muted text-size-small content-group">About 827,000 results (0.34 seconds)</p>
-
-                <div class="search-results-list">
-                    @foreach($allVolunteers->chunk(4) as $volunteers)
-                    <div class="row">
-                        @foreach($volunteers as $volunteer)
-                        <div class="col-lg-3 col-sm-6">
-                            <div class="thumbnail">
-                                <div class="thumb thumb-rounded">
-                                    <img src="{{asset('images/placeholder.jpg')}}" alt="">
-                                    <div class="caption-overflow">
-												<span>
-													<a href="#" class="btn border-white text-white btn-flat btn-icon btn-rounded"><i class="icon-plus2"></i></a>
-													<a href="#" class="btn border-white text-white btn-flat btn-icon btn-rounded ml-5"><i class="icon-link2"></i></a>
-												</span>
+                                    <div class="input-group-btn">
+                                        <button type="submit" class="btn btn-primary btn-xlg">Search</button>
                                     </div>
                                 </div>
 
-                                <div class="caption text-center">
-                                    <h6 class="text-semibold no-margin">{{$volunteer->firstName}} {{$volunteer->lastName}}<small class="display-block">{{$volunteer->skill}}</small></h6>
-                                    <ul class="icons-list mt-15">
-                                        <li><a href="#volunteer_info{{$volunteer->id}}" data-popup="tooltip" data-toggle="modal" title="" data-original-title="جزئیات"><i class="icon-info3"></i></a></li>
-                                        <li><a href="#" data-popup="tooltip" title="" data-original-title="ایمیل"><i class="icon-mail-read"></i></a></li>
-                                        <li><a href="http://{{$volunteer->site}}" data-popup="tooltip" title="" data-original-title="آدرس"><i class="icon-home2"></i></a></li>
-                                    </ul>
+                                <div class="row search-option-buttons">
+                                    <div class="col-sm-6">
+                                        <ul class="list-inline list-inline-condensed no-margin-bottom">
+                                            <li class="dropdown">
+                                                <a href="#" class="btn btn-link dropdown-toggle" data-toggle="dropdown">
+                                                    <i class="icon-stack2 position-left"></i> All categories <span
+                                                        class="caret"></span>
+                                                </a>
+
+                                                <ul class="dropdown-menu">
+                                                    <li><a href="#"><i class="icon-question7"></i> Getting started</a>
+                                                    </li>
+                                                    <li><a href="#"><i class="icon-accessibility"></i> Registration</a>
+                                                    </li>
+                                                    <li><a href="#"><i class="icon-reading"></i> General info</a></li>
+                                                    <li><a href="#"><i class="icon-gear"></i> Your settings</a></li>
+                                                    <li><a href="#"><i class="icon-graduation"></i> Copyrights</a></li>
+                                                    <li class="divider"></li>
+                                                    <li><a href="#"><i class="icon-mail-read"></i> Contacting
+                                                            authors</a></li>
+                                                </ul>
+                                            </li>
+                                            <li><a href="#" class="btn btn-link"><i
+                                                        class="icon-reload-alt position-left"></i> Refine your
+                                                    search</a></li>
+                                        </ul>
+                                    </div>
+
+                                    <div class="col-sm-6 text-right">
+                                        <ul class="list-inline no-margin-bottom">
+                                            <li><a href="#" class="btn btn-link"><i
+                                                        class="icon-make-group position-left"></i> Browse website</a>
+                                            </li>
+                                            <li><a href="#" class="btn btn-link"><i
+                                                        class="icon-menu7 position-left"></i> Advanced search</a></li>
+                                        </ul>
+                                    </div>
                                 </div>
-                            </div>
+                            </form>
                         </div>
+                    </div>
+                    <!-- /search field -->
+
+
+                    <!-- Tabs -->
+                    <ul class="nav nav-lg nav-tabs nav-tabs-bottom search-results-tabs">
+                        <li><a href="search_basic.html"><i class="icon-display4 position-left"></i> Website</a></li>
+                        <li class="active"><a href="search_users.html"><i class="icon-people position-left"></i>
+                                Users</a></li>
+                        <li><a href="search_images.html"><i class="icon-image2 position-left"></i> Images</a></li>
+                        <li><a href="search_videos.html"><i class="icon-file-play position-left"></i> Videos</a></li>
+                        <li class="dropdown pull-right">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-cog3"></i> <span
+                                    class="visible-xs-inline-block position-right">Options</span> <span
+                                    class="caret"></span></a>
+                            <ul class="dropdown-menu dropdown-menu-right">
+                                <li><a href="#">Action</a></li>
+                                <li><a href="#">Another action</a></li>
+                                <li><a href="#">Something else</a></li>
+                                <li class="divider"></li>
+                                <li><a href="#">One more line</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <!-- /tabs -->
+
+
+                    <!-- Search results -->
+                    <div class="content-group">
+                        <p class="text-muted text-size-small content-group">About 827,000 results (0.34 seconds)</p>
+
+                        <div class="search-results-list">
+                            @foreach($allVolunteers->chunk(4) as $volunteers)
+                                <div class="row">
+                                    @foreach($volunteers as $volunteer)
+                                        <div class="col-lg-3 col-sm-6">
+                                            <div class="thumbnail">
+                                                <div class="thumb thumb-rounded">
+                                                    <img src="{{asset('images/placeholder.jpg')}}" alt="">
+                                                    <div class="caption-overflow">
+												<span>
+													<a href="#"
+                                                       class="btn border-white text-white btn-flat btn-icon btn-rounded"><i
+                                                            class="icon-plus2"></i></a>
+													<a href="#"
+                                                       class="btn border-white text-white btn-flat btn-icon btn-rounded ml-5"><i
+                                                            class="icon-link2"></i></a>
+												</span>
+                                                    </div>
+                                                </div>
+
+                                                <div class="caption text-center">
+                                                    <h6 class="text-semibold no-margin">{{$volunteer->firstName}} {{$volunteer->lastName}}
+                                                        <small class="display-block">{{$volunteer->skill}}</small>
+                                                    </h6>
+                                                    <ul class="icons-list mt-15">
+                                                        <li><a href="#volunteer_info{{$volunteer->id}}"
+                                                               data-popup="tooltip" data-toggle="modal" title=""
+                                                               data-original-title="جزئیات"><i
+                                                                    class="icon-info3"></i></a></li>
+                                                        <li><a href="#" data-popup="tooltip" title=""
+                                                               data-original-title="ایمیل"><i
+                                                                    class="icon-mail-read"></i></a></li>
+                                                        <li><a href="http://{{$volunteer->site}}" data-popup="tooltip"
+                                                               title="" data-original-title="آدرس"><i
+                                                                    class="icon-home2"></i></a></li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    @endforeach
+
+                                </div>
                         @endforeach
 
+
+                        <!-- Pagination -->
+                        {{--<div class="text-center content-group pt-20">--}}
+                        {{--<ul class="pagination">--}}
+                        {{--<li class="disabled"><a href="#">→</a></li>--}}
+                        {{--<li class="active"><a href="#">1</a></li>--}}
+                        {{--<li><a href="#">2</a></li>--}}
+                        {{--<li><a href="#">3</a></li>--}}
+                        {{--<li><a href="#">4</a></li>--}}
+                        {{--<li><span>...</span></li>--}}
+                        {{--<li><a href="#">58</a></li>--}}
+                        {{--<li><a href="#">59</a></li>--}}
+                        {{--<li><a href="#">←</a></li>--}}
+                        {{--</ul>--}}
+                        {{--</div>--}}
+                        <!-- /pagination -->
+
+
+                            <!-- Footer -->
+                            <div class="footer text-muted">
+                                © 2015. <a href="#">Limitless Web App Kit</a> by <a
+                                    href="http://themeforest.net/user/Kopyov" target="_blank">Eugene Kopyov</a>
+                            </div>
+                            <!-- /footer -->
+
+                        </div>
+                        <!-- /content area -->
+
                     </div>
-                    @endforeach
-
-
-            <!-- Pagination -->
-            {{--<div class="text-center content-group pt-20">--}}
-                {{--<ul class="pagination">--}}
-                    {{--<li class="disabled"><a href="#">→</a></li>--}}
-                    {{--<li class="active"><a href="#">1</a></li>--}}
-                    {{--<li><a href="#">2</a></li>--}}
-                    {{--<li><a href="#">3</a></li>--}}
-                    {{--<li><a href="#">4</a></li>--}}
-                    {{--<li><span>...</span></li>--}}
-                    {{--<li><a href="#">58</a></li>--}}
-                    {{--<li><a href="#">59</a></li>--}}
-                    {{--<li><a href="#">←</a></li>--}}
-                {{--</ul>--}}
-            {{--</div>--}}
-            <!-- /pagination -->
-
-
-            <!-- Footer -->
-            <div class="footer text-muted">
-                © 2015. <a href="#">Limitless Web App Kit</a> by <a href="http://themeforest.net/user/Kopyov" target="_blank">Eugene Kopyov</a>
+                </div>
             </div>
-            <!-- /footer -->
-
-        </div>
-        <!-- /content area -->
-
-    </div>
         </div>
     </div>
-@foreach($allVolunteers as $volunteer)
-            <!--volunteer info  model -->
+    @foreach($allVolunteers as $volunteer)
+        <!--volunteer info  model -->
             <div id="volunteer_info{{$volunteer->id}}" class="modal fade" style="display: none;">
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
                             <button type="button" class="close" data-dismiss="modal">×</button>
-                            <h5 class="modal-title"> اطلاعات کاربر {{$volunteer->firstName}} {{$volunteer->lastName}}</h5>
+                            <h5 class="modal-title"> اطلاعات
+                                کاربر {{$volunteer->firstName}} {{$volunteer->lastName}}</h5>
                         </div>
 
 
@@ -198,7 +233,7 @@
                                     <thead>
                                     <tr>
                                         <th style="width: 100px;">نام</th>
-                                        <th >نام خانوادگی</th>
+                                        <th>نام خانوادگی</th>
                                         <th style="width: 150px;">مهارت ها</th>
                                         <th style="width: 100px;">علاقه مندی ها</th>
                                         <th style="width: 250px;">اطلاعات تماس</th>
@@ -211,80 +246,17 @@
                                         <td>{{$volunteer->skill}}</td>
                                         <td>{{$volunteer->intrest}}</td>
                                         @if(Auth::guest())
-                                        <td>برای دیدن اطلاعات تماس باید حتما لاگین کنید</td>
-                                            @else
+                                            <td>برای دیدن اطلاعات تماس باید حتما لاگین کنید</td>
+                                        @else
                                             <td>{{$volunteer->interest}}</td>
-                                            @endif
+                                        @endif
 
                                     </tr>
 
                                     </tbody>
                                 </table>
                             </div>
-                            {{--<div class="form-group">--}}
-                                {{--<div class="row">--}}
-                                    {{--<div class="col-sm-6">--}}
-                                        {{--<label>مهارت</label>--}}
-                                        {{--<input type="text" placeholder=" نوع مهارت را وارد کنید" class="form-control"--}}
-                                               {{--value="{{$requirement->skill}}" name="skill{{$requirement->id}}">--}}
 
-                                    {{--</div>--}}
-
-                                    {{--<div class="col-sm-6">--}}
-                                        {{--<label>زمان نیازمندی </label>--}}
-                                        {{--@php--}}
-                                            {{--$persianDate= Morilog\Jalali\CalendarUtils::strftime('Y-m-d', strtotime($requirement->date));--}}
-
-                                        {{--@endphp--}}
-                                        {{--<input type="text" placeholder="زمان " class="form-control"--}}
-                                               {{--value="{{$persianDate}}" name="date{{$requirement->id}}">--}}
-                                    {{--</div>--}}
-                                {{--</div>--}}
-                            {{--</div>--}}
-
-                            {{--<div class="form-group">--}}
-                                {{--<div class="row">--}}
-                                    {{--<div class="col-sm-12">--}}
-                                        {{--<label>توضیحات</label>--}}
-                                        {{--<textarea id="description{{$requirement->id}}" placeholder="توضیحات را وارد کنید"--}}
-                                                  {{--rows="2" cols="80" class="alpaca-control form-control"--}}
-                                                  {{--name="description{{$requirement->id}}"--}}
-                                                  {{--autocomplete="off">{{$requirement->description}}</textarea>--}}
-                                    {{--</div>--}}
-                                {{--</div>--}}
-                                {{--<div class="row">--}}
-                                    {{--<div class="col-sm-12">--}}
-                                        {{--<label>مکان </label>--}}
-                                        {{--<input type="text" placeholder="لطفا مکان را وارد کنید " class="form-control"--}}
-                                               {{--value="{{$requirement->place}}" name="place{{$requirement->id}}">--}}
-                                    {{--</div>--}}
-                                {{--</div>--}}
-                            {{--</div>--}}
-                            {{--<div class="form-group">--}}
-                                {{--<div class="row">--}}
-                                    {{--<div class="col-md-6">--}}
-                                        {{--<label>نوع</label>--}}
-                                        {{--<select name="kind{{$requirement->id}}" class="form-control">--}}
-                                            {{--@if($requirement->bill_kind)--}}
-                                                {{--<option value="0" >مجانی</option>--}}
-                                                {{--<option value="1" selected="selected">پولی</option>--}}
-                                            {{--@else--}}
-                                                {{--<option value="0" selected="selected">مجانی</option>--}}
-                                                {{--<option value="1">پولی</option>--}}
-                                            {{--@endif--}}
-
-                                        {{--</select>--}}
-                                    {{--</div>--}}
-                                    {{--<div class="col-sm-6">--}}
-                                        {{--<label>بودجه</label>--}}
-                                        {{--<div class="input-group">--}}
-                                            {{--<input type="text" placeholder=" بودجه پروژه " class="form-control"--}}
-                                                   {{--value="" name="money{{$requirement->id}}">--}}
-                                            {{--<span class="input-group-addon">ریال</span>--}}
-                                        {{--</div>--}}
-                                    {{--</div>--}}
-                                {{--</div>--}}
-                            {{--</div>--}}
                         </div>
 
                         <div class="modal-footer">
@@ -299,4 +271,4 @@
             </div>
             <!--/volunteer info  model model -->
     @endforeach
-    @endsection
+@endsection
