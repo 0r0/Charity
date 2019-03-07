@@ -77,6 +77,9 @@ class Handler extends ExceptionHandler
         if($request->is('projects/update') || $request->is('projects/update/*')){
             return redirect()->guest('/login/charity');
         }
+        if($request->is('create-project') || $request->is('create-project/*')){
+            return redirect()->guest('/login/charity');
+        }
         return redirect()->guest(route('login'));
 
 
