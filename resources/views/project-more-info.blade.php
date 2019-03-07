@@ -112,7 +112,7 @@
                             @if($requirement->bill_kind)
                                 <td>پولی</td>
                             @else
-                                <td>مجانی</td>
+                                <td>رایگان</td>
                             @endif
                             <td><a href="#edit{{$requirement->id}}"
                                    class="btn btn-labeled btn-labeled-right bg-blue heading-btn" data-toggle="modal">ویرایش
