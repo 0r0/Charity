@@ -746,7 +746,11 @@
                                                         class="icon-more"></i></a>
                                                 <div class="heading-elements">
                                                     <ul class="list-inline list-inline-separate heading-text">
-                                                        <li><i class="icon-alarm position-left"></i>تاریخ شروع:13/12/1397 </li>
+                                                        @php
+                                                            $persianDate= Morilog\Jalali\CalendarUtils::strftime('Y-m-d', strtotime($sub_project->runDate));
+
+                                                        @endphp
+                                                        <li><i class="icon-alarm position-left"></i>تاریخ شروع:{{$persianDate}} </li>
                                                         <li>
                                                             <i class="icon-star-full2 text-size-base text-warning-300"></i>
                                                             <i class="icon-star-full2 text-size-base text-warning-300"></i>
@@ -757,7 +761,7 @@
                                                         </li>
                                                     </ul>
 
-                                                    <a href="#" class="heading-text pull-right" data-toggle="modal">جزئیات بیشتر <i
+                                                    <a href="{{route('all-project-more-info',['id'=>$sub_project->id])}}" class="heading-text pull-right">جزئیات بیشتر <i
                                                             class="icon-arrow-left13 position-right"></i></a>
                                                 </div>
                                             </div>
