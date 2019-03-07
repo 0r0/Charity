@@ -32,6 +32,8 @@ Route::get('/all-projects',function(){
     $projects=App\Project::all();
     return view('all-projects',compact('projects'));
 });
+Route::get('/project-more-info/{id}','FirstPageController@projectMoreInfo');
+
 Route::view('/admin-base','layouts.admin');
 
 
@@ -61,7 +63,7 @@ Route::post('/edit-charity-info/{id}','CharityController@update')->name('charity
 Route::get('/volunteers-request','CharityController@show');
 Route::post('/volunteers-request/{id}','CharityController@accept')->name('accept-volunteer');
 
-Route::get('/create-project','ProjectController@create')->name('create-project');
+Route::get('/create-project','ProjectController@create')->name('create-project')->middleware('auth:charity');
 Route::post('/create-project','ProjectController@store')->name('add-project');
 Route::post('/project/edit-requirement/{id}','ProjectController@editRequirement')->name('edit-requirement');
 Route::post('projects/create-requirement/{id}','ProjectController@storeRequirement')->name('create-requirement');
