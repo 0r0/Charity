@@ -11,4 +11,11 @@ class Requirement extends Model
     {
         return $this->belongsTo(Project::class);
     }
+
+    public function scopeSearch($query, $place = null, $free = null)
+    {
+
+        return $query->where('place', 'like', '%' . $place . '%')
+            ->where('bill_kind', 'like', '%' . $free . '%');
+    }
 }
