@@ -15,11 +15,19 @@ class Project extends Model
 
     public function volunteers()
     {
-        return $this->belongsToMany(Volunteer::class)->withPivot('situation','skill','date');
+        return $this->belongsToMany(Volunteer::class)->withPivot('situation', 'skill', 'date');
     }
 
     public function requirements()
     {
         return $this->hasMany(Requirement::class);
     }
+
+    public function scopeSearch($query, $title, $place=null, $free=null, $bill=null)
+    {
+        return $query->where('title','like','%'.$title.'%');
+
+
+    }
+
 }
