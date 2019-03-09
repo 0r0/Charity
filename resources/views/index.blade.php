@@ -187,7 +187,7 @@
                                                         </li>
                                                     </ul>
 
-                                                    <a href="#" class="heading-text pull-right" data-toggle="modal">جزئیات
+                                                    <a href="{{route('all-project-more-info',['id'=>$project->id])}}" class="heading-text pull-right" data-toggle="modal">جزئیات
                                                         بیشتر <i class="icon-arrow-left13 position-right"></i></a>
                                                 </div>
                                             </div>
@@ -235,9 +235,9 @@
                         <img src="http://placehold.it/760x400/cccccc/ffffff">
                         <div class="carousel-caption">
                             <h4><a href="#">Lorem ipsum dolor sit amet consetetur sadipscing</a></h4>
-                            <p>{{$project->description}} <a class="label label-primary"
-                                                               href="http://sevenx.de/demo/bootstrap-carousel/"
-                                                               target="_blank">Free Bootstrap Carousel Collection</a>
+                            <p>{{$project->description}} <a class="btn btn-lg btn-primary"
+                                                               href="{{route('all-project-more-info',['id'=>$project->id])}}"
+                                                               target="_blank">جزئیات بیشتر</a>
                             </p>
                         </div>
                     </div><!-- End Item -->
@@ -246,9 +246,9 @@
                             <img src="http://placehold.it/760x400/cccccc/ffffff">
                             <div class="carousel-caption">
                                 <h4><a href="#">Lorem ipsum dolor sit amet consetetur sadipscing</a></h4>
-                                <p>{{$project->description}} <a class="label label-primary"
-                                                                   href="http://sevenx.de/demo/bootstrap-carousel/"
-                                                                   target="_blank">Free Bootstrap Carousel Collection</a>
+                                <p>{{$project->description}} <a class="btn btn-lg btn-primary"
+                                                                   href="{{route('all-project-more-info',['id'=>$project->id])}}"
+                                                                   target="_blank">جزئیات بیشتر</a>
                                 </p>
                             </div>
                         </div><!-- End Item -->
