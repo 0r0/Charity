@@ -15,7 +15,7 @@
                     <div class="page-header-content">
                         <div class="page-title">
                             <h4><i class="icon-arrow-right6 position-left"></i> <span class="text-semibold">جستجو پروژه ها</span>
-                                - Cards List</h4>
+                                </h4>
                             <a class="heading-elements-toggle"><i class="icon-more"></i></a></div>
 
                         <div class="heading-elements">
@@ -69,7 +69,7 @@
                                         <div class="panel-heading">
                                             <div class="panel-title text-semibold">
                                                 <i class="icon-search4 text-size-base position-left"></i>
-                                                Filter
+                                                فیلتر
                                             </div>
                                         </div>
 
@@ -78,7 +78,7 @@
                                                 <div class="form-group">
                                                     <div class="has-feedback has-feedback-left">
                                                         <input type="search" class="form-control"
-                                                               placeholder="Job title or keywords">
+                                                               placeholder="کلمه جستجو">
                                                         <div class="form-control-feedback">
                                                             <i class="icon-reading text-size-large text-muted"></i>
                                                         </div>
@@ -88,7 +88,7 @@
                                                 <div class="form-group">
                                                     <div class="has-feedback has-feedback-left">
                                                         <input type="search" class="form-control"
-                                                               placeholder="Location">
+                                                               placeholder="مکان">
                                                         <div class="form-control-feedback">
                                                             <i class="icon-pin-alt text-size-large text-muted"></i>
                                                         </div>
@@ -101,7 +101,7 @@
                                                             <div class="checker"><span><input type="checkbox"
                                                                                               class="styled"></span>
                                                             </div>
-                                                            Full time
+رایگان
                                                         </label>
                                                     </div>
 
@@ -110,23 +110,23 @@
                                                             <div class="checker"><span><input type="checkbox"
                                                                                               class="styled"></span>
                                                             </div>
-                                                            Part time
+                                                            پولی
                                                         </label>
                                                     </div>
 
-                                                    <div class="checkbox">
-                                                        <label class="display-block">
-                                                            <div class="checker"><span><input type="checkbox"
-                                                                                              class="styled"></span>
-                                                            </div>
-                                                            Remote
-                                                        </label>
-                                                    </div>
+                                                    {{--<div class="checkbox">--}}
+                                                        {{--<label class="display-block">--}}
+                                                            {{--<div class="checker"><span><input type="checkbox"--}}
+                                                                                              {{--class="styled"></span>--}}
+                                                            {{--</div>--}}
+                                                            {{--Remote--}}
+                                                        {{--</label>--}}
+                                                    {{--</div>--}}
                                                 </div>
 
                                                 <button type="submit" class="btn bg-blue btn-block">
                                                     <i class="icon-search4 text-size-base position-left"></i>
-                                                    Find jobs
+                                                   جستجو
                                                 </button>
                                             </form>
                                         </div>
@@ -139,7 +139,7 @@
                                         <div class="panel-heading">
                                             <div class="panel-title text-semibold">
                                                 <i class="icon-pin-alt position-left"></i>
-                                                Location
+                                                مکان
                                             </div>
 
                                             <div class="heading-elements not-collapsible">
@@ -212,7 +212,7 @@
                                         <div class="panel-heading">
                                             <div class="panel-title text-semibold">
                                                 <i class="icon-menu7 position-left"></i>
-                                                Job title
+                                               نیازمندی ها
                                             </div>
 
                                             <div class="heading-elements not-collapsible">
@@ -309,7 +309,7 @@
                                         <div class="panel-heading">
                                             <div class="panel-title text-semibold">
                                                 <i class="icon-collaboration position-left"></i>
-                                                Industry
+                                                گروه هدف
                                             </div>
 
                                             <div class="heading-elements not-collapsible">
@@ -406,7 +406,7 @@
                                         <div class="panel-heading">
                                             <div class="panel-title text-semibold">
                                                 <i class="icon-briefcase3 position-left"></i>
-                                                Company
+                                                خیریه ها
                                             </div>
 
                                             <div class="heading-elements not-collapsible">
@@ -503,7 +503,7 @@
                                         <div class="panel-heading">
                                             <div class="panel-title text-semibold">
                                                 <i class="icon-stars position-left"></i>
-                                                Specific skills
+                                                عنوان مهارت ها
                                             </div>
 
                                             <div class="heading-elements not-collapsible">
@@ -587,7 +587,7 @@
                                             </div>
 
                                             <div class="panel-footer no-padding">
-                                                <a href="#" class="btn btn-default btn-block no-border">All skills</a>
+                                                <a href="#" class="btn btn-default btn-block no-border">همه مهارت ها</a>
                                             </div>
                                         </form>
                                     </div>
@@ -599,7 +599,7 @@
                                         <div class="panel-heading">
                                             <div class="panel-title text-semibold">
                                                 <i class="icon-calendar3 position-left"></i>
-                                                Date posted
+                                                زمان پست
                                             </div>
                                         </div>
 
