@@ -69,3 +69,7 @@ Route::get('/create-project','ProjectController@create')->name('create-project')
 Route::post('/create-project','ProjectController@store')->name('add-project');
 Route::post('/project/edit-requirement/{id}','ProjectController@editRequirement')->name('edit-requirement');
 Route::post('projects/create-requirement/{id}','ProjectController@storeRequirement')->name('create-requirement');
+
+
+//search Routes
+Route::get('/project-search','SearchController@projectSearch')->name('project-search');
