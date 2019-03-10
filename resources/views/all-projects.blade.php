@@ -74,11 +74,11 @@
                                         </div>
 
                                         <div class="panel-body">
-                                            <form action="#">
+                                            <form action="{{route('project-search')}}" method="get">
                                                 <div class="form-group">
                                                     <div class="has-feedback has-feedback-left">
                                                         <input type="search" class="form-control"
-                                                               placeholder="کلمه جستجو">
+                                                               placeholder="کلمه جستجو" name="word_search">
                                                         <div class="form-control-feedback">
                                                             <i class="icon-reading text-size-large text-muted"></i>
                                                         </div>
@@ -88,7 +88,7 @@
                                                 <div class="form-group">
                                                     <div class="has-feedback has-feedback-left">
                                                         <input type="search" class="form-control"
-                                                               placeholder="مکان">
+                                                               placeholder="مکان" name="place_search">
                                                         <div class="form-control-feedback">
                                                             <i class="icon-pin-alt text-size-large text-muted"></i>
                                                         </div>
@@ -99,7 +99,7 @@
                                                     <div class="checkbox">
                                                         <label class="display-block">
                                                             <div class="checker"><span><input type="checkbox"
-                                                                                              class="styled"></span>
+                                                                                              class="styled" name="free_checkbox"></span>
                                                             </div>
 رایگان
                                                         </label>
@@ -108,7 +108,7 @@
                                                     <div class="checkbox">
                                                         <label class="display-block">
                                                             <div class="checker"><span><input type="checkbox"
-                                                                                              class="styled"></span>
+                                                                                              class="styled" name="earned_checkbox"></span>
                                                             </div>
                                                             پولی
                                                         </label>
@@ -124,7 +124,7 @@
                                                     {{--</div>--}}
                                                 </div>
 
-                                                <button type="submit" class="btn bg-blue btn-block">
+                                                <button type="submit" class="btn bg-blue btn-block" name="submit_search">
                                                     <i class="icon-search4 text-size-base position-left"></i>
                                                    جستجو
                                                 </button>
