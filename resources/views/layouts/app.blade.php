@@ -6,9 +6,18 @@
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
+@if(Request::is('login/charity'))
+    <title>ورود کاربر خیریه</title>
+    @elseif(Request::is('register/charity'))
+        <title>ثبت نام کاربر خیریه</title>
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+@elseif(Request::is('login/volunteer'))
+        <title>ورود کاربر داوطلب</title>
 
+@elseif(Request::is('register/volunteer'))
+        <title>ثبت نام کاربر داوطلب</title>
+
+@endif
     <!-- Scripts -->
     <script src="{{ asset('js/app_theme.js') }}" defer></script>
 
