@@ -48,6 +48,8 @@ Route::post('/login/charity', 'Auth\LoginController@charityLogin');
 Route::post('/login/volunteer', 'Auth\LoginController@volunteerLogin');
 Route::post('/register/charity', 'Auth\RegisterController@createCharity');
 Route::post('/register/volunteer', 'Auth\RegisterController@createVolunteer');
+Route::post('logout/charity','Auth\LoginController@charityLogout');
+Route::post('logout/volunteer','Auth\LoginController@volunteerLogout');
 
 Route::post('/projects/update/{id}','ProjectController@update')->name('project-update')->middleware('auth:charity');
 Route::get('/projects/more-info/{id}','ProjectController@show')->name('project-more-info')->middleware('auth:charity');
