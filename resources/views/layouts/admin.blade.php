@@ -178,21 +178,31 @@
                     <li class="divider"></li>
                     <li><a href="#"><i class="icon-cog5"></i> Account settings</a></li>
                     @auth('charity')
-                        <li><a href="{{ url('logout/charity') }}" onclick="event.preventDefault();
+                        <li><a href="{{ route('logout') }}" onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();"><i
                                     class="icon-switch2"></i>خروج</a>
-                            <form id="logout-form" action="{{ url('logout/charity') }}" method="POST" style="display: none;">
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                 @csrf
                             </form>
                         </li>
                     @endauth
                     @auth('volunteer')
-                        <li><a href="{{ url('logout/volunteer') }}" onclick="event.preventDefault();
+                        {{--<li>--}}
+                        <li><a href="{{ route('logout') }}" onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();"><i
                                     class="icon-switch2"></i>خروج</a>
-                            <form id="logout-form" action="{{ url('logout/volunteer') }}" method="POST" style="display: none;">
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                 @csrf
                             </form>
+                            {{--<a class="dropdown-item" href=""--}}
+                               {{--onclick="event.preventDefault();--}}
+                                                     {{--document.getElementById('logout-form').submit();">--}}
+                                {{--خروج--}}
+                            {{--</a>--}}
+
+                            {{--<form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">--}}
+                                {{--@csrf--}}
+                            {{--</form>--}}
                         </li>
                         @endauth
 

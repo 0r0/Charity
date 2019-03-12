@@ -73,25 +73,6 @@ class LoginController extends Controller
 
     }
 
-    public function charityLogout(Request $request)
-    {
-        Auth::guard('charity')->logout();
-        $request->session()->flush();
-        $request->session()->regenerate();
-        return redirect()->intended('/');
-    }
 
-    public function volunteerLogout(Request $request)
-    {
-        $this->guard('volunteer')->logout();
-//        auth('volunteer')->logout();
-        $request->session()->flush();
-        $request->session()->regenerate();
-        return redirect()
-            ->intended('/');
-
-
-
-    }
 }
 
