@@ -57,7 +57,7 @@
 <!-- Main navbar -->
 <div class="navbar navbar-inverse">
     <div class="navbar-header">
-        <a class="navbar-brand" href="index.html"><img src="{{asset('images/logo_light.png')}}" alt=""></a>
+        <a class="navbar-brand" href="{{url('/')}}"><img src="{{asset('images/logo_light.png')}}" alt=""></a>
 
         <ul class="nav navbar-nav pull-right visible-xs-block">
             <li><a data-toggle="collapse" data-target="#navbar-mobile"><i class="icon-tree5"></i></a></li>
@@ -98,8 +98,38 @@
         </ul>
 
         <ul class="nav navbar-nav navbar-right">
-            <li><a href="#" class="menu-title" data-toggle="modal" data-target="#modal-login">ورود به حساب کاربری</a></li>
-            <li><a href="#" class="menu-title" data-toggle="modal" data-target="#modal-registration">ساخت حساب کاربری</a></li>
+            {{--<li><a href="#" class="menu-title" data-toggle="modal" data-target="#modal-login">ورود به حساب کاربری</a></li>--}}
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle menu-title" data-toggle="dropdown" aria-expanded="true">
+                    <i class="icon-user position-left"></i>
+                    ورود به حساب کاربری
+                    <span class="caret"></span>
+                </a>
+
+                <ul class="dropdown-menu dropdown-menu-right">
+                    <li><a href="{{url('login/charity')}}" style="font-family: Yekan;"><i class="icon-user-lock"></i> خیریه</a></li>
+                    {{--<li><a href="#"><i class="icon-statistics"></i> Analytics</a></li>--}}
+                    {{--<li><a href="#"><i class="icon-accessibility"></i> Accessibility</a></li>--}}
+                    <li class="divider"></li>
+                    <li><a href="{{url('login/volunteer')}}" style="font-family: Yekan;"><i class="icon-gear"></i> داوطلب</a></li>
+                </ul>
+            </li>
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle menu-title" data-toggle="dropdown" aria-expanded="true">
+                    <i class="icon-plus22 position-left"></i>
+                    ساخت حساب کاربری
+                    <span class="caret"></span>
+                </a>
+
+                <ul class="dropdown-menu dropdown-menu-right">
+                    <li><a href="{{url('register/charity')}}" style="font-family: Yekan;"><i class="icon-user-lock"></i> خیریه</a></li>
+                    {{--<li><a href="#"><i class="icon-statistics"></i> Analytics</a></li>--}}
+                    {{--<li><a href="#"><i class="icon-accessibility"></i> Accessibility</a></li>--}}
+                    <li class="divider"></li>
+                    <li><a href="{{url('register/volunteer')}}" style="font-family: Yekan;"><i class="icon-gear"></i> داوطلب</a></li>
+                </ul>
+            </li>
+            {{--<li><a href="#" class="menu-title" data-toggle="modal" data-target="#modal-registration">ساخت حساب کاربری</a></li>--}}
 
         </ul>
     </div>
