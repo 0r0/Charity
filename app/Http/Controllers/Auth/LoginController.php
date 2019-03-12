@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
 use Auth;
+
 class LoginController extends Controller
 {
     /*
@@ -47,30 +48,49 @@ class LoginController extends Controller
 
     public function charityLogin(Request $request)
     {
-        $this->validate($request,[
+        $this->validate($request, [
             'email' => 'required|email',
-            'password' =>'required|min:6'
+            'password' => 'required|min:6'
         ]);
-        if(Auth::guard('charity')->attempt(['email'=>$request->email,'password'=>$request->password],$request->get('remember')))
-        {
+        if (Auth::guard('charity')->attempt(['email' => $request->email, 'password' => $request->password], $request->get('remember'))) {
             return redirect()->intended('/charity-dashboard');
         }
-        return back()->withInput($request->only('email','remember'));
+        return back()->withInput($request->only('email', 'remember'));
     }
 
     public function showVolunteerLoginForm()
     {
-        return view('auth.login',['url'=>'volunteer']);
+        return view('auth.login', ['url' => 'volunteer']);
     }
 
     public function volunteerLogin(Request $request)
     {
-        $this->validate($request,['email' => 'required|email','password' =>'required|min:6']);
-        if(Auth::guard('volunteer')->attempt(['email'=>$request->email,'password'=>$request->password],$request->get('remember')))
-        {
+        $this->validate($request, ['email' => 'required|email', 'password' => 'required|min:6']);
+        if (Auth::guard('volunteer')->attempt(['email' => $request->email, 'password' => $request->password], $request->get('remember'))) {
             return redirect()->intended('/volunteer-dashboard');
+        }
+        return back()->withInput($request->only('email', 'remember'));
+
     }
-        return back()->withInput($request->only('email','remember'));
+
+    public function charityLogout(Request $request)
+    {
+        Auth::guard('charity')->logout();
+        $request->session()->flush();
+        $request->session()->regenerate();
+        return redirect()->intended('/');
+    }
+
+    public function volunteerLogout(Request $request)
+    {
+        $this->guard('volunteer')->logout();
+//        auth('volunteer')->logout();
+        $request->session()->flush();
+        $request->session()->regenerate();
+        return redirect()
+            ->intended('/');
+
+
 
     }
 }
