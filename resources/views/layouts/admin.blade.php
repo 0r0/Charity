@@ -177,7 +177,42 @@
                                 class="icon-comment-discussion"></i> Messages</a></li>
                     <li class="divider"></li>
                     <li><a href="#"><i class="icon-cog5"></i> Account settings</a></li>
-                    <li><a href="#"><i class="icon-switch2"></i> Logout</a></li>
+                    @auth('charity')
+                        <li><a href="{{ url('logout/charity') }}" onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();"><i
+                                    class="icon-switch2"></i>خروج</a>
+                            <form id="logout-form" action="{{ url('logout/charity') }}" method="POST" style="display: none;">
+                                @csrf
+                            </form>
+                        </li>
+                    @endauth
+                    @auth('volunteer')
+                        <li><a href="{{ url('logout/volunteer') }}" onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();"><i
+                                    class="icon-switch2"></i>خروج</a>
+                            <form id="logout-form" action="{{ url('logout/volunteer') }}" method="POST" style="display: none;">
+                                @csrf
+                            </form>
+                        </li>
+                        @endauth
+
+                    {{--===============================================--}}
+                    {{--<li class="nav-item dropdown">--}}
+                    {{--<a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>--}}
+                    {{--{{ Auth::user()->name }} <span class="caret"></span>--}}
+                    {{--</a>--}}
+
+                    {{--<div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">--}}
+                    {{--<a class="dropdown-item" href="{{ route('logout') }}"--}}
+                    {{--onclick="event.preventDefault();--}}
+                    {{--document.getElementById('logout-form').submit();">--}}
+                    {{--{{ __('Logout') }}--}}
+                    {{--</a>--}}
+
+                    {{----}}
+                    {{--</div>--}}
+                    {{--</li>--}}
+                    {{--===================================================--}}
                 </ul>
             </li>
         </ul>
@@ -268,7 +303,7 @@
                                         class="icon-menu7"></i></b></a>
                         @endif
                         {{--@if(Request::is('project-more-info'))--}}
-                           {{----}}
+                        {{----}}
                         {{--@endif--}}
                         @yield('add-button-requirement')
 
