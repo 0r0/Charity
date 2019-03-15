@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Project;
 use App\Volunteer;
 use Auth;
 use Illuminate\Http\Request;
@@ -93,24 +94,23 @@ class VolunteerController extends Controller
             $volunteer->password = $request->password;
             $volunteer->confirmPassword = $request->confirmPassword;
         }
-        $volunteer->mobileNumber=$request->mobile;
-        $volunteer->phoneNumber=$request->phone_number;
-        if($request->has('resume_file'))
-        {
-            $resume=$request->file('resume_file');
-            $resumeName=$resume->getClientOriginalName();
-            $resume->move(public_path().'/resumes/',$resumeName);
-            $volunteer->resume=$resumeName;
+        $volunteer->mobileNumber = $request->mobile;
+        $volunteer->phoneNumber = $request->phone_number;
+        if ($request->has('resume_file')) {
+            $resume = $request->file('resume_file');
+            $resumeName = $resume->getClientOriginalName();
+            $resume->move(public_path() . '/resumes/', $resumeName);
+            $volunteer->resume = $resumeName;
         }
-        if($request->has('profile_picture')){
-            $picture=$request->file('profile_picture');
-            $pictureName=$picture->getClientOriginalName();
-            $picture->move(public_path().'/images/profile',$pictureName);
-            $volunteer->imagename=$pictureName;
+        if ($request->has('profile_picture')) {
+            $picture = $request->file('profile_picture');
+            $pictureName = $picture->getClientOriginalName();
+            $picture->move(public_path() . '/images/profile', $pictureName);
+            $volunteer->imagename = $pictureName;
         }
-        $volunteer->site=$request->site;
+        $volunteer->site = $request->site;
 //        $volunteer->intrest=$request->interest;
-        $volunteer->skill=$request->profession;
+        $volunteer->skill = $request->profession;
         $volunteer->save();
         return back();
     }
@@ -126,8 +126,24 @@ class VolunteerController extends Controller
         //
     }
 
-//    public function showAll()
-//    {
-//
-//    }
+    public function changeSituation(Request $request, $id)
+    {
+
+        if($request->situation==1)
+        {
+            return response()->json('وضعیت  شما فعال است');
+        }
+        elseif($request->situation==2) {
+
+            $project = Project::find($id);
+            $project->volunteers()->updateExistingPivot($request->volunteer_id, ['situation' => $request->situation]);
+            return response()->json('انصراف شما ازادامه همکاری با پروژه با موفقیت ثبت شد');
+        }
+
+        else{
+            return response()->json('درخواست شما نامعتبر است');
+        }
+
+
+    }
 }
