@@ -130,7 +130,7 @@
             $('.accept{{$volunteer->id}}').on('click', function () {
                 console.log('accept{{$volunteer->id}}');
                 var situation = $('[name="situation{{$volunteer->id}}"]').val();
-                var project_id = {{$volunteer->pivot->project_id}}
+                var project_id ='{{$volunteer->pivot->project_id}}';
                 console.log(situation);
                 $.ajax({
                     url: '{{Route('accept-volunteer',['id'=>$volunteer->id])}}',

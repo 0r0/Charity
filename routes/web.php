@@ -66,6 +66,7 @@ Route::post('/edit-charity-info/{id}','CharityController@update')->name('charity
 
 Route::get('/volunteers-request','CharityController@show');
 Route::post('/volunteers-request/{id}','CharityController@accept')->name('accept-volunteer');
+Route::post('/change-volunteer-situation/{id}','VolunteerController@changeSituation')->name('volunteer-situation');
 
 Route::get('/create-project','ProjectController@create')->name('create-project')->middleware('auth:charity');
 Route::post('/create-project','ProjectController@store')->name('add-project');
