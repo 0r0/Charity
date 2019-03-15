@@ -71,7 +71,11 @@
                         <td>{{$project->title}}</td>
                         <td>{{$project->pivot->skill}}</td>
                         <td>{{$project->supporter}}</td>
-                        <td>{{$project->pivot->date}}</td>
+                        @php
+                            $persianDate= Morilog\Jalali\CalendarUtils::strftime('Y-m-d', strtotime($project->pivot->date));
+
+                        @endphp
+                        <td>{{$persianDate}}</td>
                         @if($project->pivot->situation==-1)
                             <td>منتظر نظر خیریه</td>
                         @endif
@@ -80,20 +84,28 @@
                         @endif
                         @if($project->pivot->situation== 0)
                             <td>رد شده</td>
+                        @elseif($project->pivot->situation==2)
+                            <td>انصراف توسط داوطلب</td>
                         @endif
                         <td>
                             <div class="form-group">
-                                <label class="control-label col-lg-2">تغییروضعیت</label>
-                                <div class="col-lg-offset-1 col-lg-4">
-                                    <select name="select" class="form-control">
-                                        <option value="opt1">فعال</option>
-                                        <option value="opt2">انصراف</option>
 
-                                    </select>
-                                </div>
-                                <div class="col-lg-2">
-                                    <button class="btn btn-primary">تایید</button>
-                                </div>
+                                @if($project->pivot->situation==2)
+                                    <label class="control-label col-lg-12">----</label>
+
+                                @else
+                                    <label class="control-label col-lg-2">تغییروضعیت</label>
+                                    <div class="col-lg-offset-1 col-lg-4">
+                                        <select name="select{{$project->id}}" class="form-control">
+                                            <option value="1">فعال</option>
+                                            <option value="2">انصراف</option>
+
+                                        </select>
+                                    </div>
+                                    <div class="col-lg-2">
+                                        <button class="btn btn-primary submit-situation{{$project->id}}">تایید</button>
+                                    </div>
+                                @endif
                             </div>
                         </td>
                     </tr>
@@ -102,4 +114,42 @@
             </table>
         </div>
     </div>
+
+
 @endsection
+@push('js-body')
+    <script>
+
+        $(document).ready(function () {
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+
+            @foreach($volunteerProjects as $project)
+            $('.submit-situation{{$project->id}}').on('click', function () {
+                var volunteer_id = '{{$project->pivot->volunteer_id}}';
+                var situation = $("[name='select{{$project->id}}']").val();
+                $.ajax(
+                    {
+                        url: "{{route('volunteer-situation',['id'=>$project->id])}}",
+                        method: 'POST',
+                        data: {'volunteer_id': volunteer_id, 'situation': situation},
+                        success: function (data) {
+                            console.log(data)
+
+                        },
+                        error: function (error) {
+                            console.log(error);
+                        }
+
+                    }
+                )
+            });
+
+            @endforeach
+        });
+
+    </script>
+@endpush
