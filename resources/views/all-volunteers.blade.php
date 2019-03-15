@@ -201,7 +201,8 @@
 
                             <!-- Footer -->
                             <div class="footer text-muted">
-                                © 2015. <a href="#">Limitless Web App Kit</a> by <a
+                                © 2015.<a href="#">Limitless Web
+                                    App Kit</a> by <a
                                     href="http://themeforest.net/user/Kopyov" target="_blank">Eugene Kopyov</a>
                             </div>
                             <!-- /footer -->
@@ -216,59 +217,63 @@
     </div>
     @foreach($allVolunteers as $volunteer)
         <!--volunteer info  model -->
-            <div id="volunteer_info{{$volunteer->id}}" class="modal fade" style="display: none;">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal">×</button>
-                            <h5 class="modal-title"> اطلاعات
-                                کاربر {{$volunteer->firstName}} {{$volunteer->lastName}}</h5>
-                        </div>
+        <div id="volunteer_info{{$volunteer->id}}" class="modal fade" style="display: none;">
+            <div class="modal-dialog modal-full">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">×</button>
+                        <h5 class="modal-title"> اطلاعات
+                            کاربر {{$volunteer->firstName}} {{$volunteer->lastName}}</h5>
+                    </div>
 
 
-                        <div class="modal-body">
-                            hello it is a test
-                            <div class="table-responsive">
-                                <table class="table table-bordered">
-                                    <thead>
-                                    <tr>
-                                        <th style="width: 100px;">نام</th>
-                                        <th>نام خانوادگی</th>
-                                        <th style="width: 150px;">مهارت ها</th>
-                                        <th style="width: 100px;">علاقه مندی ها</th>
-                                        <th style="width: 250px;">اطلاعات تماس</th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    <tr>
-                                        <td>{{$volunteer->firstName}}</td>
-                                        <td>{{$volunteer->lastName}}t</td>
-                                        <td>{{$volunteer->skill}}</td>
-                                        <td>{{$volunteer->intrest}}</td>
-                                        @if(Auth::guest())
-                                            <td>برای دیدن اطلاعات تماس باید حتما لاگین کنید</td>
-                                        @else
-                                            <td>{{$volunteer->interest}}</td>
-                                        @endif
+                    <div class="modal-body">
 
-                                    </tr>
+                        <div class="table-responsive">
+                            <table class="table table-bordered">
+                                <thead>
+                                <tr>
+                                    <th style="width: 100px;">نام</th>
+                                    <th>نام خانوادگی</th>
+                                    <th style="width: 150px;">مهارت ها</th>
+                                    <th >علاقه مندی ها</th>
+                                    <th style="width: 250px;">اطلاعات تماس</th>
+                                    <th>موبایل</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td>{{$volunteer->firstName}}</td>
+                                    <td>{{$volunteer->lastName}}t</td>
+                                    <td>{{$volunteer->skill}}</td>
+                                    <td>{{$volunteer->intrest}}</td>
 
-                                    </tbody>
-                                </table>
-                            </div>
+                                    @if(Auth::guard('volunteer')->check())
+                                        <td>{{$volunteer->phoneNumber}} </td>
+                                        <td>{{$volunteer->mobileNumber}}</td>
+                                    @else
+                                        <td>برای دیدن اطلاعات تماس باید حتما لاگین کنید</td>
+                                        <td>برای دیدن شماره موبایل باید حتما لاگین کنید</td>
+                                    @endif
 
-                        </div>
+                                </tr>
 
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-link" data-dismiss="modal">بستن</button>
-                            <button type="submit" class="btn btn-primary"
-                                    name="">تایید
-                            </button>
+                                </tbody>
+                            </table>
                         </div>
 
                     </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-link" data-dismiss="modal">بستن</button>
+                        <button type="submit" class="btn btn-primary"
+                                name="">تایید
+                        </button>
+                    </div>
+
                 </div>
             </div>
-            <!--/volunteer info  model model -->
+        </div>
+        <!--/volunteer info  model model -->
     @endforeach
 @endsection
