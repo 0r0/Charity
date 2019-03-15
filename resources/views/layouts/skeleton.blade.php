@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" dir="rtl" >
+<html lang="en" dir="rtl">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,7 +7,8 @@
     <title>Limitless - Responsive Web Application Kit by Eugene Kopyov</title>
 
     <!-- Global stylesheets -->
-    <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,100,500,700,900" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,100,500,700,900" rel="stylesheet"
+          type="text/css">
     <link href="{{asset('css/icons/icomoon/styles.css')}}" rel="stylesheet" type="text/css">
     <link href="{{asset('css/bootstrap.css')}}" rel="stylesheet" type="text/css">
 
@@ -52,7 +53,7 @@
 
 </head>
 
-<body  style="background-color: white">
+<body style="background-color: white">
 
 <!-- Main navbar -->
 <div class="navbar navbar-inverse">
@@ -66,25 +67,29 @@
 
     <div class="navbar-collapse collapse" id="navbar-mobile">
         <ul class="nav navbar-nav">
-            <li><a href="{{url('/all-projects')}}" class="menu-title"><i class="icon-arrow-left8 position-left"></i> پروژه ها</a></li>
+            <li><a href="{{url('/all-projects')}}" class="menu-title"><i class="icon-arrow-left8 position-left"></i>
+                    پروژه ها</a></li>
 
             <li class="dropdown mega-menu mega-menu-wide">
-                <a href="#" class="dropdown-toggle menu-title" data-toggle="dropdown">خیریه ها <span class="caret"></span></a>
+                <a href="#" class="dropdown-toggle menu-title" data-toggle="dropdown">خیریه ها <span
+                        class="caret"></span></a>
 
                 <div class="dropdown-menu dropdown-content">
                     <div class="dropdown-content-body">
                         @foreach($charitiesList->chunk(4) as $sub_charities)
-                        <div class="row">
-                            @foreach($sub_charities as $charity)
-                            <div class="col-md-3">
+                            <div class="row">
+                                @foreach($sub_charities as $charity)
+                                    <div class="col-md-3">
 
-                                <ul class="menu-list">
-                                    <li><a href="{{route('charity-more-info',['id'=>$charity->id])}}">{{$charity->company}}</a></li>
+                                        <ul class="menu-list">
+                                            <li>
+                                                <a href="{{route('charity-more-info',['id'=>$charity->id])}}">{{$charity->company}}</a>
+                                            </li>
 
-                                </ul>
+                                        </ul>
+                                    </div>
+                                @endforeach
                             </div>
-                            @endforeach
-                        </div>
                         @endforeach
 
                     </div>
@@ -99,36 +104,89 @@
 
         <ul class="nav navbar-nav navbar-right">
             {{--<li><a href="#" class="menu-title" data-toggle="modal" data-target="#modal-login">ورود به حساب کاربری</a></li>--}}
-            <li class="dropdown">
-                <a href="#" class="dropdown-toggle menu-title" data-toggle="dropdown" aria-expanded="true">
-                    <i class="icon-user position-left"></i>
-                    ورود به حساب کاربری
-                    <span class="caret"></span>
-                </a>
+            @if(Auth::guard('charity')->check())
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle menu-title" data-toggle="dropdown" aria-expanded="true">
+                        <i class="icon-user position-left"></i>
+                        {{Auth::guard('charity')->user()->userName}}
+                        <span class="caret"></span>
+                    </a>
 
-                <ul class="dropdown-menu dropdown-menu-right">
-                    <li><a href="{{url('login/charity')}}" style="font-family: Yekan;"><i class="icon-user-lock"></i> خیریه</a></li>
-                    {{--<li><a href="#"><i class="icon-statistics"></i> Analytics</a></li>--}}
-                    {{--<li><a href="#"><i class="icon-accessibility"></i> Accessibility</a></li>--}}
-                    <li class="divider"></li>
-                    <li><a href="{{url('login/volunteer')}}" style="font-family: Yekan;"><i class="icon-gear"></i> داوطلب</a></li>
-                </ul>
-            </li>
-            <li class="dropdown">
-                <a href="#" class="dropdown-toggle menu-title" data-toggle="dropdown" aria-expanded="true">
-                    <i class="icon-plus22 position-left"></i>
-                    ساخت حساب کاربری
-                    <span class="caret"></span>
-                </a>
 
-                <ul class="dropdown-menu dropdown-menu-right">
-                    <li><a href="{{url('register/charity')}}" style="font-family: Yekan;"><i class="icon-user-lock"></i> خیریه</a></li>
-                    {{--<li><a href="#"><i class="icon-statistics"></i> Analytics</a></li>--}}
-                    {{--<li><a href="#"><i class="icon-accessibility"></i> Accessibility</a></li>--}}
-                    <li class="divider"></li>
-                    <li><a href="{{url('register/volunteer')}}" style="font-family: Yekan;"><i class="icon-gear"></i> داوطلب</a></li>
-                </ul>
-            </li>
+                    <ul class="dropdown-menu dropdown-menu-right">
+                        <li><a href="{{url('/charity-dashboard')}}" style="font-family: Yekan;"><i
+                                    class="icon-user-lock"></i> داشبورد</a></li>
+                        {{--<li><a href="#"><i class="icon-statistics"></i> Analytics</a></li>--}}
+                        {{--<li><a href="#"><i class="icon-accessibility"></i> Accessibility</a></li>--}}
+                        <li class="divider"></li>
+                        <li><a href="{{route('logout')}}" style="font-family: Yekan;" onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();"><i
+                                    class="icon-gear"></i>
+                                خروج</a></li>
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                            @csrf
+                        </form>
+                    </ul>
+                </li>
+            @elseif(Auth::guard('volunteer')->check())
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle menu-title" data-toggle="dropdown" aria-expanded="true">
+                        <i class="icon-user position-left"></i>
+                        {{Auth::guard('volunteer')->user()->userName}}
+                        <span class="caret"></span>
+                    </a>
+
+                    <ul class="dropdown-menu dropdown-menu-right">
+                        <li><a href="{{url('/volunteer-dashboard')}}" style="font-family: Yekan;"><i
+                                    class="icon-user-lock"></i> داشبورد</a></li>
+                        {{--<li><a href="#"><i class="icon-statistics"></i> Analytics</a></li>--}}
+                        {{--<li><a href="#"><i class="icon-accessibility"></i> Accessibility</a></li>--}}
+                        <li class="divider"></li>
+                        <li><a href="{{route('logout')}}" style="font-family: Yekan;" onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();"><i
+                                    class="icon-gear"></i>
+                                خروج</a></li>
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                            @csrf
+                        </form>
+                    </ul>
+                </li>
+            @else
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle menu-title" data-toggle="dropdown" aria-expanded="true">
+                        <i class="icon-user position-left"></i>
+                        ورود به حساب کاربری
+                        <span class="caret"></span>
+                    </a>
+
+                    <ul class="dropdown-menu dropdown-menu-right">
+                        <li><a href="{{url('login/charity')}}" style="font-family: Yekan;"><i
+                                    class="icon-user-lock"></i> خیریه</a></li>
+                        {{--<li><a href="#"><i class="icon-statistics"></i> Analytics</a></li>--}}
+                        {{--<li><a href="#"><i class="icon-accessibility"></i> Accessibility</a></li>--}}
+                        <li class="divider"></li>
+                        <li><a href="{{url('login/volunteer')}}" style="font-family: Yekan;"><i class="icon-gear"></i>
+                                داوطلب</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle menu-title" data-toggle="dropdown" aria-expanded="true">
+                        <i class="icon-plus22 position-left"></i>
+                        ساخت حساب کاربری
+                        <span class="caret"></span>
+                    </a>
+
+                    <ul class="dropdown-menu dropdown-menu-right">
+                        <li><a href="{{url('register/charity')}}" style="font-family: Yekan;"><i
+                                    class="icon-user-lock"></i> خیریه</a></li>
+                        {{--<li><a href="#"><i class="icon-statistics"></i> Analytics</a></li>--}}
+                        {{--<li><a href="#"><i class="icon-accessibility"></i> Accessibility</a></li>--}}
+                        <li class="divider"></li>
+                        <li><a href="{{url('register/volunteer')}}" style="font-family: Yekan;"><i
+                                    class="icon-gear"></i> داوطلب</a></li>
+                    </ul>
+                </li>
+            @endif
             {{--<li><a href="#" class="menu-title" data-toggle="modal" data-target="#modal-registration">ساخت حساب کاربری</a></li>--}}
 
         </ul>
@@ -150,7 +208,9 @@
             <form class="modal-body" action="index.html">
                 <div class="text-center">
                     <div class="icon-object border-slate-300 text-slate-300"><i class="icon-reading"></i></div>
-                    <h5 class="content-group">Login to your account <small class="display-block">Your credentials</small></h5>
+                    <h5 class="content-group">Login to your account
+                        <small class="display-block">Your credentials</small>
+                    </h5>
                 </div>
 
                 <div class="form-group has-feedback has-feedback-left">
@@ -183,20 +243,26 @@
                 </div>
 
                 <div class="form-group">
-                    <button type="submit" class="btn bg-blue btn-block">Login <i class="icon-arrow-left13 position-right"></i></button>
+                    <button type="submit" class="btn bg-blue btn-block">Login <i
+                            class="icon-arrow-left13 position-right"></i></button>
                 </div>
 
                 <div class="content-divider text-muted form-group"><span>or sign in with</span></div>
                 <ul class="list-inline form-group list-inline-condensed text-center">
-                    <li><a href="#" class="btn border-indigo text-indigo btn-flat btn-icon btn-rounded"><i class="icon-facebook"></i></a></li>
-                    <li><a href="#" class="btn border-pink-300 text-pink-300 btn-flat btn-icon btn-rounded"><i class="icon-dribbble3"></i></a></li>
-                    <li><a href="#" class="btn border-slate-600 text-slate-600 btn-flat btn-icon btn-rounded"><i class="icon-github"></i></a></li>
-                    <li><a href="#" class="btn border-info text-info btn-flat btn-icon btn-rounded"><i class="icon-twitter"></i></a></li>
+                    <li><a href="#" class="btn border-indigo text-indigo btn-flat btn-icon btn-rounded"><i
+                                class="icon-facebook"></i></a></li>
+                    <li><a href="#" class="btn border-pink-300 text-pink-300 btn-flat btn-icon btn-rounded"><i
+                                class="icon-dribbble3"></i></a></li>
+                    <li><a href="#" class="btn border-slate-600 text-slate-600 btn-flat btn-icon btn-rounded"><i
+                                class="icon-github"></i></a></li>
+                    <li><a href="#" class="btn border-info text-info btn-flat btn-icon btn-rounded"><i
+                                class="icon-twitter"></i></a></li>
                 </ul>
 
                 <div class="content-divider text-muted form-group"><span>Don't have an account?</span></div>
                 <a href="login_registration.html" class="btn btn-default btn-block content-group">Sign up</a>
-                <span class="help-block text-center no-margin">By continuing, you're confirming that you've read our <a href="#">Terms &amp; Conditions</a> and <a href="#">Cookie Policy</a></span>
+                <span class="help-block text-center no-margin">By continuing, you're confirming that you've read our <a
+                        href="#">Terms &amp; Conditions</a> and <a href="#">Cookie Policy</a></span>
             </form>
             <!-- /form -->
 
@@ -213,7 +279,9 @@
             <form class="modal-body" action="index.html">
                 <div class="text-center">
                     <div class="icon-object border-success text-success"><i class="icon-plus3"></i></div>
-                    <h5 class="content-group">Create account <small class="display-block">All fields are required</small></h5>
+                    <h5 class="content-group">Create account
+                        <small class="display-block">All fields are required</small>
+                    </h5>
                 </div>
 
                 <div class="content-divider text-muted form-group"><span>Your credentials</span></div>
@@ -274,11 +342,13 @@
                 </div>
 
                 <div class="form-group">
-                    <button type="submit" class="btn bg-blue btn-block">Register <i class="icon-circle-left2 position-right"></i></button>
+                    <button type="submit" class="btn bg-blue btn-block">Register <i
+                            class="icon-circle-left2 position-right"></i></button>
                     <button type="button" class="btn btn-default btn-block" data-dismiss="modal">Cancel</button>
                 </div>
 
-                <span class="help-block text-center no-margin">By continuing, you're confirming that you've read our <a href="#">Terms &amp; Conditions</a> and <a href="#">Cookie Policy</a></span>
+                <span class="help-block text-center no-margin">By continuing, you're confirming that you've read our <a
+                        href="#">Terms &amp; Conditions</a> and <a href="#">Cookie Policy</a></span>
             </form>
             <!-- /form -->
 
@@ -340,22 +410,22 @@
 
 {{--Carousel--}}
 <script>
-    $(document).ready(function(){
+    $(document).ready(function () {
 
         var clickEvent = false;
         $('#myCarousel').carousel({
-            interval:   4000
-        }).on('click', '.list-group li', function() {
+            interval: 4000
+        }).on('click', '.list-group li', function () {
             clickEvent = true;
             $('.list-group li').removeClass('active');
             $(this).addClass('active');
-        }).on('slid.bs.carousel', function(e) {
-            if(!clickEvent) {
-                var count = $('.list-group').children().length -1;
+        }).on('slid.bs.carousel', function (e) {
+            if (!clickEvent) {
+                var count = $('.list-group').children().length - 1;
                 var current = $('.list-group li.active');
                 current.removeClass('active').next().addClass('active');
                 var id = parseInt(current.data('slide-to'));
-                if(count == id) {
+                if (count == id) {
                     $('.list-group li').first().addClass('active');
                 }
             }
@@ -363,10 +433,10 @@
         });
     });
 
-    $(window).load(function() {
+    $(window).load(function () {
         var boxheight = $('#myCarousel .carousel-inner').innerHeight();
         var itemlength = $('#myCarousel .item').length;
-        var triggerheight = Math.round(boxheight/itemlength+1);
+        var triggerheight = Math.round(boxheight / itemlength + 1);
         $('#myCarousel .list-group-item').outerHeight(triggerheight);
     });
 </script>
