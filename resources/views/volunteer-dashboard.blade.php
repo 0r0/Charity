@@ -92,6 +92,8 @@
 
                                 @if($project->pivot->situation==2)
                                     <label class="control-label col-lg-12">----</label>
+                                 @elseif($project->pivot->situation==0)
+                                    <label class="control-label col-lg-12">----</label>
 
                                 @else
                                     <label class="control-label col-lg-2">تغییروضعیت</label>
