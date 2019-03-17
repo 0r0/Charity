@@ -22,4 +22,9 @@ class Volunteer extends Authenticatable
         return $this->belongsToMany(Project::class)->withPivot('situation','skill','date');
 
 }
+
+    public function requirements()
+    {
+        return $this->belongsToMany(Requirement::class);
+}
 }

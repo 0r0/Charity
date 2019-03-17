@@ -12,6 +12,12 @@ class Requirement extends Model
         return $this->belongsTo(Project::class);
     }
 
+    public function volunteers()
+    {
+        return $this->belongsToMany(Volunteer::class);
+
+    }
+
     public function scopeSearch($query, $place = null, $free = null)
     {
 
