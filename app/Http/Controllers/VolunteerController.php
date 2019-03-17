@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Project;
+use App\Requirement;
 use App\Volunteer;
 use Auth;
 use Illuminate\Http\Request;
@@ -129,21 +130,33 @@ class VolunteerController extends Controller
     public function changeSituation(Request $request, $id)
     {
 
-        if($request->situation==1)
-        {
+        if ($request->situation == 1) {
             return response()->json('وضعیت  شما فعال است');
-        }
-        elseif($request->situation==2) {
+        } elseif ($request->situation == 2) {
 
             $project = Project::find($id);
             $project->volunteers()->updateExistingPivot($request->volunteer_id, ['situation' => $request->situation]);
             return response()->json('انصراف شما ازادامه همکاری با پروژه با موفقیت ثبت شد');
-        }
-
-        else{
+        } else {
             return response()->json('درخواست شما نامعتبر است');
         }
 
+
+    }
+
+    public function announcement(Request $request,$id)
+    {
+//        return response()->json('hello goodbye');
+//
+        $volunteerId = Auth::guard('volunteer')->user()->id;
+        $requirement =Requirement::find($id);
+        $project=$requirement->project()->first();
+//        $project->volunteers()->sync($volunteer,false);
+        $project->volunteers()->sync([$volunteerId=>['skill'=>$requirement->skill,'date'=>$requirement->date,'situation'=>-1]],false);
+
+
+
+        return response()->json('hello goodbye2');
 
     }
 }
