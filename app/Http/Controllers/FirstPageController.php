@@ -28,16 +28,42 @@ class FirstPageController extends Controller
 
     public function projectMoreInfo($id)
     {
+
         $project = Project::find($id);
         $requirements = $project->requirements()->get();
-        return view('all-project-more-info', compact('project', 'requirements'));
+        if (auth('volunteer')->check()) {
+            $volunteer = auth('volunteer')->user();
+
+
+            $projectVolunteerCheck = $project->volunteers()->find($volunteer->id);
+            if ($projectVolunteerCheck) {
+                $projectRequirement = $project->requirements()->where('skill', $projectVolunteerCheck->pivot->skill)->first();
+                if ($projectRequirement) {
+
+                    $situation = $projectVolunteerCheck->pivot->situation;
+                    $reservedRequirementId=$projectRequirement->id;
+                } else {
+                    $situation = 3;
+                    $reservedRequirementId=null;
+                }
+
+            } else {
+                $situation = 3;
+                $reservedRequirementId=null;
+
+            }
+        } else {
+            $situation = 4;
+        }
+
+        return view('all-project-more-info', compact('project', 'requirements', 'situation','reservedRequirementId'));
 
     }
 
     public function charityMoreInfo($id)
     {
-        $charity=Charity::find($id);
-        $projects=$charity->projects()->get();
-        return view('charity-more-info',compact('charity','projects'));
+        $charity = Charity::find($id);
+        $projects = $charity->projects()->get();
+        return view('charity-more-info', compact('charity', 'projects'));
     }
 }
