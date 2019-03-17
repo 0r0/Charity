@@ -119,7 +119,7 @@
                                         <th>زمان</th>
                                         <th>مکان</th>
                                         <th>نوع هزینه</th>
-                                        <th></th>
+                                        <th>وضعیت</th>
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -138,6 +138,25 @@
                                             @else
                                                 <td>رایگان</td>
                                             @endif
+                                            @auth('volunteer')
+                                                @if($situation==-1 && ($reservedRequirementId==$requirement->id))
+                                                    <td>منتظر تایید</td>
+                                                @elseif($situation==0 && ($reservedRequirementId==$requirement->id))
+                                                    <td>رد شده</td>
+                                                @elseif($situation==1 && ($reservedRequirementId==$requirement->id))
+                                                    <td>تایید شده</td>
+
+                                                @elseif($situation==2 && ($reservedRequirementId==$requirement->id))
+                                                    <td>انصراف داده شده</td>
+                                                @else
+                                                    <td>
+                                                        <button class="btn  bg-blue annunciation{{$requirement->id}}"
+                                                                type="submit">اعلام
+                                                            آمادگی
+                                                        </button>
+                                                    </td>
+                                                @endif
+                                            @endauth
 
                                         </tr>
                                         <tr>
@@ -165,3 +184,42 @@
 
 
 @endsection
+@push('body-script')
+
+    <script>
+        $(document).ready(function () {
+
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+            @foreach($requirements as $requirement)
+            $('.annunciation{{$requirement->id}}').on('click', function () {
+
+                var urlPath = '{{route('ready-announcement',['id'=>$requirement->id])}}';
+
+                $.ajax({
+                        url: urlPath,
+                        method: 'POST',
+                        data: {},
+                        success: function (data) {
+                            console.log('successful ' + data);
+
+                        },
+                        error: function (xhr, ajaxOptions, thrownError) {
+                            console.log('error');
+
+                            console.log(thrownError);
+                        },
+                    }
+                );
+                {{--$('#edit-project{{$project->id}}').modal('hide');// close model after click on submit button--}}
+                // location.reload(true);
+            });
+            @endforeach
+
+        })
+    </script>
+
+@endpush
