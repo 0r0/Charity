@@ -15,6 +15,7 @@
     <link href="{{asset('css/admin/core.css')}}" rel="stylesheet" type="text/css">
     <link href="{{asset('css/core/components.css')}}" rel="stylesheet" type="text/css">
     <link href="{{asset('css/colors.css')}}" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="{{asset('css/change.css')}}" type="text/css">
 @stack('css-header')
 <!-- /global stylesheets -->
 
@@ -61,14 +62,14 @@
         </ul>
 
         <ul class="nav navbar-nav navbar-right">
-            <li><a href="#">Text link</a></li>
+            {{--<li><a href="#">Text link</a></li>--}}
 
-            <li>
-                <a href="#">
-                    <i class="icon-cog3"></i>
-                    <span class="visible-xs-inline-block position-right">Icon link</span>
-                </a>
-            </li>
+            {{--<li>--}}
+                {{--<a href="#">--}}
+                    {{--<i class="icon-cog3"></i>--}}
+                    {{--<span class="visible-xs-inline-block position-right">Icon link</span>--}}
+                {{--</a>--}}
+            {{--</li>--}}
             <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
                     <i class=" icon-bell2"></i>
@@ -249,7 +250,8 @@
                             <div class="media-body">
                                 <span class="media-heading text-semibold">@yield('login-username')</span>
                                 <div class="text-size-mini text-muted">
-                                    <i class="icon-pin text-size-small"></i> &nbsp;Santa Ana, CA
+                                    <i class="icon-pin text-size-small"></i> &nbsp;{{$city}}, {{$country}}
+
                                 </div>
                             </div>
 
@@ -322,28 +324,28 @@
 
                 <div class="breadcrumb-line">
                     <ul class="breadcrumb">
-                        <li><a href="index.html"><i class="icon-home2 position-left"></i> Home</a></li>
-                        <li><a href="layout_fixed.html">Starters</a></li>
-                        <li class="active">Fixed layout</li>
+                        {{--<li><a href="index.html"><i class="icon-home2 position-left"></i> Home</a></li>--}}
+                        {{--<li><a href="layout_fixed.html">Starters</a></li>--}}
+                        {{--<li class="active">Fixed layout</li>--}}
                     </ul>
 
                     <ul class="breadcrumb-elements">
-                        <li><a href="#"><i class="icon-comment-discussion position-left"></i> Link</a></li>
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                <i class="icon-gear position-left"></i>
-                                Dropdown
-                                <span class="caret"></span>
-                            </a>
+                        {{--<li><a href="#"><i class="icon-comment-discussion position-left"></i> Link</a></li>--}}
+                        {{--<li class="dropdown">--}}
+                            {{--<a href="#" class="dropdown-toggle" data-toggle="dropdown">--}}
+                                {{--<i class="icon-gear position-left"></i>--}}
+                                {{--Dropdown--}}
+                                {{--<span class="caret"></span>--}}
+                            {{--</a>--}}
 
-                            <ul class="dropdown-menu dropdown-menu-right">
-                                <li><a href="#"><i class="icon-user-lock"></i> Account security</a></li>
-                                <li><a href="#"><i class="icon-statistics"></i> Analytics</a></li>
-                                <li><a href="#"><i class="icon-accessibility"></i> Accessibility</a></li>
-                                <li class="divider"></li>
-                                <li><a href="#"><i class="icon-gear"></i> All settings</a></li>
-                            </ul>
-                        </li>
+                            {{--<ul class="dropdown-menu dropdown-menu-right">--}}
+                                {{--<li><a href="#"><i class="icon-user-lock"></i> Account security</a></li>--}}
+                                {{--<li><a href="#"><i class="icon-statistics"></i> Analytics</a></li>--}}
+                                {{--<li><a href="#"><i class="icon-accessibility"></i> Accessibility</a></li>--}}
+                                {{--<li class="divider"></li>--}}
+                                {{--<li><a href="#"><i class="icon-gear"></i> All settings</a></li>--}}
+                            {{--</ul>--}}
+                        {{--</li>--}}
                     </ul>
                 </div>
             </div>
