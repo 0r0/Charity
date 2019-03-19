@@ -3,15 +3,39 @@
 @section('info-url',url('/edit-volunteer-info'))
 {{--show profie image--}}
 {{--@if(file_exists(public_path('images/profile/tt.jpg'.$volunteer->imagename)))--}}
-@if(file_exists(public_path('images/profile/tt.jpg')))
-@section('profile-image')
+{{--@if(file_exists(public_path('images/profile/tt.jpg')))--}}
+{{--@section('profile-image')--}}
     {{--    <img src="{{asset('images/profile/tt.jpg'.$volunteer->imagename)}}"--}}
-    <img src="{{asset('images/profile/tt.jpg')}}"
+    {{--<img src="{{asset('images/profile/tt.jpg')}}"--}}
+         {{--class="img-circle img-sm" alt="">--}}
+{{--@endsection--}}
+{{--@section('profile-image2')--}}
+    {{--    <img src="{{asset('images/profile/'.$volunteer->imagename)}}"--}}
+    {{--<img src="{{asset('images/profile/tt.jpg')}}"--}}
+         {{--class="img-circle img-sm" alt="">--}}
+{{--@endsection--}}
+{{--@else--}}
+{{--@section('profile-image')--}}
+    {{--<img src="{{asset('images/image.png')}}"--}}
+         {{--class="img-circle img-sm" alt="">--}}
+{{--@endsection--}}
+{{--@section('profile-image2')--}}
+    {{--<img src="{{asset('images/image.png')}}"--}}
+         {{--class="img-circle img-sm" alt="">--}}
+{{--@endsection--}}
+{{--@endif--}}
+{{----}}
+{{--show profie image--}}
+@php
+$volunteer=Auth::guard('volunteer')->user();
+@endphp
+@if(file_exists(public_path('images/profile/'.$volunteer->imagename)))
+@section('profile-image')
+    <img src="{{asset('images/profile/'.$volunteer->imagename)}}"
          class="img-circle img-sm" alt="">
 @endsection
 @section('profile-image2')
-    {{--    <img src="{{asset('images/profile/'.$volunteer->imagename)}}"--}}
-    <img src="{{asset('images/profile/tt.jpg')}}"
+    <img src="{{asset('images/profile/'.$volunteer->imagename)}}"
          class="img-circle img-sm" alt="">
 @endsection
 @else
@@ -33,21 +57,19 @@
 @section('body-content')
     <div class="panel panel-flat">
         <div class="panel-heading">
-            <h5 class="panel-title">Colored table options<a class="heading-elements-toggle"><i
+            <h5 class="panel-title">لیست پروژه ها<a class="heading-elements-toggle"><i
                         class="icon-more"></i></a></h5>
             <div class="heading-elements">
                 <ul class="icons-list">
-                    <li><a data-action="collapse"></a></li>
-                    <li><a data-action="reload"></a></li>
-                    <li><a data-action="close"></a></li>
+                    {{--<li><a data-action="collapse"></a></li>--}}
+                    {{--<li><a data-action="reload"></a></li>--}}
+                    {{--<li><a data-action="close"></a></li>--}}
                 </ul>
             </div>
         </div>
 
         <div class="panel-body">
-            Table with custom background color supports all default table layouts and options. In this example our table
-            displays all possible borders, striped rows and changes background color on row hover. All border, row and
-            text colors are adjusted automatically.
+          لیست تمامی پروژه هایی که داوطلب درآن ها همکاری داشته است
         </div>
 
         <div class="table-responsive">
@@ -139,7 +161,8 @@
                         method: 'POST',
                         data: {'volunteer_id': volunteer_id, 'situation': situation},
                         success: function (data) {
-                            console.log(data)
+                            console.log(data);
+                            location.reload();
 
                         },
                         error: function (error) {
