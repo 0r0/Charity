@@ -3,9 +3,12 @@
 namespace App\Providers;
 
 use App\Charity;
+//use Torann\GeoIP\GeoIP;
+use Request;
 use View;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Schema;
+
 class AppServiceProvider extends ServiceProvider
 {
     /**
@@ -15,9 +18,14 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $charitiesList=Charity::all();
+        $charitiesList = Charity::all();
         Schema::defaultStringLength(191);
-        View::share('charitiesList',$charitiesList);
+        $ip = Request::ip();
+        $location = geoip()->getLocation($ip);
+        $country = $location->getAttribute('iso_code');
+        $city=$location->getAttribute('city');
+        View::share('charitiesList', $charitiesList);
+        View::share(['country'=>$country,'city'=>$city]);
     }
 
     /**
