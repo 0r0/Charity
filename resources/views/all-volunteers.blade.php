@@ -9,25 +9,24 @@
                 <div class="page-header">
                     <div class="page-header-content">
                         <div class="page-title">
-                            <h4><i class="icon-arrow-right6 position-left"></i> <span
-                                    class="text-semibold">Search</span> - جستجو داوطلبین</h4>
+                            <h4><i class="icon-search4 position-left"></i>جستجو داوطلبین</h4>
 
-                            <ul class="breadcrumb position-right">
-                                <li><a href="index.html">Home</a></li>
-                                <li><a href="search_users.html">Search</a></li>
-                                <li class="active">User results</li>
-                            </ul>
+                            {{--<ul class="breadcrumb position-right">--}}
+                                {{--<li><a href="index.html">Home</a></li>--}}
+                                {{--<li><a href="search_users.html">Search</a></li>--}}
+                                {{--<li class="active">User results</li>--}}
+                            {{--</ul>--}}
                             <a class="heading-elements-toggle"><i class="icon-more"></i></a></div>
 
                         <div class="heading-elements">
-                            <div class="heading-btn-group">
-                                <a href="#" class="btn btn-link btn-float has-text"><i
-                                        class="icon-bars-alt text-primary"></i><span>Statistics</span></a>
-                                <a href="#" class="btn btn-link btn-float has-text"><i
-                                        class="icon-calculator text-primary"></i> <span>Invoices</span></a>
-                                <a href="#" class="btn btn-link btn-float has-text"><i
-                                        class="icon-calendar5 text-primary"></i> <span>Schedule</span></a>
-                            </div>
+                            {{--<div class="heading-btn-group">--}}
+                                {{--<a href="#" class="btn btn-link btn-float has-text"><i--}}
+                                        {{--class="icon-bars-alt text-primary"></i><span>Statistics</span></a>--}}
+                                {{--<a href="#" class="btn btn-link btn-float has-text"><i--}}
+                                        {{--class="icon-calculator text-primary"></i> <span>Invoices</span></a>--}}
+                                {{--<a href="#" class="btn btn-link btn-float has-text"><i--}}
+                                        {{--class="icon-calendar5 text-primary"></i> <span>Schedule</span></a>--}}
+                            {{--</div>--}}
                         </div>
                     </div>
                 </div>
@@ -40,12 +39,12 @@
                     <!-- Search field -->
                     <div class="panel panel-flat">
                         <div class="panel-heading">
-                            <h5 class="panel-title">Website search results<a class="heading-elements-toggle"><i
+                            <h5 class="panel-title">نتایج جستجو داوطلبین<a class="heading-elements-toggle"><i
                                         class="icon-more"></i></a></h5>
                             <div class="heading-elements">
                                 <ul class="icons-list">
                                     <li><a data-action="collapse"></a></li>
-                                    <li><a data-action="close"></a></li>
+                                    {{--<li><a data-action="close"></a></li>--}}
                                 </ul>
                             </div>
                         </div>
@@ -55,7 +54,7 @@
                                 <div class="input-group content-group">
                                     <div class="has-feedback has-feedback-left">
                                         <input type="text" class="form-control input-xlg"
-                                               placeholder="نام داوطب را وارد کنید">
+                                               placeholder="نام داوطلب را وارد کنید">
                                         <div class="form-control-feedback">
                                             <i class="icon-search4 text-muted text-size-base"></i>
                                         </div>
@@ -69,38 +68,38 @@
                                 <div class="row search-option-buttons">
                                     <div class="col-sm-6">
                                         <ul class="list-inline list-inline-condensed no-margin-bottom">
-                                            <li class="dropdown">
-                                                <a href="#" class="btn btn-link dropdown-toggle" data-toggle="dropdown">
-                                                    <i class="icon-stack2 position-left"></i> All categories <span
-                                                        class="caret"></span>
-                                                </a>
+                                            {{--<li class="dropdown">--}}
+                                                {{--<a href="#" class="btn btn-link dropdown-toggle" data-toggle="dropdown">--}}
+                                                    {{--<i class="icon-stack2 position-left"></i> All categories <span--}}
+                                                        {{--class="caret"></span>--}}
+                                                {{--</a>--}}
 
-                                                <ul class="dropdown-menu">
-                                                    <li><a href="#"><i class="icon-question7"></i> Getting started</a>
-                                                    </li>
-                                                    <li><a href="#"><i class="icon-accessibility"></i> Registration</a>
-                                                    </li>
-                                                    <li><a href="#"><i class="icon-reading"></i> General info</a></li>
-                                                    <li><a href="#"><i class="icon-gear"></i> Your settings</a></li>
-                                                    <li><a href="#"><i class="icon-graduation"></i> Copyrights</a></li>
-                                                    <li class="divider"></li>
-                                                    <li><a href="#"><i class="icon-mail-read"></i> Contacting
-                                                            authors</a></li>
-                                                </ul>
-                                            </li>
-                                            <li><a href="#" class="btn btn-link"><i
-                                                        class="icon-reload-alt position-left"></i> Refine your
-                                                    search</a></li>
+                                                {{--<ul class="dropdown-menu">--}}
+                                                    {{--<li><a href="#"><i class="icon-question7"></i> Getting started</a>--}}
+                                                    {{--</li>--}}
+                                                    {{--<li><a href="#"><i class="icon-accessibility"></i> Registration</a>--}}
+                                                    {{--</li>--}}
+                                                    {{--<li><a href="#"><i class="icon-reading"></i> General info</a></li>--}}
+                                                    {{--<li><a href="#"><i class="icon-gear"></i> Your settings</a></li>--}}
+                                                    {{--<li><a href="#"><i class="icon-graduation"></i> Copyrights</a></li>--}}
+                                                    {{--<li class="divider"></li>--}}
+                                                    {{--<li><a href="#"><i class="icon-mail-read"></i> Contacting--}}
+                                                            {{--authors</a></li>--}}
+                                                {{--</ul>--}}
+                                            {{--</li>--}}
+                                            {{--<li><a href="#" class="btn btn-link"><i--}}
+                                                        {{--class="icon-reload-alt position-left"></i> Refine your--}}
+                                                    {{--search</a></li>--}}
                                         </ul>
                                     </div>
 
                                     <div class="col-sm-6 text-right">
                                         <ul class="list-inline no-margin-bottom">
-                                            <li><a href="#" class="btn btn-link"><i
-                                                        class="icon-make-group position-left"></i> Browse website</a>
-                                            </li>
-                                            <li><a href="#" class="btn btn-link"><i
-                                                        class="icon-menu7 position-left"></i> Advanced search</a></li>
+                                            {{--<li><a href="#" class="btn btn-link"><i--}}
+                                                        {{--class="icon-make-group position-left"></i> Browse website</a>--}}
+                                            {{--</li>--}}
+                                            {{--<li><a href="#" class="btn btn-link"><i--}}
+                                                        {{--class="icon-menu7 position-left"></i> Advanced search</a></li>--}}
                                         </ul>
                                     </div>
                                 </div>
@@ -112,22 +111,21 @@
 
                     <!-- Tabs -->
                     <ul class="nav nav-lg nav-tabs nav-tabs-bottom search-results-tabs">
-                        <li><a href="search_basic.html"><i class="icon-display4 position-left"></i> Website</a></li>
+                        {{--<li><a href="search_basic.html"><i class="icon-display4 position-left"></i> Website</a></li>--}}
                         <li class="active"><a href="search_users.html"><i class="icon-people position-left"></i>
-                                Users</a></li>
-                        <li><a href="search_images.html"><i class="icon-image2 position-left"></i> Images</a></li>
-                        <li><a href="search_videos.html"><i class="icon-file-play position-left"></i> Videos</a></li>
+                                کاربرها</a></li>
+
                         <li class="dropdown pull-right">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-cog3"></i> <span
-                                    class="visible-xs-inline-block position-right">Options</span> <span
-                                    class="caret"></span></a>
-                            <ul class="dropdown-menu dropdown-menu-right">
-                                <li><a href="#">Action</a></li>
-                                <li><a href="#">Another action</a></li>
-                                <li><a href="#">Something else</a></li>
-                                <li class="divider"></li>
-                                <li><a href="#">One more line</a></li>
-                            </ul>
+                            {{--<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-cog3"></i> <span--}}
+                                    {{--class="visible-xs-inline-block position-right">Options</span> <span--}}
+                                    {{--class="caret"></span></a>--}}
+                            {{--<ul class="dropdown-menu dropdown-menu-right">--}}
+                                {{--<li><a href="#">Action</a></li>--}}
+                                {{--<li><a href="#">Another action</a></li>--}}
+                                {{--<li><a href="#">Something else</a></li>--}}
+                                {{--<li class="divider"></li>--}}
+                                {{--<li><a href="#">One more line</a></li>--}}
+                            {{--</ul>--}}
                         </li>
                     </ul>
                     <!-- /tabs -->
@@ -135,7 +133,7 @@
 
                     <!-- Search results -->
                     <div class="content-group">
-                        <p class="text-muted text-size-small content-group">About 827,000 results (0.34 seconds)</p>
+                        <p class="text-muted text-size-small content-group"> لیست نتایج</p>
 
                         <div class="search-results-list">
                             @foreach($allVolunteers->chunk(4) as $volunteers)
