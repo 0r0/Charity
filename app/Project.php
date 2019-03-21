@@ -4,8 +4,10 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
+
 class Project extends Model
 {
+
     //many to many rel between project and charity model
     public function charities()
     {
@@ -28,6 +30,11 @@ class Project extends Model
         return $query->where('title','like','%'.$title.'%');
 
 
+    }
+
+    public function comments()
+    {
+        return $this->morphMany(Comment::class,'commentable')->whereNull('parent_id');
     }
 
 }
