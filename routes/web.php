@@ -77,3 +77,7 @@ Route::post('projects/create-requirement/{id}','ProjectController@storeRequireme
 
 //search Routes
 Route::get('/project-search','SearchController@projectSearch')->name('project-search');
+
+
+//comment
+Route::post('/comment/store', 'CommentController@store')->name('comment.add');
