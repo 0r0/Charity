@@ -175,6 +175,39 @@
                         </div>
 
                     </div>
+
+
+                    {{--comment section--}}
+                    <div class="panel panel-flat">
+                        <div class="panel-heading">
+                            <h5 class="panel-title">نظرات<a class="heading-elements-toggle"><i
+                                        class="icon-more"></i></a>
+                            </h5>
+
+                        </div>
+
+                        <div class="panel-body">
+                            <div class="content-group">
+                                <form method="post" action="{{ route('comment.add') }}">
+                                    @csrf
+                                    <h6 class="text-semibold">Basic example</h6>
+                                    <p class="content-group-sm">Drop Autosize into any existing website and it should
+                                        Just Work™. The source is short and well commented if you are curious to how it
+                                        works.</p>
+
+                                    <div class="form-group">
+                                        <textarea rows="4" cols="4" class="form-control elastic" placeholder="Textarea"
+                                                  style="overflow: hidden; overflow-wrap: break-word; resize: horizontal; height: 96px;" name="comment_body"></textarea>
+                                        <input type="hidden" name="project_id" value=""/>
+                                    </div>
+
+                                    <button type="button" class="btn btn-primary">ارسال نظر</button>
+                                </form>
+                            </div>
+
+                        </div>
+
+                    </div>
                 </div>
             </div>
         </div>
