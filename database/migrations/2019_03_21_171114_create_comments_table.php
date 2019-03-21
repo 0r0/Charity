@@ -19,6 +19,7 @@ class CreateCommentsTable extends Migration
             $table->integer('charity_id')->unsigned();
             $table->integer('parent_id')->unsigned();
             $table->text('body');
+            $table->boolean('is_approved')->default(false);
             $table->integer('commentable_id')->unsigned();
             $table->string('commentable_type');
             $table->timestamps();
