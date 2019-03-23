@@ -141,10 +141,16 @@
                                             <div class="panel-body">
                                                 <div class="thumb">
                                                     <a href="#course_preview1" data-toggle="modal">
-                                                        <img src="http://127.0.0.1:8000/images/placeholder.jpg"
-                                                             class="img-responsive img-rounded ss
-" alt="">
-                                                        <span class="zoom-image"><i class="icon-play3"></i></span>
+                                                        @if(file_exists(public_path('images/'.$project->picture)))
+                                                        <img src="{{asset('images/'.$project->picture)}}"
+                                                             class="img-responsive img-rounded ss">
+                                                            <span class="zoom-image"><i class="icon-play3"></i></span>
+
+                                                        @else
+                                                            <img src="{{asset('images/placeholder.jpg')}}"
+                                                                 class="img-responsive img-rounded ss">
+                                                            <span class="zoom-image"><i class="icon-play3"></i></span>
+                                                            @endif
                                                     </a>
                                                 </div>
 
@@ -174,8 +180,11 @@
                                                     class="heading-elements-toggle"><i class="icon-more"></i></a>
                                                 <div class="heading-elements">
                                                     <ul class="list-inline list-inline-separate heading-text">
+                                                        @php
+                                                        $persianDate=Morilog\Jalali\CalendarUtils::strftime('d-m-Y', strtotime($project->runDate));
+                                                        @endphp
                                                         <li><i class="icon-alarm position-left"></i>تاریخ
-                                                            شروع:{{$project->runDate}}
+                                                            شروع:{{$persianDate}}
                                                         </li>
                                                         <li>
                                                             <i class="icon-star-full2 text-size-base text-warning-300"></i>

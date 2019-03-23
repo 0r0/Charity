@@ -188,20 +188,51 @@
 
                         <div class="panel-body">
                             <div class="content-group">
+
+
+                                {{--add comments--}}
+                                @include('partials.comment_replies', ['comments' => $project->comments, 'project_id' => $project->id])
+                                @if(session()->has('error'))
+                                    <span id="dangerMessage" class="label label-danger"
+                                          style="font-size: 15px">{{ session()->get('error') }}</span>
+                                    <script>
+                                        setTimeout(function () {
+                                            $('#dangerMessage').fadeOut('fast');
+                                        }, 20000);
+                                    </script>
+                                @elseif(session()->has('message'))
+                                    <span id="successMessage" class="label label-success"
+                                          style="font-size: 15px">{{ session()->get('message') }}</span>
+                                    <script>
+                                        setTimeout(function () {
+                                            $('#successMessage').fadeOut('fast');
+                                        }, 20000);
+                                    </script>
+                                @endif
+                                @if ($errors->any())
+                                    <div class="alert alert-danger">
+                                        <ul>
+                                            @foreach ($errors->all() as $error)
+                                                <li>لطفا فیلد دیدگاه را پر کنید</li>
+                                            @endforeach
+                                        </ul>
+                                    </div>
+                                    @endif
                                 <form method="post" action="{{ route('comment.add') }}">
                                     @csrf
-                                    <h6 class="text-semibold">Basic example</h6>
-                                    <p class="content-group-sm">Drop Autosize into any existing website and it should
-                                        Just Work™. The source is short and well commented if you are curious to how it
-                                        works.</p>
+                                    <h6 class="text-semibold">دیدگاه</h6>
+                                    {{--<p class="content-group-sm">Drop Autosize into any existing website and it should--}}
+                                        {{--Just Work™. The source is short and well commented if you are curious to how it--}}
+                                        {{--works.</p>--}}
 
                                     <div class="form-group">
-                                        <textarea rows="4" cols="4" class="form-control elastic" placeholder="Textarea"
-                                                  style="overflow: hidden; overflow-wrap: break-word; resize: horizontal; height: 96px;" name="comment_body"></textarea>
-                                        <input type="hidden" name="project_id" value=""/>
+                                        <textarea rows="4" cols="4" class="form-control elastic" placeholder="محل دیدگاه"
+                                                  style="overflow: hidden; overflow-wrap: break-word; resize: horizontal; height: 96px;"
+                                                  name="comment_body"></textarea>
+                                        <input type="hidden" name="project_id" value="{{$project->id}}"/>
                                     </div>
 
-                                    <button type="button" class="btn btn-primary">ارسال نظر</button>
+                                    <button type="submit" class="btn btn-primary">ارسال دیدگاه</button>
                                 </form>
                             </div>
 
@@ -255,4 +286,11 @@
         })
     </script>
 
+@endpush
+@push('head-script')
+    <style>
+        .display-comment .display-comment {
+            margin-left: 40px
+        }
+    </style>
 @endpush
