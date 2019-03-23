@@ -14,7 +14,7 @@ $factory->define(App\Charity::class, function (Faker $faker) {
         'bio'=>$faker->text($maxNbChars = 200)  ,
         'imagename'=>$faker->words($nb = 1, $asText = true).'jpg',
         'skill'=>$faker->jobTitle,
-        'intrest'=>$faker->jobTitle.' intrest',
+        'interest'=>$faker->jobTitle.' interest',
         'resume'=>$faker->realText($maxNbChars = 20, $indexSize = 2),
         'mobileNumber'=>$faker->phoneNumber,
         'phoneNumber'=>$faker->phoneNumber,
