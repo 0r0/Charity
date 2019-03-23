@@ -81,3 +81,4 @@ Route::get('/project-search','SearchController@projectSearch')->name('project-se
 
 //comment
 Route::post('/comment/store', 'CommentController@store')->name('comment.add');
+Route::post('/reply/store', 'CommentController@replyStore')->name('reply.add');
