@@ -24,8 +24,10 @@ class CreateProjectsTable extends Migration
             $table->string('money');//budget that need to run project
             $table->date('runDate');//when project is executed
             $table->boolean('is_archive')->default(false);
+            $table->boolean('elite')->default(false);
             $table->timestamps();
         });
+
     }
 
     /**

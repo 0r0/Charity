@@ -19,13 +19,14 @@ class CreateCharitiesTable extends Migration
             $table->string('firstName')->nullable();
             $table->string('lastName')->nullable();
             $table->string('email')->unique();
+            $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->string('company')->nullable();
             $table->string('address')->nullable();
             $table->longText('bio')->nullable();
             $table->string('imagename')->nullable();
             $table->string('skill')->nullable();
-            $table->string('intrest')->nullable();
+            $table->string('interest')->nullable();
             $table->longText('resume')->nullable();
             $table->string('mobileNumber')->nullable();
             $table->string('phoneNumber')->nullable();
