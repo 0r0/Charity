@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Notifications\CharityResetPasswordNotification;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 class Charity extends  Authenticatable
@@ -21,5 +22,15 @@ class Charity extends  Authenticatable
     {
         return $this->belongsToMany(Project::class);
 
+    }
+    /**
+     * Send the password reset notification.
+     *
+     * @param  string  $token
+     * @return void
+     */
+    public function sendPasswordResetNotification($token)
+    {
+        $this->notify(new CharityResetPasswordNotification($token));
     }
 }
