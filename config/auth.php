@@ -47,7 +47,7 @@ return [
         ],
         'charity' => [
             'driver' => 'session',
-            'provider' =>'charities'
+            'provider' => 'charities'
         ],
         'volunteer' => [
             'driver' => 'session',
@@ -81,7 +81,7 @@ return [
             'driver' => 'eloquent',
             'model' => App\Charity::class
         ],
-        'volunteers' =>[
+        'volunteers' => [
             'driver' => 'eloquent',
             'model' => App\Volunteer::class
         ]
@@ -113,6 +113,17 @@ return [
             'table' => 'password_resets',
             'expire' => 60,
         ],
+        'charities' => [
+            'provider' => 'charities',
+            'table' => 'password_resets',
+            'expire' => 60,
+        ],
+        'volunteers' => [
+            'provider' => 'volunteers',
+            'table' => 'password_resets',
+            'expire' => 60,
+
+        ]
     ],
 
 ];
