@@ -113,6 +113,9 @@ class ProjectController extends Controller
         $project->report = $report;//
         $project->supporter = $supporter;
         $project->runDate = $runDate;
+        if($request->archive){
+            $project->is_archive=true;
+        }
 //        $project->picture = $picture; // work on it in future
         $project->save();
 
