@@ -42,7 +42,9 @@ class VolunteerWelcomeNotification extends Notification implements  ShouldQueue
     {
         return (new MailMessage)
                     ->line('به سایت داوطبانه خوش آمدید عضویت شما در سایت به عنوان داوطلب انجام شد برای وارد شدن به سیستم از پیوند زیر اقدام نمایید')
-                    ->action('Notification Action', url('/login/volunteer'))
+                    ->action('صفحه ورود', url('/login/volunteer'))
+                    ->subject('عضویت داوطلب در داوطلبانه')
+                    ->greeting('باسلام')
                     ->line('از این که از پلتفرم داوطلبانه استفاده می کنید متشکریم');
     }
 
