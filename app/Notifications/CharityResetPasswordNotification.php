@@ -11,6 +11,10 @@ class CharityResetPasswordNotification extends Notification
 {
     use Queueable;
 
+
+    public $token;
+
+
     /**
      * Create a new notification instance.
      *
@@ -18,13 +22,13 @@ class CharityResetPasswordNotification extends Notification
      */
     public function __construct($token)
     {
-        //
+        $this->token = $token;
     }
 
     /**
      * Get the notification's delivery channels.
      *
-     * @param  mixed  $notifiable
+     * @param  mixed $notifiable
      * @return array
      */
     public function via($notifiable)
@@ -35,21 +39,21 @@ class CharityResetPasswordNotification extends Notification
     /**
      * Get the mail representation of the notification.
      *
-     * @param  mixed  $notifiable
+     * @param  mixed $notifiable
      * @return \Illuminate\Notifications\Messages\MailMessage
      */
     public function toMail($notifiable)
     {
         return (new MailMessage)
-                    ->line('The introduction to the notification.')
-                    ->action('Notification Action', url('/'))
-                    ->line('Thank you for using our application!');
+            ->line('شما این ایمیل در یافت کردبد چون شما درخواست بازنشانی رمزعبور خود را داده اید')
+            ->action('بازنشانی رمز عبور', route('charity.password.reset',$this->token))
+            ->line('اگر شما این درخواست را نداده اید لازم نیست کاری انجام دهید!');
     }
 
     /**
      * Get the array representation of the notification.
      *
-     * @param  mixed  $notifiable
+     * @param  mixed $notifiable
      * @return array
      */
     public function toArray($notifiable)
