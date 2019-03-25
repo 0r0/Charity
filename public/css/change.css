@@ -11,7 +11,7 @@
     font-size: 18px;
     font-family: Yekan;
 }
-.text-semibold, span,.panel-title,legend,.control-label,.form-control,a,li,h4,.modal-title,th,p,td{
+.text-semibold, span,.panel-title,legend,.control-label,.form-control,a,li,h4,.modal-title,th,p,td,label{
     font-family: Yekan;
 }
 legend.text-bold{
