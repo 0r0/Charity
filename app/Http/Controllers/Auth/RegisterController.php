@@ -10,6 +10,9 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use App\Notifications\CharityWelcomeNotification;
+use App\Notifications\VolunteerWelcomeNotification;
+
 
 class RegisterController extends Controller
 {
@@ -65,6 +68,7 @@ class RegisterController extends Controller
             'email' =>$request['email'],
             'password'=> Hash::make($request['password'])
         ]);
+        $charity->notify(new CharityWelcomeNotification());
         return redirect()->intended('/charity-dashboard');
 
     }
@@ -76,6 +80,7 @@ class RegisterController extends Controller
            'email'=>$request['email'],
            'password'=>Hash::make($request['password']),
         ]);
+        $volunteer->notify(new VolunteerWelcomeNotification());
         return  redirect()->intended('/volunteer-dashboard');
     }
 
