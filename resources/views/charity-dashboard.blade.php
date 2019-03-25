@@ -4,7 +4,7 @@
 @section('requests-url')
     <li><a href="{{url('/volunteers-request')}}"><i class="icon-accessibility"></i>
             <span>درخواست ها</span></a></li>
-    @endsection
+@endsection
 @section('header-page','داشبورد خیریه')
 @section('user-login')
     {{Auth::guard('charity')->user()->firstName}} {{Auth::guard('charity')->user()->lastName}}
@@ -14,12 +14,12 @@
 {{--@if(file_exists(public_path('images/profile/tt.jpg'.$volunteer->imagename)))--}}
 @if(file_exists(public_path('images/profile/tt.jpg')))
 @section('profile-image')
-{{--    <img src="{{asset('images/profile/tt.jpg'.$volunteer->imagename)}}"--}}
+    {{--    <img src="{{asset('images/profile/tt.jpg'.$volunteer->imagename)}}"--}}
     <img src="{{asset('images/profile/tt.jpg')}}"
          class="img-circle img-sm" alt="">
 @endsection
 @section('profile-image2')
-{{--    <img src="{{asset('images/profile/'.$volunteer->imagename)}}"--}}
+    {{--    <img src="{{asset('images/profile/'.$volunteer->imagename)}}"--}}
     <img src="{{asset('images/profile/tt.jpg')}}"
          class="img-circle img-sm" alt="">
 @endsection
@@ -53,6 +53,7 @@
                 @foreach($projects->chunk(3) as $project)
                     <div class="row">
                         @foreach($project as $sub_project)
+                            @if($sub_project->is_archive==0)
                             <div class="col-md-4">
                                 <div class="panel panel-flat blog-horizontal blog-horizontal-2">
                                     <div class="panel-body">
@@ -106,7 +107,8 @@
                                                     <span class="text-muted position-right">(49)</span>
                                                 </li>
                                             </ul>
-                                            <a href="{{route('project-more-info',['id'=>$sub_project->id])}}" class="heading-text pull-right" data-toggle="modal">جزئیات بیشتر
+                                            <a href="{{route('project-more-info',['id'=>$sub_project->id])}}"
+                                               class="heading-text pull-right" data-toggle="modal">جزئیات بیشتر
                                                 <i
                                                     class="icon-arrow-left13 position-right"></i></a>
                                             <a href="#edit-project{{$sub_project->id}}" class="heading-text pull-right"
@@ -116,12 +118,14 @@
                                     </div>
                                 </div>
                             </div>
+                            @endif
                         @endforeach
                     </div>
                 @endforeach
             @else
                 <div class="row">
                     @foreach($projects as $project)
+                        @if($project->is_archive==0)
                         <div class="col-md-4">
                             <div class="panel panel-flat blog-horizontal blog-horizontal-2">
                                 <div class="panel-body">
@@ -141,12 +145,18 @@
                                                 </h5>
 
                                                 <ul class="list-inline list-inline-separate no-margin text-muted">
-                                                    @if($project->is_archive)
-                                                        <li>آرشیو</li>
-                                                    @else
-                                                        <li>فعال</li>
-                                                    @endif
-                                                    <li>تاریخ ایجاد:{{$project->created_at}}</li>
+                                                    {{--@if($project->is_archive)--}}
+                                                        {{--<li>وضعیت:آرشیو</li>--}}
+                                                    {{--@else--}}
+                                                        {{--<li>وضعیت: فعال </li>--}}
+                                                    {{--@endif--}}
+
+                                                    @php
+                                                        $create = Morilog\Jalali\CalendarUtils::strftime('d-m-Y', strtotime($project->created_at));
+                                                        $runDate=Morilog\Jalali\CalendarUtils::strftime('d-m-Y', strtotime($project->runDate));
+                                                    @endphp
+                                                        <br>
+                                                    <li> تاریخ ایجاد:{{$create}}</li>
                                                 </ul>
                                             </div>
 
@@ -166,7 +176,7 @@
                                             class="icon-more"></i></a>
                                     <div class="heading-elements">
                                         <ul class="list-inline list-inline-separate heading-text">
-                                            <li><i class="icon-alarm position-left"></i>تاریخ شروع:{{$project->runDate}}
+                                            <li><i class="icon-alarm position-left"></i>تاریخ شروع:{{$runDate}}
                                             </li>
                                             <li>
                                                 <i class="icon-star-full2 text-size-base text-warning-300"></i>
@@ -177,7 +187,8 @@
                                                 {{--<span class="text-muted position-right">(49)</span>--}}
                                             </li>
                                         </ul>
-                                        <a href="{{route('project-more-info',['id'=>$project->id])}}" class="heading-text pull-right" data-toggle="modal">جزئیات بیشتر <i
+                                        <a href="{{route('project-more-info',['id'=>$project->id])}}"
+                                           class="heading-text pull-right" data-toggle="modal">جزئیات بیشتر <i
                                                 class="icon-arrow-left13 position-right"></i></a>
                                         <a href="#edit-project{{$project->id}}" class="heading-text pull-right"
                                            data-toggle="modal">ویرایش اطلاعات <i
@@ -187,6 +198,171 @@
                                 </div>
                             </div>
                         </div>
+                        @endif
+                    @endforeach
+                </div>
+            @endif
+        </div>
+
+    </div>
+    <br>
+    <div class="panel panel-flat">
+        <div class="panel-heading">
+            <h5 class="panel-title"> لیست پروژه های آرشیو<a class="heading-elements-toggle"><i
+                        class="icon-more"></i></a></h5>
+            <div class="heading-elements">
+            </div>
+        </div>
+        <div class="panel-body">
+            @if(count($projects)>=3)
+                @foreach($projects->chunk(3) as $project)
+                    <div class="row">
+                        @foreach($project as $sub_project)
+                            @if($sub_project->is_archive==1)
+                                <div class="col-md-4">
+                                    <div class="panel panel-flat blog-horizontal blog-horizontal-2">
+                                        <div class="panel-body">
+                                            <div class="thumb">
+                                                <a href="#course_preview{{$sub_project->id}}" data-toggle="modal">
+                                                    <img src="{{asset('images/placeholder.jpg')}}"
+                                                         class="img-responsive img-rounded" alt="">
+                                                    <span class="zoom-image"><i class="icon-play3"></i></span>
+                                                </a>
+                                            </div>
+
+                                            <div class="blog-preview">
+                                                <div
+                                                    class="content-group-sm media blog-title stack-media-on-mobile text-left">
+                                                    <div class="media-body">
+                                                        <h5 class="text-semibold no-margin"><a href="#"
+                                                                                               class="text-default">{{$sub_project->title}}</a>
+                                                        </h5>
+
+                                                        <ul class="list-inline list-inline-separate no-margin text-muted">
+                                                            {{--<li>توسط <a href="#">کاریابی صمد</a></li>--}}
+                                                            <li>Nov 1st, 2016</li>
+                                                        </ul>
+                                                    </div>
+
+                                                    <h5 class="text-success media-right no-margin-bottom text-semibold">
+                                                        {{$sub_project->money}} </h5>
+                                                </div>
+                                                <p>{{substr($sub_project->summery,0,40)}}<a
+                                                        href="#description{{$sub_project->id}}"
+                                                        data-toggle="collapse">[بیشتر]</a></p>
+                                                <div id="description{{$sub_project->id}}" class="collapse">
+                                                    {{substr($sub_project->summery,40)}}
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="panel-footer panel-footer-condensed"><a class="heading-elements-toggle"><i
+                                                    class="icon-more"></i></a><a class="heading-elements-toggle"><i
+                                                    class="icon-more"></i></a>
+                                            <div class="heading-elements">
+                                                <ul class="list-inline list-inline-separate heading-text">
+                                                    <li><i class="icon-alarm position-left"></i>{{$sub_project->runDate}}
+                                                    </li>
+                                                    <li>
+                                                        <i class="icon-star-full2 text-size-base text-warning-300"></i>
+                                                        <i class="icon-star-full2 text-size-base text-warning-300"></i>
+                                                        <i class="icon-star-full2 text-size-base text-warning-300"></i>
+                                                        <i class="icon-star-full2 text-size-base text-warning-300"></i>
+                                                        <i class="icon-star-full2 text-size-base text-warning-300"></i>
+                                                        <span class="text-muted position-right">(49)</span>
+                                                    </li>
+                                                </ul>
+                                                <a href="{{route('project-more-info',['id'=>$sub_project->id])}}"
+                                                   class="heading-text pull-right" data-toggle="modal">جزئیات بیشتر
+                                                    <i
+                                                        class="icon-arrow-left13 position-right"></i></a>
+                                                <a href="#edit-project{{$sub_project->id}}" class="heading-text pull-right"
+                                                   data-toggle="modal">ویرایش اطلاعات <i
+                                                        class=" icon-pencil7 position-right"></i></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            @endif
+                        @endforeach
+                    </div>
+                @endforeach
+            @else
+                <div class="row">
+                    @foreach($projects as $project)
+                        @if($project->is_archive==1)
+                            <div class="col-md-4">
+                                <div class="panel panel-flat blog-horizontal blog-horizontal-2">
+                                    <div class="panel-body">
+                                        <div class="thumb">
+                                            <a href="#course_preview{{$project->id}}" data-toggle="modal">
+                                                <img src="{{asset('images/placeholder.jpg')}}"
+                                                     class="img-responsive img-rounded" alt="">
+                                                <span class="zoom-image"><i class="icon-play3"></i></span>
+                                            </a>
+                                        </div>
+
+                                        <div class="blog-preview">
+                                            <div class="content-group-sm media blog-title stack-media-on-mobile text-left">
+                                                <div class="media-body">
+                                                    <h5 class="text-semibold no-margin"><a href="#"
+                                                                                           class="text-default">{{$project->title}}</a>
+                                                    </h5>
+
+                                                    <ul class="list-inline list-inline-separate no-margin text-muted">
+                                                        {{--@if($project->is_archive)--}}
+                                                        {{--<li>وضعیت:آرشیو</li>--}}
+                                                        {{--@else--}}
+                                                        {{--<li>وضعیت: فعال </li>--}}
+                                                        {{--@endif--}}
+                                                        @php
+                                                            $create = Morilog\Jalali\CalendarUtils::strftime('d-m-Y', strtotime($project->created_at));
+                                                            $runDate=Morilog\Jalali\CalendarUtils::strftime('d-m-Y', strtotime($project->runDate));
+                                                        @endphp
+                                                        <br>
+                                                        <li> تاریخ ایجاد:{{$create}}</li>
+                                                    </ul>
+                                                </div>
+
+                                                <h5 class="text-success media-right no-margin-bottom text-semibold">
+                                                    {{$project->money}}</h5>
+                                            </div>
+                                            <p>{{substr($project->summery,0,40)}} <a href="#description{{$project->id}}"
+                                                                                     data-toggle="collapse">[بیشتر]</a></p>
+                                            <div id="description{{$project->id}}" class="collapse">
+                                                {{substr($project->summery,40)}}
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="panel-footer panel-footer-condensed"><a class="heading-elements-toggle"><i
+                                                class="icon-more"></i></a><a class="heading-elements-toggle"><i
+                                                class="icon-more"></i></a>
+                                        <div class="heading-elements">
+                                            <ul class="list-inline list-inline-separate heading-text">
+                                                <li><i class="icon-alarm position-left"></i>تاریخ شروع:{{$runDate}}
+                                                </li>
+                                                <li>
+                                                    <i class="icon-star-full2 text-size-base text-warning-300"></i>
+                                                    <i class="icon-star-full2 text-size-base text-warning-300"></i>
+                                                    <i class="icon-star-full2 text-size-base text-warning-300"></i>
+                                                    <i class="icon-star-full2 text-size-base text-warning-300"></i>
+                                                    <i class="icon-star-full2 text-size-base text-warning-300"></i>
+                                                    {{--<span class="text-muted position-right">(49)</span>--}}
+                                                </li>
+                                            </ul>
+                                            <a href="{{route('project-more-info',['id'=>$project->id])}}"
+                                               class="heading-text pull-right" data-toggle="modal">جزئیات بیشتر <i
+                                                    class="icon-arrow-left13 position-right"></i></a>
+                                            <a href="#edit-project{{$project->id}}" class="heading-text pull-right"
+                                               data-toggle="modal">ویرایش اطلاعات <i
+                                                    class=" icon-pencil7 position-right"></i></a>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        @endif
                     @endforeach
                 </div>
             @endif
@@ -301,6 +477,20 @@
                                 </div>
 
                             </div>
+                            <br>
+
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div class="checkbox">
+                                    <label>آرشیو</label>
+                                        @if($project->is_archive==1)
+                                    <input type=checkbox disabled checked>
+                                            @else
+                                            <input type=checkbox name="archive" class='archive' value="1">
+                                        @endif
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
 
@@ -342,6 +532,14 @@
                 var picture = $('[name="picture{{$project->id}}"]').val();
                 var supporter = $('[name="supporter{{$project->id}}"]').val();
                 var report = $('[name="report{{$project->id}}"]').val();
+                if($('.archive').is(':checked'))
+                {
+                    var archive=$('.archive').val();
+                }
+                else{
+                    var archive=null;
+                }
+                // var archive=$('.archive'
                 console.log('supporter{{$project->id}}', supporter);
                 $.ajax({
                         url: urlPath,
@@ -354,7 +552,8 @@
                             'supporter': supporter,
                             'runDate': runDate,
                             'picture': picture,
-                            'report': report
+                            'report': report,
+                            'archive':archive,
                         },
                         success: function (data) {
                             console.log('successful ' + data);
