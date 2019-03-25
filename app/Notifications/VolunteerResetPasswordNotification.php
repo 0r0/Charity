@@ -11,6 +11,9 @@ class VolunteerResetPasswordNotification extends Notification
 {
     use Queueable;
 
+
+    public $token;
+
     /**
      * Create a new notification instance.
      *
@@ -18,7 +21,7 @@ class VolunteerResetPasswordNotification extends Notification
      */
     public function __construct($token)
     {
-        //
+        $this->token=$token;
     }
 
     /**
@@ -41,9 +44,9 @@ class VolunteerResetPasswordNotification extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage)
-                    ->line('The introduction to the notification.')
-                    ->action('Notification Action', url('/'))
-                    ->line('Thank you for using our application!');
+                    ->line('شما این ایمیل در یافت کردبد چون شما درخواست بازنشانی رمزعبور خود را داده اید')
+                    ->action('بازنشانی رمز عبور', route('volunteer.password.reset',$this->token))
+                    ->line('اگر شما این درخواست را نداده اید لازم نیست کاری انجام دهید!');
     }
 
     /**
