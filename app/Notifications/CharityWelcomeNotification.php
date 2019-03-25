@@ -43,6 +43,8 @@ class CharityWelcomeNotification extends Notification implements ShouldQueue
         return (new MailMessage)
                     ->line('به سایت داوطبانه خوش آمدید عضویت شما در سایت به عنوان خیریه انجام شد برای وارد شدن به سیستم از پیوند زیر اقدام نمایید ')
                     ->action('صفحه ورود', url('/login/charity'))
+                    ->subject('عضویت خیریه در داوطلبانه')
+                    ->greeting('باسلام')
                     ->line('از این که از پلتفرم داوطلبانه استفاده می کنید متشکریم');
     }
 
