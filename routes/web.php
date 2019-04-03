@@ -29,7 +29,9 @@ Route::get('/detail', function () {
 Route::get('/all-volunteers', 'FirstPageController@allVolunteer');
 
 Route::get('/all-projects', function () {
-    $projects = App\Project::all();
+    $projects = App\Project::where('is_archive',false)->get();
+//    $charity=\App\Charity::find(1);
+//    $charity->notify(new App\Notifications\CharityWelcomeNotification());
     return view('all-projects', compact('projects'));
 });
 Route::get('/project-more-info/{id}', 'FirstPageController@projectMoreInfo')->name('all-project-more-info');
