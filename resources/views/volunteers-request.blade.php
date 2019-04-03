@@ -130,8 +130,10 @@
             $('.accept{{$volunteer->id}}').on('click', function () {
                 console.log('accept{{$volunteer->id}}');
                 var situation = $('[name="situation{{$volunteer->id}}"]').val();
+                var oldSituation='{{$volunteer->pivot->situation}}';
                 var project_id ='{{$volunteer->pivot->project_id}}';
                 console.log(situation);
+                if(situation!=oldSituation){
                 $.ajax({
                     url: '{{Route('accept-volunteer',['id'=>$volunteer->id])}}',
                     method: 'POST',
@@ -142,6 +144,13 @@
                         location.reload(true);
                     },
                 });
+                }
+                else{
+                    console.log('nothing');
+                    console.log(typeof oldSituation);
+                    console.log(typeof situation);
+                }
+
 
             });
             @endforeach
