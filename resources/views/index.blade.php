@@ -141,16 +141,16 @@
                                             <div class="panel-body">
                                                 <div class="thumb">
                                                     <a href="#course_preview1" data-toggle="modal">
-                                                        @if(file_exists(public_path('images/'.$project->picture)))
-                                                        <img src="{{asset('images/'.$project->picture)}}"
-                                                             class="img-responsive img-rounded ss">
+                                                        @if(file_exists(public_path('images/projects/'.$project->picture)))
+                                                            <img src="{{asset('images/projects/'.$project->picture)}}"
+                                                                 class="img-responsive img-rounded ss">
                                                             <span class="zoom-image"><i class="icon-play3"></i></span>
 
                                                         @else
                                                             <img src="{{asset('images/placeholder.jpg')}}"
                                                                  class="img-responsive img-rounded ss">
                                                             <span class="zoom-image"><i class="icon-play3"></i></span>
-                                                            @endif
+                                                        @endif
                                                     </a>
                                                 </div>
 
@@ -181,7 +181,7 @@
                                                 <div class="heading-elements">
                                                     <ul class="list-inline list-inline-separate heading-text">
                                                         @php
-                                                        $persianDate=Morilog\Jalali\CalendarUtils::strftime('d-m-Y', strtotime($project->runDate));
+                                                            $persianDate=Morilog\Jalali\CalendarUtils::strftime('d-m-Y', strtotime($project->runDate));
                                                         @endphp
                                                         <li><i class="icon-alarm position-left"></i>تاریخ
                                                             شروع:{{$persianDate}}
@@ -196,7 +196,8 @@
                                                         </li>
                                                     </ul>
 
-                                                    <a href="{{route('all-project-more-info',['id'=>$project->id])}}" class="heading-text pull-right" data-toggle="modal">جزئیات
+                                                    <a href="{{route('all-project-more-info',['id'=>$project->id])}}"
+                                                       class="heading-text pull-right" data-toggle="modal">جزئیات
                                                         بیشتر <i class="icon-arrow-left13 position-right"></i></a>
                                                 </div>
                                             </div>
@@ -240,29 +241,44 @@
             <div class="carousel-inner">
                 @foreach($elitProjects as $project)
                     @if($loop->first)
-                    <div class="item active">
-                        <img src="http://placehold.it/760x400/cccccc/ffffff">
-                        <div class="carousel-caption">
-                            <h4><a href="#">Lorem ipsum dolor sit amet consetetur sadipscing</a></h4>
-                            <p>{{$project->description}} <a class="btn btn-lg btn-primary"
-                                                               href="{{route('all-project-more-info',['id'=>$project->id])}}"
-                                                               target="_blank">جزئیات بیشتر</a>
-                            </p>
-                        </div>
-                    </div><!-- End Item -->
+                        <div class="item active">
+                            @if(file_exists(public_path('images/projects/'.$project->picture)))
+                                <img src="{{asset(public_path('images/projects/'.$project->picture))}}">
+
+                            @else
+                                <img src="http://placehold.it/760x400/cccccc/ffffff">
+                            @endif
+                            {{--<img src="http://placehold.it/760x400/cccccc/ffffff">--}}
+                            <div class="carousel-caption">
+                                <h4>
+                                    <a href="{{route('all-project-more-info',['id'=>$project->id])}}">{{$project->title}}</a>
+                                </h4>
+                                <p>{{$project->description}} <a class="btn btn-lg btn-primary"
+                                                                href="{{route('all-project-more-info',['id'=>$project->id])}}"
+                                                                target="_blank">جزئیات بیشتر</a>
+                                </p>
+                            </div>
+                        </div><!-- End Item -->
                     @else
                         <div class="item">
-                            <img src="http://placehold.it/760x400/cccccc/ffffff">
+                            @if(file_exists(public_path('images/projects/'.$project->picture)))
+                                <img src="{{asset(public_path('images/projects/'.$project->picture))}}">
+
+                            @else
+                                <img src="http://placehold.it/760x400/cccccc/ffffff">
+                            @endif
                             <div class="carousel-caption">
-                                <h4><a href="#">Lorem ipsum dolor sit amet consetetur sadipscing</a></h4>
+                                <h4>
+                                    <a href="{{route('all-project-more-info',['id'=>$project->id])}}">{{$project->title}}</a>
+                                </h4>
                                 <p>{{$project->description}} <a class="btn btn-lg btn-primary"
-                                                                   href="{{route('all-project-more-info',['id'=>$project->id])}}"
-                                                                   target="_blank">جزئیات بیشتر</a>
+                                                                href="{{route('all-project-more-info',['id'=>$project->id])}}"
+                                                                target="_blank">جزئیات بیشتر</a>
                                 </p>
                             </div>
                         </div><!-- End Item -->
                     @endif
-                        @endforeach
+                @endforeach
 
 
             </div><!-- End Carousel Inner -->
@@ -271,9 +287,11 @@
             <ul class="list-group col-sm-4">
                 @foreach($elitProjects as $project)
                     @if($loop->first)
-                <li data-target="#myCarousel" data-slide-to="{{$loop->index}}" class="list-group-item active"><h4>{{substr($project->summery,0,30)}}....</h4></li>
+                        <li data-target="#myCarousel" data-slide-to="{{$loop->index}}" class="list-group-item active">
+                            <h4>{{substr($project->summery,0,30)}}....</h4></li>
                     @else
-                        <li data-target="#myCarousel" data-slide-to="{{$loop->index}}" class="list-group-item"><h4>{{substr($project->summery,0,30)}}.....</h4></li>
+                        <li data-target="#myCarousel" data-slide-to="{{$loop->index}}" class="list-group-item">
+                            <h4>{{substr($project->summery,0,30)}}.....</h4></li>
 
                     @endif
                 @endforeach
