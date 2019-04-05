@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Project;
+use App\Volunteer;
 use Illuminate\Http\Request;
 
 class SearchController extends Controller
@@ -264,6 +265,13 @@ class SearchController extends Controller
             }
         }
 
+    }
+
+    public function volunteerSearch(Request $request)
+    {
+        $volunteerName=$request->volunteer_name;
+        $volunteer=Volunteer::search($volunteerName)->get();
+        return view('volunteer-search')->with('allVolunteers',$volunteer);
     }
 
 }
