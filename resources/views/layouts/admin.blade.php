@@ -65,16 +65,24 @@
             {{--<li><a href="#">Text link</a></li>--}}
 
             {{--<li>--}}
-                {{--<a href="#">--}}
-                    {{--<i class="icon-cog3"></i>--}}
-                    {{--<span class="visible-xs-inline-block position-right">Icon link</span>--}}
-                {{--</a>--}}
+            {{--<a href="#">--}}
+            {{--<i class="icon-cog3"></i>--}}
+            {{--<span class="visible-xs-inline-block position-right">Icon link</span>--}}
+            {{--</a>--}}
             {{--</li>--}}
             <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
                     <i class=" icon-bell2"></i>
                     <span class="visible-xs-inline-block position-right">Messages</span>
-                    <span class="badge bg-warning-400">2</span>
+                    <span class="badge bg-warning-400">
+
+                       @auth('charity')
+                            {{auth('charity')->user()->notifications()->count()}}
+                        @endauth
+                        @auth('volunteer')
+                            {{auth('volunteer')->user()->notifications()->count()}}
+                        @endauth
+                    </span>
                 </a>
 
                 <div class="dropdown-menu dropdown-content width-350">
@@ -86,76 +94,137 @@
                     </div>
 
                     <ul class="media-list dropdown-content-body">
-                        <li class="media">
-                            <div class="media-left">
-                                <img src="{{asset('images/placeholder.jpg')}}" class="img-circle img-sm" alt="">
-                                <span class="badge bg-danger-400 media-badge">5</span>
-                            </div>
+                        {{--@yield('notifications-content')--}}
+                        @auth('charity')
+                            @foreach(Auth::guard('charity')->user()->notifications as $notification)
+                                <li class="media">
+                                    <div class="media-left">
+                                        <img src="{{asset('images/placeholder.jpg')}}" class="img-circle img-sm" alt="">
+                                        {{--<span class="badge bg-danger-400 media-badge">5</span>--}}
+                                    </div>
 
-                            <div class="media-body">
-                                <a href="#" class="media-heading">
-                                    <span class="text-semibold">James Alexander</span>
-                                    <span class="media-annotation pull-right">04:58</span>
-                                </a>
+                                    <div class="media-body">
+                                        @if($notification->type=='App\Notifications\CommentNotification')
+                                            <a href="{{url('/project-more-info/'.$notification->data['id'])}}"
+                                               class="media-heading">
+                                                      <span
+                                                          class="text-semibold">دیدگاه جدید</span>
+                                                <span
+                                                    class="media-annotation pull-right">{{$notification->created_at->format('H:i')}}</span>
+                                            </a>
+                                            <span class="text-muted">{{$notification->data['data']}}</span>
+                                        @else
+                                            <a href="{{url('/charity-dashboard')}}" class="media-heading">
+                                            <span
+                                                class="text-semibold">{{$notification->data['firstName']}} {{$notification->data['lastName']}}({{$notification->data['userName']}})</span>
+                                                <span
+                                                    class="media-annotation pull-right">{{$notification->created_at->format('H:i')}}</span>
+                                            </a>
 
-                                <span class="text-muted">who knows, maybe that would be the best thing for me...</span>
-                            </div>
-                        </li>
+                                            <span
+                                                class="text-muted">who knows, maybe that would be the best thing for me...{{$notification->data['data']}}</span>
+                                        @endif
+                                    </div>
+                                </li>
+                            @endforeach
+                        @endauth
+                        @auth('volunteer')
+                            @foreach(Auth::guard('volunteer')->user()->notifications as $notification)
+                                <li class="media">
+                                    <div class="media-left">
+                                        <img src="{{asset('images/placeholder.jpg')}}" class="img-circle img-sm" alt="">
+                                        <span class="badge bg-danger-400 media-badge">5</span>
+                                    </div>
 
-                        <li class="media">
-                            <div class="media-left">
-                                <img src="{{asset('images/placeholder.jpg')}}" class="img-circle img-sm" alt="">
-                                <span class="badge bg-danger-400 media-badge">4</span>
-                            </div>
+                                    <div class="media-body">
 
-                            <div class="media-body">
-                                <a href="#" class="media-heading">
-                                    <span class="text-semibold">Margo Baker</span>
-                                    <span class="media-annotation pull-right">12:16</span>
-                                </a>
+                                        @if($notification->type=='App\Notifications\CommentNotification')
+                                            <a href="{{url('/project-more-info/'.$notification->data['id'])}}"
+                                               class="media-heading">
+                                                      <span
+                                                          class="text-semibold">دیدگاه جدید</span>
+                                                <span
+                                                    class="media-annotation pull-right">{{$notification->created_at->format('H:i')}}</span>
+                                            </a>
+                                            <span class="text-muted">{{$notification->data['data']}}</span>
+                                        @else
+                                            {{--<a href="{{url('/volunteer-dashboard')}}" class="media-heading">--}}
+                                            <a href="{{url('/volunteer-dashboard')}}" class="media-heading">
+                                                            <span
+                                                                class="text-semibold">{{$notification->data['title']}}</span>
+                                                <span
+                                                    class="media-annotation pull-right">{{$notification->created_at->format('H:i')}}</span>
+                                            </a>
 
-                                <span class="text-muted">That was something he was unable to do because...</span>
-                            </div>
-                        </li>
+                                            <span class="text-muted">{{$notification->data['data']}}</span>
+                                        @endif
+                                        {{--<a href="{{url('/volunteer-dashboard')}}" class="media-heading">--}}
+                                        {{--<span--}}
+                                        {{--class="text-semibold">{{$notification->data['title']}}</span>--}}
+                                        {{--<span--}}
+                                        {{--class="media-annotation pull-right">{{$notification->created_at->format('H:i')}}</span>--}}
+                                        {{--</a>--}}
 
-                        <li class="media">
-                            <div class="media-left"><img src="{{asset('images/placeholder.jpg')}}"
-                                                         class="img-circle img-sm" alt=""></div>
-                            <div class="media-body">
-                                <a href="#" class="media-heading">
-                                    <span class="text-semibold">Jeremy Victorino</span>
-                                    <span class="media-annotation pull-right">22:48</span>
-                                </a>
+                                        {{--<span class="text-muted">{{$notification->data['data']}}</span>--}}
+                                    </div>
+                                </li>
+                            @endforeach
+                        @endauth
 
-                                <span class="text-muted">But that would be extremely strained and suspicious...</span>
-                            </div>
-                        </li>
+                        {{--<li class="media">--}}
+                        {{--<div class="media-left">--}}
+                        {{--<img src="{{asset('images/placeholder.jpg')}}" class="img-circle img-sm" alt="">--}}
+                        {{--<span class="badge bg-danger-400 media-badge">4</span>--}}
+                        {{--</div>--}}
 
-                        <li class="media">
-                            <div class="media-left"><img src="{{asset('images/placeholder.jpg')}}"
-                                                         class="img-circle img-sm" alt=""></div>
-                            <div class="media-body">
-                                <a href="#" class="media-heading">
-                                    <span class="text-semibold">Beatrix Diaz</span>
-                                    <span class="media-annotation pull-right">Tue</span>
-                                </a>
+                        {{--<div class="media-body">--}}
+                        {{--<a href="#" class="media-heading">--}}
+                        {{--<span class="text-semibold">Margo Baker</span>--}}
+                        {{--<span class="media-annotation pull-right">12:16</span>--}}
+                        {{--</a>--}}
 
-                                <span class="text-muted">What a strenuous career it is that I've chosen...</span>
-                            </div>
-                        </li>
+                        {{--<span class="text-muted">That was something he was unable to do because...</span>--}}
+                        {{--</div>--}}
+                        {{--</li>--}}
 
-                        <li class="media">
-                            <div class="media-left"><img src="{{asset('images/placeholder.jpg')}}"
-                                                         class="img-circle img-sm" alt=""></div>
-                            <div class="media-body">
-                                <a href="#" class="media-heading">
-                                    <span class="text-semibold">Richard Vango</span>
-                                    <span class="media-annotation pull-right">Mon</span>
-                                </a>
+                        {{--<li class="media">--}}
+                        {{--<div class="media-left"><img src="{{asset('images/placeholder.jpg')}}"--}}
+                        {{--class="img-circle img-sm" alt=""></div>--}}
+                        {{--<div class="media-body">--}}
+                        {{--<a href="#" class="media-heading">--}}
+                        {{--<span class="text-semibold">Jeremy Victorino</span>--}}
+                        {{--<span class="media-annotation pull-right">22:48</span>--}}
+                        {{--</a>--}}
 
-                                <span class="text-muted">Other travelling salesmen live a life of luxury...</span>
-                            </div>
-                        </li>
+                        {{--<span class="text-muted">But that would be extremely strained and suspicious...</span>--}}
+                        {{--</div>--}}
+                        {{--</li>--}}
+
+                        {{--<li class="media">--}}
+                        {{--<div class="media-left"><img src="{{asset('images/placeholder.jpg')}}"--}}
+                        {{--class="img-circle img-sm" alt=""></div>--}}
+                        {{--<div class="media-body">--}}
+                        {{--<a href="#" class="media-heading">--}}
+                        {{--<span class="text-semibold">Beatrix Diaz</span>--}}
+                        {{--<span class="media-annotation pull-right">Tue</span>--}}
+                        {{--</a>--}}
+
+                        {{--<span class="text-muted">What a strenuous career it is that I've chosen...</span>--}}
+                        {{--</div>--}}
+                        {{--</li>--}}
+
+                        {{--<li class="media">--}}
+                        {{--<div class="media-left"><img src="{{asset('images/placeholder.jpg')}}"--}}
+                        {{--class="img-circle img-sm" alt=""></div>--}}
+                        {{--<div class="media-body">--}}
+                        {{--<a href="#" class="media-heading">--}}
+                        {{--<span class="text-semibold">Richard Vango</span>--}}
+                        {{--<span class="media-annotation pull-right">Mon</span>--}}
+                        {{--</a>--}}
+
+                        {{--<span class="text-muted">Other travelling salesmen live a life of luxury...</span>--}}
+                        {{--</div>--}}
+                        {{--</li>--}}
                     </ul>
 
                     <div class="dropdown-content-footer">
@@ -196,16 +265,16 @@
                                 @csrf
                             </form>
                             {{--<a class="dropdown-item" href=""--}}
-                               {{--onclick="event.preventDefault();--}}
-                                                     {{--document.getElementById('logout-form').submit();">--}}
-                                {{--خروج--}}
+                            {{--onclick="event.preventDefault();--}}
+                            {{--document.getElementById('logout-form').submit();">--}}
+                            {{--خروج--}}
                             {{--</a>--}}
 
                             {{--<form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">--}}
-                                {{--@csrf--}}
+                            {{--@csrf--}}
                             {{--</form>--}}
                         </li>
-                        @endauth
+                    @endauth
 
                     {{--===============================================--}}
                     {{--<li class="nav-item dropdown">--}}
@@ -332,19 +401,19 @@
                     <ul class="breadcrumb-elements">
                         {{--<li><a href="#"><i class="icon-comment-discussion position-left"></i> Link</a></li>--}}
                         {{--<li class="dropdown">--}}
-                            {{--<a href="#" class="dropdown-toggle" data-toggle="dropdown">--}}
-                                {{--<i class="icon-gear position-left"></i>--}}
-                                {{--Dropdown--}}
-                                {{--<span class="caret"></span>--}}
-                            {{--</a>--}}
+                        {{--<a href="#" class="dropdown-toggle" data-toggle="dropdown">--}}
+                        {{--<i class="icon-gear position-left"></i>--}}
+                        {{--Dropdown--}}
+                        {{--<span class="caret"></span>--}}
+                        {{--</a>--}}
 
-                            {{--<ul class="dropdown-menu dropdown-menu-right">--}}
-                                {{--<li><a href="#"><i class="icon-user-lock"></i> Account security</a></li>--}}
-                                {{--<li><a href="#"><i class="icon-statistics"></i> Analytics</a></li>--}}
-                                {{--<li><a href="#"><i class="icon-accessibility"></i> Accessibility</a></li>--}}
-                                {{--<li class="divider"></li>--}}
-                                {{--<li><a href="#"><i class="icon-gear"></i> All settings</a></li>--}}
-                            {{--</ul>--}}
+                        {{--<ul class="dropdown-menu dropdown-menu-right">--}}
+                        {{--<li><a href="#"><i class="icon-user-lock"></i> Account security</a></li>--}}
+                        {{--<li><a href="#"><i class="icon-statistics"></i> Analytics</a></li>--}}
+                        {{--<li><a href="#"><i class="icon-accessibility"></i> Accessibility</a></li>--}}
+                        {{--<li class="divider"></li>--}}
+                        {{--<li><a href="#"><i class="icon-gear"></i> All settings</a></li>--}}
+                        {{--</ul>--}}
                         {{--</li>--}}
                     </ul>
                 </div>

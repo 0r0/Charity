@@ -34,7 +34,11 @@
 @endsection
 @endif
 {{----}}
+{{--@section('notification-count',Auth::guard('charity')->user()->notifications()->count())--}}
+{{--@section('notifications-content')--}}
+    {{--@foreach--}}
 
+    {{--@endsection--}}
 @push('js-header')
     <script type="text/javascript" src="{{asset('js/validation/validate.min.js')}}"></script>
 @endpush
@@ -429,7 +433,7 @@
                                 <div class="col-sm-12">
                                     <label>خلاصه</label>
                                     <textarea id="summery{{$project->id}}" placeholder="خلاصه را وارد کنید"
-                                              rows="2" cols="80" class="alpaca-control form-control"
+                                              rows="1" cols="80" class="alpaca-control form-control"
                                               name="summery{{$project->id}}"
                                               autocomplete="off">{{$project->summery}}</textarea>
                                 </div>
@@ -438,7 +442,7 @@
                                 <div class="col-sm-12">
                                     <label>توضیحات</label>
                                     <textarea id="description{{$project->id}}" placeholder="توضیحات را وارد کنید"
-                                              rows="3" cols="80" class="alpaca-control form-control"
+                                              rows="1" cols="80" class="alpaca-control form-control"
                                               name="description{{$project->id}}"
                                               autocomplete="off">{{$project->description}}</textarea>
                                 </div>
@@ -449,7 +453,7 @@
                                 <div class="col-sm-12">
                                     <label>گزارش کلی</label>
                                     <textarea id="report{{$project->id}}" placeholder="گزارش کلی را وارد کنید"
-                                              rows="2" cols="80" class="alpaca-control form-control"
+                                              rows="1" cols="80" class="alpaca-control form-control"
                                               name="report{{$project->id}}"
                                               autocomplete="off">{{$project->report}}</textarea>
                                 </div>
@@ -470,27 +474,37 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-lg-12">
+                                <div class="col-sm-8">
                                     <label>آپلود عکس</label>
                                     <input type="file" class="form-control" accept="image/*"
                                            name="picture{{$project->id}}">
+                                </div>
+                                <div class="col-sm-4">
+                                    <div class="checkbox">
+                                        <label>آرشیو</label>
+                                        @if($project->is_archive==1)
+                                            <input type=checkbox disabled checked>
+                                        @else
+                                            <input type=checkbox name="archive" class='archive' value="1">
+                                        @endif
+                                    </div>
                                 </div>
 
                             </div>
                             <br>
 
-                            <div class="row">
-                                <div class="col-lg-12">
-                                    <div class="checkbox">
-                                    <label>آرشیو</label>
-                                        @if($project->is_archive==1)
-                                    <input type=checkbox disabled checked>
-                                            @else
-                                            <input type=checkbox name="archive" class='archive' value="1">
-                                        @endif
-                                    </div>
-                                </div>
-                            </div>
+                            {{--<div class="row">--}}
+                                {{--<div class="col-lg-12">--}}
+                                    {{--<div class="checkbox">--}}
+                                    {{--<label>آرشیو</label>--}}
+                                        {{--@if($project->is_archive==1)--}}
+                                    {{--<input type=checkbox disabled checked>--}}
+                                            {{--@else--}}
+                                            {{--<input type=checkbox name="archive" class='archive' value="1">--}}
+                                        {{--@endif--}}
+                                    {{--</div>--}}
+                                {{--</div>--}}
+                            {{--</div>--}}
                         </div>
                     </div>
 
@@ -555,15 +569,15 @@
                             'report': report,
                             'archive':archive,
                         },
-                        success: function (data) {
-                            console.log('successful ' + data);
-
-                        },
-                        error: function (xhr, ajaxOptions, thrownError) {
-                            console.log('error');
-
-                            console.log(thrownError);
-                        },
+                        // success: function (data) {
+                        //     console.log('successful ' + data);
+                        //
+                        // },
+                        // error: function (xhr, ajaxOptions, thrownError) {
+                        //     // console.log('error');
+                        //
+                        //     // console.log(thrownError);
+                        // },
                     }
                 );
                 $('#edit-project{{$project->id}}').modal('hide');// close model after click on submit button
