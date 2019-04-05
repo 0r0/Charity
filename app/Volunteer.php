@@ -30,6 +30,14 @@ class Volunteer extends Authenticatable
     {
         return $this->belongsToMany(Requirement::class);
 }
+
+    public function scopeSearch($query,$name){
+        $key=explode(' ',$name);
+//        $query->whereIn('firstName','like','%'.$key.'%')
+        $query->whereIn('firstName',$key)
+//            ->orWhereIn('lastName','like','%'.$key.'%');
+            ->orWhereIn('lastName',$key);
+    }
     /**
      * Send the password reset notification.
      *
