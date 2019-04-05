@@ -271,9 +271,9 @@
                 </fieldset>
 
                 <div class="text-right">
-                    <button type="reset" class="btn btn-default" id="reset">Reset <i
+                    <button type="reset" class="btn btn-default" id="reset">ریست <i
                             class="icon-reload-alt position-right"></i></button>
-                    <button type="submit" class="btn btn-primary" name="edit-volunteer-submit">Submit <i
+                    <button type="submit" class="btn btn-primary" name="edit-volunteer-submit">تایید <i
                             class="icon-arrow-left13 position-right"></i></button>
                 </div>
             </form>
