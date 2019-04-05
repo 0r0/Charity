@@ -30,23 +30,23 @@
 $volunteer=Auth::guard('volunteer')->user();
 @endphp
 @if(file_exists(public_path('images/profile/'.$volunteer->imagename)))
-@section('profile-image')
+    @section('profile-image')
     <img src="{{asset('images/profile/'.$volunteer->imagename)}}"
          class="img-circle img-sm" alt="">
-@endsection
-@section('profile-image2')
+    @endsection
+    @section('profile-image2')
     <img src="{{asset('images/profile/'.$volunteer->imagename)}}"
          class="img-circle img-sm" alt="">
-@endsection
+    @endsection
 @else
-@section('profile-image')
+    @section('profile-image')
     <img src="{{asset('images/image.png')}}"
          class="img-circle img-sm" alt="">
-@endsection
-@section('profile-image2')
+    @endsection
+    @section('profile-image2')
     <img src="{{asset('images/image.png')}}"
          class="img-circle img-sm" alt="">
-@endsection
+    @endsection
 @endif
 {{----}}
 @section('header-page','داشبورد داوطلب')

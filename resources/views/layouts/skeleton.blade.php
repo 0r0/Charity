@@ -115,12 +115,12 @@
 
 
                     <ul class="dropdown-menu dropdown-menu-right">
-                        <li><a href="{{url('/charity-dashboard')}}" style="font-family: Yekan;"><i
+                        <li><a href="{{url('/charity-dashboard')}}" style="font-family: IRANSans;"><i
                                     class="icon-user-lock"></i> داشبورد</a></li>
                         {{--<li><a href="#"><i class="icon-statistics"></i> Analytics</a></li>--}}
                         {{--<li><a href="#"><i class="icon-accessibility"></i> Accessibility</a></li>--}}
                         <li class="divider"></li>
-                        <li><a href="{{route('logout')}}" style="font-family: Yekan;" onclick="event.preventDefault();
+                        <li><a href="{{route('logout')}}" style="font-family: IRANSans;" onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();"><i
                                     class="icon-gear"></i>
                                 خروج</a></li>
@@ -138,12 +138,12 @@
                     </a>
 
                     <ul class="dropdown-menu dropdown-menu-right">
-                        <li><a href="{{url('/volunteer-dashboard')}}" style="font-family: Yekan;"><i
+                        <li><a href="{{url('/volunteer-dashboard')}}" style="font-family: IRANSans;"><i
                                     class="icon-user-lock"></i> داشبورد</a></li>
                         {{--<li><a href="#"><i class="icon-statistics"></i> Analytics</a></li>--}}
                         {{--<li><a href="#"><i class="icon-accessibility"></i> Accessibility</a></li>--}}
                         <li class="divider"></li>
-                        <li><a href="{{route('logout')}}" style="font-family: Yekan;" onclick="event.preventDefault();
+                        <li><a href="{{route('logout')}}" style="font-family: IRANSans;" onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();"><i
                                     class="icon-gear"></i>
                                 خروج</a></li>
@@ -161,12 +161,12 @@
                     </a>
 
                     <ul class="dropdown-menu dropdown-menu-right">
-                        <li><a href="{{url('login/charity')}}" style="font-family: Yekan;"><i
+                        <li><a href="{{url('login/charity')}}" style="font-family: IRANSans;"><i
                                     class="icon-user-lock"></i> خیریه</a></li>
                         {{--<li><a href="#"><i class="icon-statistics"></i> Analytics</a></li>--}}
                         {{--<li><a href="#"><i class="icon-accessibility"></i> Accessibility</a></li>--}}
                         <li class="divider"></li>
-                        <li><a href="{{url('login/volunteer')}}" style="font-family: Yekan;"><i class="icon-gear"></i>
+                        <li><a href="{{url('login/volunteer')}}" style="font-family: IRANSans;"><i class="icon-gear"></i>
                                 داوطلب</a></li>
                     </ul>
                 </li>
@@ -178,12 +178,12 @@
                     </a>
 
                     <ul class="dropdown-menu dropdown-menu-right">
-                        <li><a href="{{url('register/charity')}}" style="font-family: Yekan;"><i
+                        <li><a href="{{url('register/charity')}}" style="font-family: IRANSans;"><i
                                     class="icon-user-lock"></i> خیریه</a></li>
                         {{--<li><a href="#"><i class="icon-statistics"></i> Analytics</a></li>--}}
                         {{--<li><a href="#"><i class="icon-accessibility"></i> Accessibility</a></li>--}}
                         <li class="divider"></li>
-                        <li><a href="{{url('register/volunteer')}}" style="font-family: Yekan;"><i
+                        <li><a href="{{url('register/volunteer')}}" style="font-family: IRANSans;"><i
                                     class="icon-gear"></i> داوطلب</a></li>
                     </ul>
                 </li>
