@@ -1,18 +1,18 @@
 
 @font-face {
-    font-family:'Yekan' ;
-    src:url('../css/fonts/yekan-font/Yekan.eot');
-    src:url('../css/fonts/yekan-font/Yekan.woff') format('woff');
-    src:url('../css/fonts/yekan-font/Yekan.ttf') format('truetype');
+    font-family:'IRANSans' ;
+    /*src:url('../css/fonts/yekan-font/Yekan.eot');*/
+    src:url('../css/fonts/IRANSans.woff') format('woff');
+    /*src:url('../css/fonts/yekan-font/Yekan.ttf') format('truetype');*/
     font-style: normal;
     font-weight: normal;
 }
 .menu-title{
     font-size: 18px;
-    font-family: Yekan;
+    font-family: IRANSans;
 }
 .text-semibold, span,.panel-title,legend,.control-label,.form-control,a,li,h4,.modal-title,th,p,td,label{
-    font-family: Yekan;
+    font-family: IRANSans;
 }
 legend.text-bold{
   font-size:15px;
@@ -35,7 +35,7 @@ hr.style15:after {
     background: #ffffff;
     color: #60cae2;
     font-size: 40px;
-    font-family: Yekan;
+    font-family: IRANSans;
 }
 hr.style14 {
     border-top: 2px solid #f2f2f2;
@@ -51,7 +51,7 @@ hr.style14:after {
     background: #ffffff;
     color: #60cae2;
     font-size: 40px;
-    font-family: Yekan;
+    font-family: IRANSans;
 }
 
 .ht .bd {
@@ -95,7 +95,7 @@ hr.style14:after {
     height: 400px;
 }
 .btn{
-    font-family: Yekan;
+    font-family: IRANSans;
 }
 
 
