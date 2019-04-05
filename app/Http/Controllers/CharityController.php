@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Charity;
+use App\Notifications\AcceptVolunteerRequestNotification;
 use App\Volunteer;
 use Illuminate\Http\Request;
 use Auth;
@@ -156,9 +157,22 @@ class CharityController extends Controller
 
     {
         $volunteer = Volunteer::find($id);
-//        $project=$volunteer->projects()->find($request->project_id);
-         $volunteer->projects()->updateExistingPivot($request->project_id,['situation'=>$request->situation]);
+        $project=$volunteer->projects()->find($request->project_id);
 
-        return response()->json($volunteer->projects()->find($request->project_id));
+//        if($request->situation!=)
+         $volunteer->projects()->updateExistingPivot($request->project_id,['situation'=>$request->situation]);
+         $situation=$request->situation;
+         if($situation==1)
+         {
+             $data=' تایید شد '.$project->title.'درخواست شما در پروژه ';
+         }
+         elseif($situation==0)
+         {
+             $data=' رد شد '.$project->title.' درخواست شما در پروژه ';
+
+         }
+         $projectTitle=$project->title;
+         $volunteer->notify(new AcceptVolunteerRequestNotification($data,$projectTitle));
+//        return response()->json($volunteer->projects()->find($request->project_id));
     }
 }
