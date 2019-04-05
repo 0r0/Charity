@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Notifications\VolunteerRequirementDeclarationNotification;
 use App\Project;
 use App\Requirement;
 use App\Volunteer;
@@ -35,10 +36,10 @@ class VolunteerController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function all()
-    {
-        //
-    }
+//    public function search()
+//    {
+//
+//    }
 
     /**
      * Store a newly created resource in storage.
@@ -136,6 +137,7 @@ class VolunteerController extends Controller
 
             $project = Project::find($id);
             $project->volunteers()->updateExistingPivot($request->volunteer_id, ['situation' => $request->situation]);
+//            $charity =$project
             return response()->json('انصراف شما ازادامه همکاری با پروژه با موفقیت ثبت شد');
         } else {
             return response()->json('درخواست شما نامعتبر است');
@@ -144,19 +146,25 @@ class VolunteerController extends Controller
 
     }
 
-    public function announcement(Request $request,$id)
+    public function announcement(Request $request, $id)
     {
 //        return response()->json('hello goodbye');
-//
-        $volunteerId = Auth::guard('volunteer')->user()->id;
-        $requirement =Requirement::find($id);
-        $project=$requirement->project()->first();
+        $volunteer = Auth::guard('volunteer')->user();
+        $volunteerId = $volunteer->id;
+
+        $requirement = Requirement::find($id);
+        $project = $requirement->project()->first();
 //        $project->volunteers()->sync($volunteer,false);
-        $project->volunteers()->sync([$volunteerId=>['skill'=>$requirement->skill,'date'=>$requirement->date,'situation'=>-1]],false);
-
-
-
-        return response()->json('hello goodbye2');
-
+        $project->volunteers()->sync([$volunteerId => ['skill' => $requirement->skill, 'date' => $requirement->date, 'situation' => -1]], false);
+        $charities = $project->charities()->get();
+//        $data='کاربر'.$volunteer->userName.'('.$volunteer->firstName.' '.$volunteer->lastName.')برای نیازمندی '
+//    .$requirement->skill.' درخواست داده است';
+        $data = 'درخواست داده است' . $requirement->skill . ')برای نیازمندی' . $volunteer->firstName . ' ' . $volunteer->lastName . ')' . $volunteer->userName . 'کاربر';
+        foreach ($charities as $charity) {
+            $charity->notify(new VolunteerRequirementDeclarationNotification($data, $volunteer->firstName, $volunteer->lastName, $volunteer->userName, $requirement->skill));
+        }
     }
 }
+
+
+//        return response()->json('hello goo
