@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Comment;
+use App\Notifications\CommentNotification;
 use App\Project;
 use Illuminate\Http\Request;
 
@@ -37,20 +38,21 @@ class CommentController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'comment_body'=>'required'
+            'comment_body' => 'required'
         ]);
         $comment = new Comment();
         $comment->body = $request->comment_body;
         if (auth('charity')->check()) {
-            $user=auth('charity')->user();
+            $user = auth('charity')->user();
             $comment->Charity()->associate($user);
         } elseif (auth('volunteer')->check()) {
-            $user=auth('volunteer')->user();
+            $user = auth('volunteer')->user();
             $comment->volunteer()->associate($user);
         } else {
             return back()->with('error', 'شما برای نظر دادن حتما باید وارد سیستم شوید');
         }
         $project = Project::find($request->project_id);
+        $user->notify(new CommentNotification($user, $request->project_id));
         $project->comments()->save($comment);
         return redirect()->back()->with('message', 'دیدگاه مورد نظر با موفقیت ثبت شد');
 
@@ -75,9 +77,9 @@ class CommentController extends Controller
      */
     public function replyStore(Request $request)
     {
-        if(auth('charity')->check() || auth('volunteer')->check()) {
+        if (auth('charity')->check() || auth('volunteer')->check()) {
             $request->validate([
-                'comment_body' =>'required',
+                'comment_body' => 'required',
             ]);
             $reply = new Comment();
             $reply->body = $request->get('comment_body');
@@ -93,9 +95,8 @@ class CommentController extends Controller
             $project->comments()->save($reply);
 
             return back()->with('message', 'دیدگاه شما با موفقیت ثبت شد');
-        }
-        else{
-            return back()->with('error','برای ثبت دیدگاه باید ابتدا وارد سیستم شوید');
+        } else {
+            return back()->with('error', 'برای ثبت دیدگاه باید ابتدا وارد سیستم شوید');
         }
     }
 
