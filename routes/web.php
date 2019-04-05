@@ -77,6 +77,7 @@ Route::post('projects/create-requirement/{id}', 'ProjectController@storeRequirem
 
 //search Routes
 Route::get('/project-search', 'SearchController@projectSearch')->name('project-search');
+Route::get('volunteer-search','SearchController@volunteerSearch')->name('volunteer-search');
 
 
 //comment
