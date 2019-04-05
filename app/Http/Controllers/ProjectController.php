@@ -117,10 +117,17 @@ class ProjectController extends Controller
             $project->is_archive=true;
         }
 //        $project->picture = $picture; // work on it in future
+        if ($request->hasFile('picture')) {
+            $image = $request->file('picture');
+            $imageName = $image->getClientOriginalName();
+            $project->picture = $imageName;
+            $image->move(public_path() . '/projects');
+//
+        }
         $project->save();
 
-        $prj = $project->money;
-        return response()->json($summery);
+//        $prj = $project->money;
+//        return response()->json('hhhhh');
 
     }
 
