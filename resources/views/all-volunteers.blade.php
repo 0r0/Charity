@@ -12,20 +12,20 @@
                             <h4><i class="icon-search4 position-left"></i>جستجو داوطلبین</h4>
 
                             {{--<ul class="breadcrumb position-right">--}}
-                                {{--<li><a href="index.html">Home</a></li>--}}
-                                {{--<li><a href="search_users.html">Search</a></li>--}}
-                                {{--<li class="active">User results</li>--}}
+                            {{--<li><a href="index.html">Home</a></li>--}}
+                            {{--<li><a href="search_users.html">Search</a></li>--}}
+                            {{--<li class="active">User results</li>--}}
                             {{--</ul>--}}
                             <a class="heading-elements-toggle"><i class="icon-more"></i></a></div>
 
                         <div class="heading-elements">
                             {{--<div class="heading-btn-group">--}}
-                                {{--<a href="#" class="btn btn-link btn-float has-text"><i--}}
-                                        {{--class="icon-bars-alt text-primary"></i><span>Statistics</span></a>--}}
-                                {{--<a href="#" class="btn btn-link btn-float has-text"><i--}}
-                                        {{--class="icon-calculator text-primary"></i> <span>Invoices</span></a>--}}
-                                {{--<a href="#" class="btn btn-link btn-float has-text"><i--}}
-                                        {{--class="icon-calendar5 text-primary"></i> <span>Schedule</span></a>--}}
+                            {{--<a href="#" class="btn btn-link btn-float has-text"><i--}}
+                            {{--class="icon-bars-alt text-primary"></i><span>Statistics</span></a>--}}
+                            {{--<a href="#" class="btn btn-link btn-float has-text"><i--}}
+                            {{--class="icon-calculator text-primary"></i> <span>Invoices</span></a>--}}
+                            {{--<a href="#" class="btn btn-link btn-float has-text"><i--}}
+                            {{--class="icon-calendar5 text-primary"></i> <span>Schedule</span></a>--}}
                             {{--</div>--}}
                         </div>
                     </div>
@@ -50,18 +50,19 @@
                         </div>
 
                         <div class="panel-body">
-                            <form action="#" class="main-search">
+                            <form action="{{route('volunteer-search')}}" class="main-search">
                                 <div class="input-group content-group">
                                     <div class="has-feedback has-feedback-left">
                                         <input type="text" class="form-control input-xlg"
-                                               placeholder="نام داوطلب را وارد کنید">
+                                               placeholder="نام داوطلب را وارد کنید" name="volunteer_name">
                                         <div class="form-control-feedback">
                                             <i class="icon-search4 text-muted text-size-base"></i>
                                         </div>
                                     </div>
 
                                     <div class="input-group-btn">
-                                        <button type="submit" class="btn btn-primary btn-xlg">Search</button>
+                                        <button type="submit" class="btn btn-primary btn-xlg">جستجو
+                                        </button>
                                     </div>
                                 </div>
 
@@ -69,37 +70,37 @@
                                     <div class="col-sm-6">
                                         <ul class="list-inline list-inline-condensed no-margin-bottom">
                                             {{--<li class="dropdown">--}}
-                                                {{--<a href="#" class="btn btn-link dropdown-toggle" data-toggle="dropdown">--}}
-                                                    {{--<i class="icon-stack2 position-left"></i> All categories <span--}}
-                                                        {{--class="caret"></span>--}}
-                                                {{--</a>--}}
+                                            {{--<a href="#" class="btn btn-link dropdown-toggle" data-toggle="dropdown">--}}
+                                            {{--<i class="icon-stack2 position-left"></i> All categories <span--}}
+                                            {{--class="caret"></span>--}}
+                                            {{--</a>--}}
 
-                                                {{--<ul class="dropdown-menu">--}}
-                                                    {{--<li><a href="#"><i class="icon-question7"></i> Getting started</a>--}}
-                                                    {{--</li>--}}
-                                                    {{--<li><a href="#"><i class="icon-accessibility"></i> Registration</a>--}}
-                                                    {{--</li>--}}
-                                                    {{--<li><a href="#"><i class="icon-reading"></i> General info</a></li>--}}
-                                                    {{--<li><a href="#"><i class="icon-gear"></i> Your settings</a></li>--}}
-                                                    {{--<li><a href="#"><i class="icon-graduation"></i> Copyrights</a></li>--}}
-                                                    {{--<li class="divider"></li>--}}
-                                                    {{--<li><a href="#"><i class="icon-mail-read"></i> Contacting--}}
-                                                            {{--authors</a></li>--}}
-                                                {{--</ul>--}}
+                                            {{--<ul class="dropdown-menu">--}}
+                                            {{--<li><a href="#"><i class="icon-question7"></i> Getting started</a>--}}
+                                            {{--</li>--}}
+                                            {{--<li><a href="#"><i class="icon-accessibility"></i> Registration</a>--}}
+                                            {{--</li>--}}
+                                            {{--<li><a href="#"><i class="icon-reading"></i> General info</a></li>--}}
+                                            {{--<li><a href="#"><i class="icon-gear"></i> Your settings</a></li>--}}
+                                            {{--<li><a href="#"><i class="icon-graduation"></i> Copyrights</a></li>--}}
+                                            {{--<li class="divider"></li>--}}
+                                            {{--<li><a href="#"><i class="icon-mail-read"></i> Contacting--}}
+                                            {{--authors</a></li>--}}
+                                            {{--</ul>--}}
                                             {{--</li>--}}
                                             {{--<li><a href="#" class="btn btn-link"><i--}}
-                                                        {{--class="icon-reload-alt position-left"></i> Refine your--}}
-                                                    {{--search</a></li>--}}
+                                            {{--class="icon-reload-alt position-left"></i> Refine your--}}
+                                            {{--search</a></li>--}}
                                         </ul>
                                     </div>
 
                                     <div class="col-sm-6 text-right">
                                         <ul class="list-inline no-margin-bottom">
                                             {{--<li><a href="#" class="btn btn-link"><i--}}
-                                                        {{--class="icon-make-group position-left"></i> Browse website</a>--}}
+                                            {{--class="icon-make-group position-left"></i> Browse website</a>--}}
                                             {{--</li>--}}
                                             {{--<li><a href="#" class="btn btn-link"><i--}}
-                                                        {{--class="icon-menu7 position-left"></i> Advanced search</a></li>--}}
+                                            {{--class="icon-menu7 position-left"></i> Advanced search</a></li>--}}
                                         </ul>
                                     </div>
                                 </div>
@@ -117,14 +118,14 @@
 
                         <li class="dropdown pull-right">
                             {{--<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-cog3"></i> <span--}}
-                                    {{--class="visible-xs-inline-block position-right">Options</span> <span--}}
-                                    {{--class="caret"></span></a>--}}
+                            {{--class="visible-xs-inline-block position-right">Options</span> <span--}}
+                            {{--class="caret"></span></a>--}}
                             {{--<ul class="dropdown-menu dropdown-menu-right">--}}
-                                {{--<li><a href="#">Action</a></li>--}}
-                                {{--<li><a href="#">Another action</a></li>--}}
-                                {{--<li><a href="#">Something else</a></li>--}}
-                                {{--<li class="divider"></li>--}}
-                                {{--<li><a href="#">One more line</a></li>--}}
+                            {{--<li><a href="#">Action</a></li>--}}
+                            {{--<li><a href="#">Another action</a></li>--}}
+                            {{--<li><a href="#">Something else</a></li>--}}
+                            {{--<li class="divider"></li>--}}
+                            {{--<li><a href="#">One more line</a></li>--}}
                             {{--</ul>--}}
                         </li>
                     </ul>
@@ -234,7 +235,7 @@
                                     <th style="width: 100px;">نام</th>
                                     <th>نام خانوادگی</th>
                                     <th style="width: 150px;">مهارت ها</th>
-                                    <th >علاقه مندی ها</th>
+                                    <th>علاقه مندی ها</th>
                                     <th style="width: 250px;">اطلاعات تماس</th>
                                     <th>موبایل</th>
                                 </tr>
@@ -246,7 +247,7 @@
                                     <td>{{$volunteer->skill}}</td>
                                     <td>{{$volunteer->intrest}}</td>
 
-                                    @if(Auth::guard('volunteer')->check())
+                                    @if(Auth::guard('volunteer')->check() || auth('charity')->check())
                                         <td>{{$volunteer->phoneNumber}} </td>
                                         <td>{{$volunteer->mobileNumber}}</td>
                                     @else
@@ -275,3 +276,32 @@
         <!--/volunteer info  model model -->
     @endforeach
 @endsection
+{{--@push('body-script')--}}
+    {{--<script>--}}
+        {{--$(document).ready(function () {--}}
+            {{--$.ajaxSetup({--}}
+                {{--headers: {--}}
+                    {{--'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')--}}
+                {{--}--}}
+            {{--});--}}
+            {{--$('.searchVolunteer').on('click', function () {--}}
+                {{--var volunteerName = $('.volunteer-search').val();--}}
+                {{--$.ajax({--}}
+                    {{--url:"{{route('volunteer-search')}}",--}}
+                    {{--method:'GET',--}}
+                    {{--data:{'volunteerName':volunteerName},--}}
+                    {{--success:function(data){--}}
+                        {{--console.log(data);--}}
+
+                    {{--},--}}
+                    {{--error:function (error) {--}}
+                        {{--console.log(error);--}}
+                    {{--}--}}
+
+                {{--})--}}
+
+            {{--})--}}
+
+        {{--})--}}
+    {{--</script>--}}
+{{--@endpush--}}
