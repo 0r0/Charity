@@ -12,17 +12,21 @@
     @endif
 @endsection
 @section('login-username',Auth::guard('charity')->user()->userName)
+
 {{--show profie image--}}
-{{--@if(file_exists(public_path('images/profile/tt.jpg'.$volunteer->imagename)))--}}
-@if(file_exists(public_path('images/profile/tt.jpg')))
+@php
+$user=auth('charity')->user();
+@endphp
+@if(file_exists(public_path('images/profile/'.$user->imagename)))
+    {{--@if(file_exists(public_path('images/profile/tt.jpg')))--}}
 @section('profile-image')
-    {{--    <img src="{{asset('images/profile/tt.jpg'.$volunteer->imagename)}}"--}}
-    <img src="{{asset('images/profile/tt.jpg')}}"
+    <img src="{{asset('images/profile/'.$user->imagename)}}"
+         {{--    <img src="{{asset('images/profile/tt.jpg')}}"--}}
          class="img-circle img-sm" alt="">
 @endsection
 @section('profile-image2')
-    {{--    <img src="{{asset('images/profile/'.$volunteer->imagename)}}"--}}
-    <img src="{{asset('images/profile/tt.jpg')}}"
+    <img src="{{asset('images/profile/'.$user->imagename)}}"
+         {{--    <img src="{{asset('images/profile/tt.jpg')}}"--}}
          class="img-circle img-sm" alt="">
 @endsection
 @else
@@ -36,7 +40,6 @@
 @endsection
 @endif
 {{----}}
-
 
 @push('css-header')
     <link href="{{asset('css/components.css')}}" rel="stylesheet" type="text/css">
@@ -71,7 +74,7 @@
         <div class="panel-body">
 
             <form class="form-horizontal form-validate-jquery" action="{{route('charity-update',['id'=>$charity->id])}}"
-                  method="post" novalidate="novalidate">
+                  method="post" novalidate="novalidate" enctype="multipart/form-data">
                 @csrf
                 <fieldset class="content-group">
                     <legend class="text-bold">اطلاعات هویتی</legend>

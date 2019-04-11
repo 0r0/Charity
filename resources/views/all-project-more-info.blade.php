@@ -138,25 +138,71 @@
                                             @else
                                                 <td>رایگان</td>
                                             @endif
-                                            @auth('volunteer')
-                                                @if($situation==-1 && ($reservedRequirementId==$requirement->id))
-                                                    <td>منتظر تایید</td>
-                                                @elseif($situation==0 && ($reservedRequirementId==$requirement->id))
-                                                    <td>رد شده</td>
-                                                @elseif($situation==1 && ($reservedRequirementId==$requirement->id))
-                                                    <td>تایید شده</td>
+                                            {{--@auth('volunteer')--}}
+                                            {{--@if($situation==-1 && ($reservedRequirementId==$requirement->id))--}}
+                                            {{--<td>منتظر تایید</td>--}}
+                                            {{--@elseif($situation==0 && ($reservedRequirementId==$requirement->id))--}}
+                                            {{--<td>رد شده</td>--}}
+                                            {{--@elseif($situation==1 && ($reservedRequirementId==$requirement->id))--}}
+                                            {{--<td>تایید شده</td>--}}
 
-                                                @elseif($situation==2 && ($reservedRequirementId==$requirement->id))
-                                                    <td>انصراف داده شده</td>
-                                                @else
+                                            {{--@elseif($situation==2 && ($reservedRequirementId==$requirement->id))--}}
+                                            {{--<td>انصراف داده شده</td>--}}
+                                            {{--@else--}}
+                                            {{--<td>--}}
+                                            {{--<button class="btn  bg-blue annunciation{{$requirement->id}}"--}}
+                                            {{--type="submit">اعلام--}}
+                                            {{--آمادگی--}}
+                                            {{--</button>--}}
+                                            {{--</td>--}}
+                                            {{--@endif--}}
+                                            {{--@endauth--}}
+                                            @auth('volunteer')
+                                                @php
+                                                $vExist=false;
+                                                @endphp
+                                                @foreach($volunteerRequirements as $volunteerRequirement)
+                                                    @if($requirement->id==$volunteerRequirement->id)
+                                                        @php
+                                                        $vExist=true;
+                                                        @endphp
+                                                        @if($volunteerRequirement->pivot->situation==-1)
+                                                            <td>منتظر تایید</td>
+                                                        @elseif($volunteerRequirement->pivot->situation==0)
+                                                            <td>رد شده</td>
+                                                        @elseif($volunteerRequirement->pivot->situation==1)
+                                                            <td>تایید شده</td>
+                                                        @endif
+                                                    @endif
+                                                @endforeach
+                                                @if($vExist==false)
                                                     <td>
-                                                        <button class="btn  bg-blue annunciation{{$requirement->id}}"
-                                                                type="submit">اعلام
+                                                        <button
+                                                            class="btn  bg-blue annunciation{{$requirement->id}}"
+                                                            type="submit">اعلام
                                                             آمادگی
                                                         </button>
                                                     </td>
                                                 @endif
+                                                {{--@if($situation==-1 && ($reservedRequirementId==$requirement->id))--}}
+                                                    {{--<td>منتظر تایید</td>--}}
+                                                {{--@elseif($situation==0 && ($reservedRequirementId==$requirement->id))--}}
+                                                    {{--<td>رد شده</td>--}}
+                                                {{--@elseif($situation==1 && ($reservedRequirementId==$requirement->id))--}}
+                                                    {{--<td>تایید شده</td>--}}
+
+                                                {{--@elseif($situation==2 && ($reservedRequirementId==$requirement->id))--}}
+                                                    {{--<td>انصراف داده شده</td>--}}
+                                                {{--@else--}}
+                                                    {{--<td>--}}
+                                                        {{--<button class="btn  bg-blue annunciation{{$requirement->id}}"--}}
+                                                                {{--type="submit">اعلام--}}
+                                                            {{--آمادگی--}}
+                                                        {{--</button>--}}
+                                                    {{--</td>--}}
+                                                {{--@endif--}}
                                             @endauth
+
 
                                         </tr>
                                         <tr>
@@ -217,16 +263,17 @@
                                             @endforeach
                                         </ul>
                                     </div>
-                                    @endif
+                                @endif
                                 <form method="post" action="{{ route('comment.add') }}">
                                     @csrf
                                     <h6 class="text-semibold">دیدگاه</h6>
                                     {{--<p class="content-group-sm">Drop Autosize into any existing website and it should--}}
-                                        {{--Just Work™. The source is short and well commented if you are curious to how it--}}
-                                        {{--works.</p>--}}
+                                    {{--Just Work™. The source is short and well commented if you are curious to how it--}}
+                                    {{--works.</p>--}}
 
                                     <div class="form-group">
-                                        <textarea rows="4" cols="4" class="form-control elastic" placeholder="محل دیدگاه"
+                                        <textarea rows="4" cols="4" class="form-control elastic"
+                                                  placeholder="محل دیدگاه"
                                                   style="overflow: hidden; overflow-wrap: break-word; resize: horizontal; height: 96px;"
                                                   name="comment_body"></textarea>
                                         <input type="hidden" name="project_id" value="{{$project->id}}"/>
@@ -234,6 +281,9 @@
 
                                     <button type="submit" class="btn btn-primary">ارسال دیدگاه</button>
                                 </form>
+                                <div id="spinnerMedia" style="display: none">
+                                    <img src="{{asset('images/spinner.gif')}}" alt="loading">
+                                </div>
                             </div>
 
                         </div>
@@ -253,6 +303,7 @@
     <script>
         $(document).ready(function () {
 
+
             $.ajaxSetup({
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -268,9 +319,17 @@
                         method: 'POST',
                         data: {},
                         success: function (data) {
-                            console.log('successful ' + data);
 
+                            $("#requestOverlay").hide();
+
+                            location.reload();
                         },
+                    beforeSend: function(){
+
+                        $('body').append('<div id="requestOverlay" class="request-overlay"></div>'); /*Create overlay on demand*/
+                        $("#requestOverlay").show();/*Show overlay*/
+
+                    },
                         error: function (xhr, ajaxOptions, thrownError) {
                             console.log('error');
 
@@ -291,6 +350,21 @@
     <style>
         .display-comment .display-comment {
             margin-left: 40px
+        }
+
+    </style>
+    <style type="text/css" media="screen">
+
+        .request-overlay {
+            z-index: 9999;
+            position: fixed; /*Important to cover the screen in case of scolling content*/
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            display: block;
+            text-align: center;
+            background: rgba(200,200,200,0.5) url('{{asset('images/spinner.gif')}}') no-repeat center; /*.gif file or just div with message etc. however you like*/
         }
     </style>
 @endpush

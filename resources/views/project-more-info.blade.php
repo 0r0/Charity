@@ -137,6 +137,8 @@
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal">×</button>
                     <h5 class="modal-title"> ویرایش اطلاعات نیازمندی پروژه</h5>
+                    <div style="display: none" class="date-alert"><label class="alert-danger"> لطفا تاریخ را درفرمت درست وارد کنید(تاریخ هجری شمسی و با خط فاصله) مثال:13-12-96</label></div>
+                    <div style="display: none" class="budget-alert"><label class="alert-danger"> لطفا بودجه  را درفرمت درست وارد کنید(نوع عدد و ) مثال:800000ریال</label></div>
                 </div>
 
 
@@ -189,7 +191,7 @@
                             <div class="col-sm-6">
                                 <label>بودجه</label>
                                 <div class="input-group">
-                                    <input type="text" placeholder=" بودجه پروژه " class="form-control"
+                                    <input type="number" placeholder=" بودجه پروژه " class="form-control"
                                            value="" name="money">
                                     <span class="input-group-addon">ریال</span>
                                 </div>
@@ -318,9 +320,16 @@
                     var skill = $('[name="skill{{$requirement->id}}"]').val();
                     var description = $('[name="description{{$requirement->id}}"]').val();
                     var money = $('[name="money{{$requirement->id}}"]').val();
+                    // var s=1;
+                    // if(typeof money!="number"){
+                    //     $('.budget-alert').show();
+                    //     s=0;
+                    //
+                    // }
                     var runDate = $('[name="date{{$requirement->id}}"]').val();
                     var place = $('[name="place{{$requirement->id}}"]').val();
                     var kind = $('[name="kind{{$requirement->id}}"]').val();
+                    // if(s==1){
                     $.ajax({
                             url: urlPath,
                             method: 'POST',
@@ -342,7 +351,12 @@
                             },
                         }
                     );
-                    $('#edit{{$requirement->id}}').modal('hide');// close model after click on submit button
+                        $('#edit{{$requirement->id}}').modal('hide');// close model after click on submit button
+                    // }
+                    // else{
+                    //     $('.budget-alert').show();
+                    // }
+
 
                 });
                 @endforeach
@@ -369,10 +383,15 @@
                                 kind:kind
                             },
                             success:function (data) {
+                                if(data=='0'){
+                                    $('.date-alert').show();
+                                }
                                 location.reload(true);
                                 $('#create-requirement').modal('hide');
+                                // console.log(data);
                             },
                             error:function (err) {
+                                $('.date-alert').show();
                                 console.log(err);
 
                             }

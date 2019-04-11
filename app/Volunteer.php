@@ -28,7 +28,7 @@ class Volunteer extends Authenticatable
 
     public function requirements()
     {
-        return $this->belongsToMany(Requirement::class);
+        return $this->belongsToMany(Requirement::class)->withPivot('situation');
 }
 
     public function scopeSearch($query,$name){

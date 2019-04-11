@@ -26,37 +26,77 @@ class FirstPageController extends Controller
         return view('all-volunteers', compact('allVolunteers'));
     }
 
+//    public function projectMoreInfo($id)
+//    {
+//
+//        $project = Project::find($id);
+//        $requirements = $project->requirements()->get();
+//        if (auth('volunteer')->check()) {
+//            $volunteer = auth('volunteer')->user();
+//
+//
+//            $projectVolunteerCheck = $project->volunteers()->find($volunteer->id);
+////        foreach ($requirements as $requirement) {//
+////            $requirementVolunteerCheck = $requirement->volunteers()->find($volunteer->id);//
+////            if ($requirementVolunteerCheck) {//
+////                $projectRequirement = $project->requirements()->where('skill', $projectVolunteerCheck->pivot->skill)->first();//
+////                if ($projectRequirement) {//
+////
+////                    $situation = $projectVolunteerCheck->pivot->situation;//
+////                    $reservedRequirementId = $projectRequirement->id;//
+////                } else {//
+////                    $situation = 3;//
+////                    $reservedRequirementId = null;//
+////                }
+////
+////            } else {//
+////                $situation = 3;//
+////                $reservedRequirementId = null;//
+////
+////            }
+////        }
+//
+//            // =====================================================
+//
+//            if ($projectVolunteerCheck) {
+//                $projectRequirement = $project->requirements()->where('skill', $projectVolunteerCheck->pivot->skill)->first();
+//                if ($projectRequirement) {
+//
+//                    $situation = $projectVolunteerCheck->pivot->situation;
+//                    $reservedRequirementId = $projectRequirement->id;
+//                } else {
+//                    $situation = 3;
+//                    $reservedRequirementId = null;
+//                }
+//
+//            } else {
+//                $situation = 3;
+//                $reservedRequirementId = null;
+//
+//            }
+//        } else {
+//            $situation = 4;
+//        }
+//
+//        return view('all-project-more-info', compact('project', 'requirements', 'situation', 'reservedRequirementId'));
+//
+//    }
+
     public function projectMoreInfo($id)
     {
 
         $project = Project::find($id);
-        $requirements = $project->requirements()->get();
+        $requirements = $project->requirements()->get();//get all project requirement
         if (auth('volunteer')->check()) {
             $volunteer = auth('volunteer')->user();
-
-
-            $projectVolunteerCheck = $project->volunteers()->find($volunteer->id);
-            if ($projectVolunteerCheck) {
-                $projectRequirement = $project->requirements()->where('skill', $projectVolunteerCheck->pivot->skill)->first();
-                if ($projectRequirement) {
-
-                    $situation = $projectVolunteerCheck->pivot->situation;
-                    $reservedRequirementId=$projectRequirement->id;
-                } else {
-                    $situation = 3;
-                    $reservedRequirementId=null;
-                }
-
-            } else {
-                $situation = 3;
-                $reservedRequirementId=null;
-
-            }
-        } else {
-            $situation = 4;
+//            $projectVolunteerCheck = $project->volunteers()->find($volunteer->id);
+            $volunteerRequirements = $volunteer->requirements()->get();//get all volunteer requirement
         }
+//        else {
+//            $situation = 4;//if authenticated user is not volunteer then situation is disable;
+//        }
 
-        return view('all-project-more-info', compact('project', 'requirements', 'situation','reservedRequirementId'));
+        return view('all-project-more-info', compact('project', 'requirements', 'volunteerRequirements'));
 
     }
 

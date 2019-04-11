@@ -146,7 +146,7 @@ class VolunteerController extends Controller
 
     }
 
-    public function announcement(Request $request, $id)
+    public function announcement(Request $request, $id)    //announcement = ready for it
     {
 //        return response()->json('hello goodbye');
         $volunteer = Auth::guard('volunteer')->user();
@@ -164,7 +164,22 @@ class VolunteerController extends Controller
             $charity->notify(new VolunteerRequirementDeclarationNotification($data, $volunteer->firstName, $volunteer->lastName, $volunteer->userName, $requirement->skill));
         }
     }
+
+    public function announcement_method(Request $request, $id)
+    {
+        $volunteer = auth('volunteer')->user();
+        $volunteerId = $volunteer->id;
+        $requirement = Requirement::find($id);
+        $volunteer->requirements()->sync([$requirement->id=>['situation'=>-1]],false);
+        $project = $requirement->project()->first();
+        $charities = $project->charities()->get();
+        $data = 'درخواست داده است' . $requirement->skill . ')برای نیازمندی' . $volunteer->firstName . ' ' . $volunteer->lastName . ')' . $volunteer->userName . 'کاربر';
+        foreach ($charities as $charity) {
+            $charity->notify(new VolunteerRequirementDeclarationNotification($data, $volunteer->firstName, $volunteer->lastName, $volunteer->userName, $requirement->skill));
+        }
+
+
+    }
 }
 
 
-//        return response()->json('hello goo

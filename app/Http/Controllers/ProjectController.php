@@ -46,6 +46,7 @@ class ProjectController extends Controller
             $image->move(public_path() . '/projects');
 
         }
+        $project->save();
 //        $project->picture
         $charity->projects()->attach($project);
     }
@@ -181,6 +182,7 @@ class ProjectController extends Controller
      */
     public function storeRequirement(Request $request,$id)
     {
+//        return response()->json('hhhhhhhhhh');
 
         $project=Project::find($id);
         $requirement=new Requirement();
@@ -206,11 +208,14 @@ class ProjectController extends Controller
 
         } else {
             return back()->withErrors(['errorMessage', 'لطفا تاریخ را در فرمت درست وارد کنید']);
+//            $er=' لطفا تاریخ را در فرمت درست وارد کنید مثلا:12-11-1398';
+            return response()->json(0);
         }
         //end save  date
         $requirement->place=$request->place;
         $requirement->bill_kind=$request->kind;
         $requirement->description=$request->description;
+
         $project->requirements()->save($requirement);
 
 

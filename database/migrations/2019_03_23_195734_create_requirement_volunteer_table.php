@@ -17,6 +17,7 @@ class CreateRequirementVolunteerTable extends Migration
             $table->increments('id');
             $table->integer('requirement_id')->unsigned();
             $table->integer('volunteer_id')->unsigned();
+            $table->integer('situation');
             $table->timestamps();
             $table->foreign('requirement_id')->references('id')->on('requirements')->unsigned();;
             $table->foreign('volunteer_id')->references('id')->on('volunteers')->unsigned();

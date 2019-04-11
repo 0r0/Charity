@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Charity;
 use App\Notifications\AcceptVolunteerRequestNotification;
+use App\Project;
 use App\Volunteer;
 use Illuminate\Http\Request;
 use Auth;
@@ -61,14 +62,26 @@ class CharityController extends Controller
         $charity = Charity::find($id);
         $projects = $charity->projects()->get();
         $volunteersArray = [];
-        if ($projects->first()) {
+        $allInfo = [];
+        if ($projects->first()) {//check project is exist
             foreach ($projects as $project) {
-                $volunteers = $project->volunteers()->get();
-                array_push($volunteersArray, $volunteers);
+//                $volunteers = $project->volunteers()->get();// must deleted
+                $requirements = $project->requirements()->get();//get all project requirements
+                if($requirements->first()) {
+                    foreach ($requirements as $requirement) {
+                        $volunteers = $requirement->volunteers()->get();//get all volunteers that request for project requirement
+//                    array_push($volunteersArray, $volunteers);
+                        if($volunteers->first()) {
+                            $info = [$project, $requirement, $volunteers];
+                            array_push($allInfo, $info);//add info array in allInfo array
+                        }
 
+                    }
+//
+                }
             }
         }
-        return view('volunteers-request', compact('volunteersArray'), compact('projects'));
+        return view('volunteers-request', compact('allInfo'));
 
 
     }
@@ -96,6 +109,9 @@ class CharityController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $request->validate([
+            ''
+        ]);
         $charity = Charity::find($id);
         $firstName = $request->FirstName;
         $lastName = $request->LastName;
@@ -106,6 +122,7 @@ class CharityController extends Controller
         $bio = $request->bio;
         $skill = $request->skill;
 //        $interests = $request->interests;// work on interest section in future
+//        dd($request->file('profile_picture'));
         if ($request->has('resume_file')) {
             $resume = $request->file('resume_file');
             $resumeName = $resume->getClientOriginalName();
@@ -138,6 +155,7 @@ class CharityController extends Controller
         $charity->address = $address;
 
         $charity->save();
+        return back();
 
     }
 
@@ -153,26 +171,44 @@ class CharityController extends Controller
     }
 
 
-    public function accept(Request $request, $id)
+    public function accept1(Request $request, $id)
 
     {
         $volunteer = Volunteer::find($id);
-        $project=$volunteer->projects()->find($request->project_id);
+        $project = $volunteer->projects()->find($request->project_id);
 
 //        if($request->situation!=)
-         $volunteer->projects()->updateExistingPivot($request->project_id,['situation'=>$request->situation]);
-         $situation=$request->situation;
-         if($situation==1)
-         {
-             $data=' تایید شد '.$project->title.'درخواست شما در پروژه ';
-         }
-         elseif($situation==0)
-         {
-             $data=' رد شد '.$project->title.' درخواست شما در پروژه ';
+        $volunteer->projects()->updateExistingPivot($request->project_id, ['situation' => $request->situation]);
+        $situation = $request->situation;
+        if ($situation == 1) {
+            $data = ' تایید شد ' . $project->title . 'درخواست شما در پروژه ';
+        } elseif ($situation == 0) {
+            $data = ' رد شد ' . $project->title . ' درخواست شما در پروژه ';
 
-         }
-         $projectTitle=$project->title;
-         $volunteer->notify(new AcceptVolunteerRequestNotification($data,$projectTitle));
+        }
+        $projectTitle = $project->title;
+        $volunteer->notify(new AcceptVolunteerRequestNotification($data, $projectTitle));
 //        return response()->json($volunteer->projects()->find($request->project_id));
+    }
+    public function accept(Request $request, $id)
+
+    {
+//        return response()->json('successfull change situation');
+        $volunteer = Volunteer::find($id);
+        $requirement = $volunteer->requirements()->find($request->requirement_id);//use in data variable for sending in notification
+
+//        if($request->situation!=)
+        $volunteer->requirements()->updateExistingPivot($request->requirement_id, ['situation' => $request->situation]);//update situation
+        $situation = $request->situation;
+        if ($situation == 1) {
+            $data = ' تایید شد ' . $requirement->skill . 'درخواست شما در نیازمندی ';
+        } elseif ($situation == 0) {
+            $data = ' رد شد ' . $requirement->skill . ' درخواست شما در نیازمندی ';
+
+        }
+        $project=Project::find($request->project_id);
+        $projectTitle = $project->title;
+        $volunteer->notify(new AcceptVolunteerRequestNotification($data, $projectTitle));
+        return response()->json('successfull change situation');
     }
 }

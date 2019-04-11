@@ -48,12 +48,21 @@ class CommentController extends Controller
         } elseif (auth('volunteer')->check()) {
             $user = auth('volunteer')->user();
             $comment->volunteer()->associate($user);
+//            $user->comments()->attach
         } else {
             return back()->with('error', 'شما برای نظر دادن حتما باید وارد سیستم شوید');
         }
         $project = Project::find($request->project_id);
-        $user->notify(new CommentNotification($user, $request->project_id));
         $project->comments()->save($comment);
+//        if (isset($comment->parent_id)) {
+            $charities = $project->charities()->get();
+            $userName=$user->userName;
+            foreach ($charities as $charity) {
+                $charity->notify(new CommentNotification($userName,$project->id));
+            }
+//        }
+
+
         return redirect()->back()->with('message', 'دیدگاه مورد نظر با موفقیت ثبت شد');
 
     }

@@ -14,7 +14,7 @@ class Requirement extends Model
 
     public function volunteers()
     {
-        return $this->belongsToMany(Volunteer::class);
+        return $this->belongsToMany(Volunteer::class)->withPivot('situation');
 
     }
 

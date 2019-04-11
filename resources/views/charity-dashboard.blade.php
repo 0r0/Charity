@@ -5,22 +5,25 @@
     <li><a href="{{url('/volunteers-request')}}"><i class="icon-accessibility"></i>
             <span>درخواست ها</span></a></li>
 @endsection
+@php
+$user=auth('charity')->user();
+@endphp
 @section('header-page','داشبورد خیریه')
 @section('user-login')
     {{Auth::guard('charity')->user()->firstName}} {{Auth::guard('charity')->user()->lastName}}
 @endsection
 @section('login-username',Auth::guard('charity')->user()->userName)
 {{--show profie image--}}
-{{--@if(file_exists(public_path('images/profile/tt.jpg'.$volunteer->imagename)))--}}
-@if(file_exists(public_path('images/profile/tt.jpg')))
+@if(file_exists(public_path('images/profile/'.$user->imagename)))
+{{--@if(file_exists(public_path('images/profile/tt.jpg')))--}}
 @section('profile-image')
-    {{--    <img src="{{asset('images/profile/tt.jpg'.$volunteer->imagename)}}"--}}
-    <img src="{{asset('images/profile/tt.jpg')}}"
+        <img src="{{asset('images/profile/'.$user->imagename)}}"
+{{--    <img src="{{asset('images/profile/tt.jpg')}}"--}}
          class="img-circle img-sm" alt="">
 @endsection
 @section('profile-image2')
-    {{--    <img src="{{asset('images/profile/'.$volunteer->imagename)}}"--}}
-    <img src="{{asset('images/profile/tt.jpg')}}"
+        <img src="{{asset('images/profile/'.$user->imagename)}}"
+{{--    <img src="{{asset('images/profile/tt.jpg')}}"--}}
          class="img-circle img-sm" alt="">
 @endsection
 @else

@@ -11,15 +11,15 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+//Route::get('/', function () {
+//    return view('index');
+//});
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('/index', 'FirstPageController@index');
+Route::get('/', 'FirstPageController@index');
 Route::get('/search', function () {
     return view('job-search');
 });
@@ -34,6 +34,7 @@ Route::get('/all-projects', function () {
 //    $charity->notify(new App\Notifications\CharityWelcomeNotification());
     return view('all-projects', compact('projects'));
 });
+
 Route::get('/project-more-info/{id}', 'FirstPageController@projectMoreInfo')->name('all-project-more-info');
 
 Route::view('/admin-base', 'layouts.admin');
@@ -67,7 +68,8 @@ Route::post('/edit-charity-info/{id}', 'CharityController@update')->name('charit
 Route::get('/volunteers-request', 'CharityController@show');
 Route::post('/volunteers-request/{id}', 'CharityController@accept')->name('accept-volunteer');
 Route::post('/change-volunteer-situation/{id}', 'VolunteerController@changeSituation')->name('volunteer-situation');
-Route::post('/ready-for-project/{id}', 'VolunteerController@announcement')->name('ready-announcement');
+//Route::post('/ready-for-project/{id}', 'VolunteerController@announcement')->name('ready-announcement');
+Route::post('/ready-for-project/{id}', 'VolunteerController@announcement_method')->name('ready-announcement');
 
 Route::get('/create-project', 'ProjectController@create')->name('create-project')->middleware('auth:charity');
 Route::post('/create-project', 'ProjectController@store')->name('add-project');
@@ -98,4 +100,37 @@ Route::prefix('volunteer')->group(function () {
     Route::get('/password/reset', 'Auth\VolunteerForgotPasswordController@showLinkRequestForm')->name('volunteer.password.request');;
     Route::post('/password/reset', 'Auth\VolunteerResetPasswordController@reset')->name('volunteer.password.update');;
     Route::get('/password/reset/{token}', 'Auth\VolunteerResetPasswordController@showResetForm')->name('volunteer.password.reset');
+});
+
+
+//notification
+Route::get('read-notification',function(){
+    if(auth('volunteer')->check()){
+        $user=auth('volunteer')->user();
+        $user->unreadNotifications->markAsRead();
+
+    }
+    elseif (auth('charity')->check())
+    {
+        $user=auth('charity')->user();
+        $user->unreadNotifications->markAsRead();
+    }
+    else
+        {
+            return redirect('/');
+    }
+})->name('read-notification');
+
+
+Route::view('/notify','all-notifications');
+
+Route::get('/mail',function ()
+{
+//    $data = ['foo' => 'baz']//
+    Mail::send('welcome',[], function ($message) {
+        $message->from('notification@davtalabane.com','Company Name');
+        $message->to('mehdi.g69@gmail.com');
+        $message->subject('Contact form submitted on domainname.com ');
+    });
+    return 'ok';
 });

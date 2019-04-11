@@ -11,17 +11,17 @@ class CommentNotification extends Notification
 {
     use Queueable;
     public $userName;
-    public $id;
+    public $uuid;
 
     /**
      * Create a new notification instance.
      *
      * @return void
      */
-    public function __construct($userName, $id)
+    public function __construct($userName,$uuid)
     {
         $this->userName = $userName;
-        $this->id = $id;
+        $this->uuid = $uuid;
     }
 
     /**
@@ -45,8 +45,8 @@ class CommentNotification extends Notification
     {
         return (new MailMessage)
             ->line(' کاربر' . $this->userName . ' دیدگاه خود را گذاشت')
-            ->action('مشاهده دیدگاه', url('/project-more-info/' . $this->id));
-//            ->line('Thank you for using our application!');
+            ->action('مشاهده دیدگاه', url('/project-more-info/' . $this->uuid))
+            ->line('Thank you for using our application!');
     }
 
     /**
@@ -59,7 +59,8 @@ class CommentNotification extends Notification
     {
         return [
             'data' => ' کاربر' . $this->userName . ' دیدگاه خود را گذاشت',
-            'id' => $this->id,
+//            'data' => ' کاربر دیدگاه خود را گذاشت',
+            'id' => $this->uuid,
 //            'text'=>'دیدگاه'
         ];
     }

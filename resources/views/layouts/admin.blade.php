@@ -47,7 +47,7 @@
 <!-- Main navbar -->
 <div class="navbar navbar-inverse navbar-fixed-top">
     <div class="navbar-header">
-        <a class="navbar-brand" href="{{url('/index')}}"><img src="{{asset('images/logo_light.png')}}" alt=""></a>
+        <a class="navbar-brand" href="{{url('/')}}"><img src="{{asset('images/logo_light.png')}}" alt=""></a>
 
         <ul class="nav navbar-nav pull-right visible-xs-block">
             <li><a data-toggle="collapse" data-target="#navbar-mobile"><i class="icon-tree5"></i></a></li>
@@ -70,17 +70,17 @@
             {{--<span class="visible-xs-inline-block position-right">Icon link</span>--}}
             {{--</a>--}}
             {{--</li>--}}
-            <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+            <li class="dropdown" id="notification_dropdown">
+                <a href="#" class="dropdown-toggle notification-link" data-toggle="dropdown" aria-expanded="false">
                     <i class=" icon-bell2"></i>
                     <span class="visible-xs-inline-block position-right">Messages</span>
-                    <span class="badge bg-warning-400">
+                    <span class="badge bg-warning-400 notification-count">
 
                        @auth('charity')
-                            {{auth('charity')->user()->notifications()->count()}}
+                            {{auth('charity')->user()->unreadNotifications()->count()}}
                         @endauth
                         @auth('volunteer')
-                            {{auth('volunteer')->user()->notifications()->count()}}
+                            {{auth('volunteer')->user()->unreadNotifications()->count()}}
                         @endauth
                     </span>
                 </a>
@@ -94,82 +94,167 @@
                     </div>
 
                     <ul class="media-list dropdown-content-body">
-                        {{--@yield('notifications-content')--}}
-                        @auth('charity')
-                            @foreach(Auth::guard('charity')->user()->notifications as $notification)
-                                <li class="media">
-                                    <div class="media-left">
-                                        <img src="{{asset('images/placeholder.jpg')}}" class="img-circle img-sm" alt="">
-                                        {{--<span class="badge bg-danger-400 media-badge">5</span>--}}
-                                    </div>
 
-                                    <div class="media-body">
-                                        @if($notification->type=='App\Notifications\CommentNotification')
-                                            <a href="{{url('/project-more-info/'.$notification->data['id'])}}"
-                                               class="media-heading">
+                        @auth('charity')
+                            @foreach(Auth::guard('charity')->user()->unreadNotifications->chunk(10) as $notifications)
+                                @foreach($notifications as $notification)
+                                    <li class="media" style="background-color: #ebebeb">
+                                        <div class="media-left">
+                                            <img src="{{asset('images/placeholder.jpg')}}" class="img-circle img-sm"
+                                                 alt="">
+                                            {{--<span class="badge bg-danger-400 media-badge">5</span>--}}
+                                        </div>
+
+                                        <div class="media-body">
+                                            @if($notification->type=='App\Notifications\CommentNotification')
+                                                <a href="{{url('/project-more-info/'.$notification->data['id'])}}"
+                                                   class="media-heading">
                                                       <span
                                                           class="text-semibold">دیدگاه جدید</span>
-                                                <span
-                                                    class="media-annotation pull-right">{{$notification->created_at->format('H:i')}}</span>
-                                            </a>
-                                            <span class="text-muted">{{$notification->data['data']}}</span>
-                                        @else
-                                            <a href="{{url('/charity-dashboard')}}" class="media-heading">
+                                                    <span
+                                                        class="media-annotation pull-right">{{$notification->created_at->format('H:i')}}</span>
+                                                </a>
+                                                <span class="text-muted">{{$notification->data['data']}}</span>
+                                            @else
+                                                <a href="{{url('/charity-dashboard')}}" class="media-heading">
                                             <span
                                                 class="text-semibold">{{$notification->data['firstName']}} {{$notification->data['lastName']}}({{$notification->data['userName']}})</span>
+                                                    <span
+                                                        class="media-annotation pull-right">{{$notification->created_at->format('H:i')}}</span>
+                                                </a>
+
                                                 <span
-                                                    class="media-annotation pull-right">{{$notification->created_at->format('H:i')}}</span>
-                                            </a>
-
-                                            <span
-                                                class="text-muted">who knows, maybe that would be the best thing for me...{{$notification->data['data']}}</span>
-                                        @endif
-                                    </div>
-                                </li>
+                                                    class="text-muted">who knows, maybe that would be the best thing for me...{{$notification->data['data']}}</span>
+                                            @endif
+                                        </div>
+                                    </li>
+                                @endforeach
                             @endforeach
-                        @endauth
-                        @auth('volunteer')
-                            @foreach(Auth::guard('volunteer')->user()->notifications as $notification)
-                                <li class="media">
-                                    <div class="media-left">
-                                        <img src="{{asset('images/placeholder.jpg')}}" class="img-circle img-sm" alt="">
-                                        <span class="badge bg-danger-400 media-badge">5</span>
-                                    </div>
+                                @foreach(Auth::guard('charity')->user()->readNotifications->chunk(10) as $notifications)
+                                    @foreach($notifications as $notification)
+                                        <li class="media">
+                                            <div class="media-left">
+                                                <img src="{{asset('images/placeholder.jpg')}}" class="img-circle img-sm"
+                                                     alt="">
+                                                {{--<span class="badge bg-danger-400 media-badge">5</span>--}}
+                                            </div>
 
-                                    <div class="media-body">
-
-                                        @if($notification->type=='App\Notifications\CommentNotification')
-                                            <a href="{{url('/project-more-info/'.$notification->data['id'])}}"
-                                               class="media-heading">
+                                            <div class="media-body">
+                                                @if($notification->type=='App\Notifications\CommentNotification')
+                                                    <a href="{{url('/project-more-info/'.$notification->data['id'])}}"
+                                                       class="media-heading">
                                                       <span
                                                           class="text-semibold">دیدگاه جدید</span>
-                                                <span
-                                                    class="media-annotation pull-right">{{$notification->created_at->format('H:i')}}</span>
-                                            </a>
-                                            <span class="text-muted">{{$notification->data['data']}}</span>
-                                        @else
-                                            {{--<a href="{{url('/volunteer-dashboard')}}" class="media-heading">--}}
-                                            <a href="{{url('/volunteer-dashboard')}}" class="media-heading">
+                                                        <span
+                                                            class="media-annotation pull-right">{{$notification->created_at->format('H:i')}}</span>
+                                                    </a>
+                                                    <span class="text-muted">{{$notification->data['data']}}</span>
+                                                @else
+                                                    <a href="{{url('/charity-dashboard')}}" class="media-heading">
+                                            <span
+                                                class="text-semibold">{{$notification->data['firstName']}} {{$notification->data['lastName']}}({{$notification->data['userName']}})</span>
+                                                        <span
+                                                            class="media-annotation pull-right">{{$notification->created_at->format('H:i')}}</span>
+                                                    </a>
+
+                                                    <span
+                                                        class="text-muted">who knows, maybe that would be the best thing for me...{{$notification->data['data']}}</span>
+                                                @endif
+                                            </div>
+                                        </li>
+                                    @endforeach
+                                @endforeach
+                        @endauth
+
+                        @auth('volunteer')
+                            @foreach(Auth::guard('volunteer')->user()->unreadNotifications->chunk(10) as $notifications)
+                                @foreach($notifications as $notification)
+                                    <li class="media notification-body" style="background-color: #ebebeb">
+                                        <div class="media-left">
+                                            <img src="{{asset('images/placeholder.jpg')}}" class="img-circle img-sm"
+                                                 alt="">
+                                            <span class="badge bg-danger-400 media-badge">5</span>
+                                        </div>
+
+                                        <div class="media-body">
+
+                                            @if($notification->type=='App\Notifications\CommentNotification')
+                                                <a href="{{url('/project-more-info/'.$notification->data['id'])}}"
+                                                   class="media-heading">
+                                                      <span
+                                                          class="text-semibold">دیدگاه جدید</span>
+                                                    <span
+                                                        class="media-annotation pull-right">{{$notification->created_at->format('H:i')}}</span>
+                                                </a>
+                                                <span class="text-muted">{{$notification->data['data']}}</span>
+                                            @else
+                                                {{--<a href="{{url('/volunteer-dashboard')}}" class="media-heading">--}}
+                                                <a href="{{url('/volunteer-dashboard')}}" class="media-heading">
                                                             <span
                                                                 class="text-semibold">{{$notification->data['title']}}</span>
-                                                <span
-                                                    class="media-annotation pull-right">{{$notification->created_at->format('H:i')}}</span>
-                                            </a>
+                                                    <span
+                                                        class="media-annotation pull-right">{{$notification->created_at->format('H:i')}}</span>
+                                                </a>
 
-                                            <span class="text-muted">{{$notification->data['data']}}</span>
-                                        @endif
-                                        {{--<a href="{{url('/volunteer-dashboard')}}" class="media-heading">--}}
-                                        {{--<span--}}
-                                        {{--class="text-semibold">{{$notification->data['title']}}</span>--}}
-                                        {{--<span--}}
-                                        {{--class="media-annotation pull-right">{{$notification->created_at->format('H:i')}}</span>--}}
-                                        {{--</a>--}}
+                                                <span class="text-muted">{{$notification->data['data']}}</span>
+                                            @endif
+                                            {{--<a href="{{url('/volunteer-dashboard')}}" class="media-heading">--}}
+                                            {{--<span--}}
+                                            {{--class="text-semibold">{{$notification->data['title']}}</span>--}}
+                                            {{--<span--}}
+                                            {{--class="media-annotation pull-right">{{$notification->created_at->format('H:i')}}</span>--}}
+                                            {{--</a>--}}
 
-                                        {{--<span class="text-muted">{{$notification->data['data']}}</span>--}}
-                                    </div>
-                                </li>
+                                            {{--<span class="text-muted">{{$notification->data['data']}}</span>--}}
+                                        </div>
+                                    </li>
+                                @endforeach
                             @endforeach
-                        @endauth
+                                @foreach(Auth::guard('volunteer')->user()->readNotifications->chunk(5) as $notifications)
+                                    @foreach($notifications as $notification)
+                                        <li class="media notification-body">
+                                            <div class="media-left">
+                                                <img src="{{asset('images/placeholder.jpg')}}" class="img-circle img-sm"
+                                                     alt="">
+                                                <span class="badge bg-danger-400 media-badge">5</span>
+                                            </div>
+
+                                            <div class="media-body">
+
+                                                @if($notification->type=='App\Notifications\CommentNotification')
+                                                    <a href="{{url('/project-more-info/'.$notification->data['id'])}}"
+                                                       class="media-heading">
+                                                      <span
+                                                          class="text-semibold">دیدگاه جدید</span>
+                                                        <span
+                                                            class="media-annotation pull-right">{{$notification->created_at->format('H:i')}}</span>
+                                                    </a>
+                                                    <span class="text-muted">{{$notification->data['data']}}</span>
+                                                @else
+                                                    {{--<a href="{{url('/volunteer-dashboard')}}" class="media-heading">--}}
+                                                    <a href="{{url('/volunteer-dashboard')}}" class="media-heading">
+                                                            <span
+                                                                class="text-semibold">{{$notification->data['title']}}</span>
+                                                        <span
+                                                            class="media-annotation pull-right">{{$notification->created_at->format('H:i')}}</span>
+                                                    </a>
+
+                                                    <span class="text-muted">{{$notification->data['data']}}</span>
+                                                @endif
+                                                {{--<a href="{{url('/volunteer-dashboard')}}" class="media-heading">--}}
+                                                {{--<span--}}
+                                                {{--class="text-semibold">{{$notification->data['title']}}</span>--}}
+                                                {{--<span--}}
+                                                {{--class="media-annotation pull-right">{{$notification->created_at->format('H:i')}}</span>--}}
+                                                {{--</a>--}}
+
+                                                {{--<span class="text-muted">{{$notification->data['data']}}</span>--}}
+                                            </div>
+                                        </li>
+                                    @endforeach
+                                @endforeach
+
+                            @endauth
 
                         {{--<li class="media">--}}
                         {{--<div class="media-left">--}}
@@ -436,5 +521,25 @@
 </div>
 <!-- /page container -->
 @stack('js-body')
+<script>
+    $(document).ready(function () {
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+        $('.notification-link').on('click', function () {
+            $.ajax({
+                url: '{{route('read-notification')}}',
+                method: 'GET',
+            })
+        });
+        $('#notification_dropdown').on('hide.bs.dropdown', function () {
+                $('.notification-count').text('0');
+                $('.notification-body').css({'background-color': ""})
+            }
+        );
+    })
+</script>
 </body>
 </html>

@@ -148,11 +148,14 @@ $(function () {
             },
             resume_file:{
                 required: true,
-                accept: "application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+                accept: "application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+                filesize: 3
             },
             profile_picture:{
               required:true,
-              accept:'image/*'
+              accept:'image/*',
+                filesize: 2,
+
             },
             minimum_characters: {
                 minlength: 10
