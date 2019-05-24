@@ -23,9 +23,11 @@ class CharityController extends Controller
 
     public function index()
     {
-        $id = Auth::guard('charity')->user()->id;
-        $charity = Charity::find($id);
-        $projects = $charity->projects()->get();
+//        $id = Auth::guard('charity')->user()->id;
+        $projects=Auth::guard('charity')->user()->projects()->get();
+//        $charity = Charity::find($id);
+//        $projects2 = $charity->projects()->get();
+
         return view('charity-dashboard', compact('projects'));
     }
 

@@ -27,8 +27,10 @@ class VolunteerController extends Controller
         $id = Auth::guard('volunteer')->user()->id;
         $volunteer = Volunteer::find($id);
         $volunteerProjects = $volunteer->projects()->get();
+        $volunteerRequirements=$volunteer->requirements()->get();
 
-        return view('volunteer-dashboard', compact('volunteerProjects'));
+
+        return view('volunteer-dashboard', compact('volunteerRequirements'));
     }
 
     /**
@@ -136,8 +138,8 @@ class VolunteerController extends Controller
         } elseif ($request->situation == 2) {
 
             $project = Project::find($id);
-            $project->volunteers()->updateExistingPivot($request->volunteer_id, ['situation' => $request->situation]);
-//            $charity =$project
+            $requirement =Requirement::find($id);
+            $requirement->volunteers()->updateExistingPivot($request->volunteer_id, ['situation' => $request->situation]);
             return response()->json('انصراف شما ازادامه همکاری با پروژه با موفقیت ثبت شد');
         } else {
             return response()->json('درخواست شما نامعتبر است');

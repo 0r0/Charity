@@ -86,48 +86,99 @@ $volunteer=Auth::guard('volunteer')->user();
                 </tr>
                 </thead>
                 <tbody>
-                @foreach($volunteerProjects as $project)
+                {{--@foreach($volunteerProjects as $project)--}}
+
+                    {{--<tr>--}}
+                        {{--<td>{{$loop->iteration}}</td>--}}
+                        {{--<td>{{$project->title}}</td>--}}
+                        {{--<td>{{$project->pivot->skill}}</td>--}}
+                        {{--<td>{{$project->supporter}}</td>--}}
+                        {{--@php--}}
+                            {{--$persianDate= Morilog\Jalali\CalendarUtils::strftime('Y-m-d', strtotime($project->pivot->date));--}}
+
+                        {{--@endphp--}}
+                        {{--<td>{{$persianDate}}</td>--}}
+                        {{--@if($project->pivot->situation==-1)--}}
+                            {{--<td>منتظر نظر خیریه</td>--}}
+                        {{--@endif--}}
+                        {{--@if($project->pivot->situation==1)--}}
+                            {{--<td>تایید شده</td>--}}
+                        {{--@endif--}}
+                        {{--@if($project->pivot->situation== 0)--}}
+                            {{--<td>رد شده</td>--}}
+                        {{--@elseif($project->pivot->situation==2)--}}
+                            {{--<td>انصراف توسط داوطلب</td>--}}
+                        {{--@endif--}}
+                        {{--<td>--}}
+                            {{--<div class="form-group">--}}
+
+                                {{--@if($project->pivot->situation==2)--}}
+                                    {{--<label class="control-label col-lg-12">----</label>--}}
+                                 {{--@elseif($project->pivot->situation==0)--}}
+                                    {{--<label class="control-label col-lg-12">----</label>--}}
+
+                                {{--@else--}}
+                                    {{--<label class="control-label col-lg-2">تغییروضعیت</label>--}}
+                                    {{--<div class="col-lg-offset-1 col-lg-4">--}}
+                                        {{--<select name="select{{$project->id}}" class="form-control">--}}
+                                            {{--<option value="1">فعال</option>--}}
+                                            {{--<option value="2">انصراف</option>--}}
+
+                                        {{--</select>--}}
+                                    {{--</div>--}}
+                                    {{--<div class="col-lg-2">--}}
+                                        {{--<button class="btn btn-primary submit-situation{{$project->id}}">تایید</button>--}}
+                                    {{--</div>--}}
+                                {{--@endif--}}
+                            {{--</div>--}}
+                        {{--</td>--}}
+                    {{--</tr>--}}
+                {{--@endforeach--}}
+                @foreach($volunteerRequirements as $requirement)
 
                     <tr>
                         <td>{{$loop->iteration}}</td>
+                        @php
+                        $project=\App\Project::find($requirement->project_id);
+                        @endphp
                         <td>{{$project->title}}</td>
-                        <td>{{$project->pivot->skill}}</td>
+                        <td>{{$requirement->skill}}</td>
                         <td>{{$project->supporter}}</td>
                         @php
-                            $persianDate= Morilog\Jalali\CalendarUtils::strftime('Y-m-d', strtotime($project->pivot->date));
+                            $persianDate= Morilog\Jalali\CalendarUtils::strftime('Y-m-d', strtotime($requirement->date));
 
                         @endphp
                         <td>{{$persianDate}}</td>
-                        @if($project->pivot->situation==-1)
+                        @if($requirement->pivot->situation==-1)
                             <td>منتظر نظر خیریه</td>
                         @endif
-                        @if($project->pivot->situation==1)
+                        @if($requirement->pivot->situation==1)
                             <td>تایید شده</td>
                         @endif
-                        @if($project->pivot->situation== 0)
+                        @if($requirement->pivot->situation== 0)
                             <td>رد شده</td>
-                        @elseif($project->pivot->situation==2)
+                        @elseif($requirement->pivot->situation==2)
                             <td>انصراف توسط داوطلب</td>
                         @endif
                         <td>
                             <div class="form-group">
 
-                                @if($project->pivot->situation==2)
+                                @if($requirement->pivot->situation==2)
                                     <label class="control-label col-lg-12">----</label>
-                                 @elseif($project->pivot->situation==0)
+                                 @elseif($requirement->pivot->situation==0)
                                     <label class="control-label col-lg-12">----</label>
 
                                 @else
                                     <label class="control-label col-lg-2">تغییروضعیت</label>
                                     <div class="col-lg-offset-1 col-lg-4">
-                                        <select name="select{{$project->id}}" class="form-control">
+                                        <select name="select{{$requirement->id}}" class="form-control">
                                             <option value="1">فعال</option>
                                             <option value="2">انصراف</option>
 
                                         </select>
                                     </div>
                                     <div class="col-lg-2">
-                                        <button class="btn btn-primary submit-situation{{$project->id}}">تایید</button>
+                                        <button class="btn btn-primary submit-situation{{$requirement->id}}">تایید</button>
                                     </div>
                                 @endif
                             </div>
@@ -151,13 +202,13 @@ $volunteer=Auth::guard('volunteer')->user();
                 }
             });
 
-            @foreach($volunteerProjects as $project)
-            $('.submit-situation{{$project->id}}').on('click', function () {
-                var volunteer_id = '{{$project->pivot->volunteer_id}}';
-                var situation = $("[name='select{{$project->id}}']").val();
+            @foreach($volunteerRequirements as $requirement)
+            $('.submit-situation{{$requirement->id}}').on('click', function () {
+                var volunteer_id = '{{$requirement->pivot->volunteer_id}}';
+                var situation = $("[name='select{{$requirement->id}}']").val();
                 $.ajax(
                     {
-                        url: "{{route('volunteer-situation',['id'=>$project->id])}}",
+                        url: "{{route('volunteer-situation',['id'=>$requirement->id])}}",
                         method: 'POST',
                         data: {'volunteer_id': volunteer_id, 'situation': situation},
                         success: function (data) {

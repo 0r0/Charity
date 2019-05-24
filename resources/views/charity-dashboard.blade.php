@@ -213,6 +213,7 @@ $user=auth('charity')->user();
 
     </div>
     <br>
+    {{--@if()--}}
     <div class="panel panel-flat">
         <div class="panel-heading">
             <h5 class="panel-title"> لیست پروژه های آرشیو<a class="heading-elements-toggle"><i
@@ -359,11 +360,15 @@ $user=auth('charity')->user();
                                                 </li>
                                             </ul>
                                             <a href="{{route('project-more-info',['id'=>$project->id])}}"
-                                               class="heading-text pull-right" data-toggle="modal">جزئیات بیشتر <i
-                                                    class="icon-arrow-left13 position-right"></i></a>
-                                            <a href="#edit-project{{$project->id}}" class="heading-text pull-right"
+                                               class="heading-text pull-left" data-toggle="modal">جزئیات بیشتر <i
+                                                    class="icon-arrow-left13 position-left"></i></a>
+                                            <a href="#edit-project{{$project->id}}" class="heading-text pull-left"
                                                data-toggle="modal">ویرایش اطلاعات <i
-                                                    class=" icon-pencil7 position-right"></i></a>
+                                                    class=" icon-pencil7 position-left"></i></a>
+                                            <a href="#edit-project3{{$project->id}}" class="heading-text pull-left"
+                                               data-toggle="modal">حذف پروژه <i
+                                                    class=" icon-pencil7 position-left"></i></a>
+
 
                                         </div>
                                     </div>
@@ -375,6 +380,7 @@ $user=auth('charity')->user();
             @endif
         </div>
     </div>
+    {{--@endif--}}
 
 
 
